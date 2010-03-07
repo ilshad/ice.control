@@ -7,7 +7,7 @@
   <interface
      interface=".interfaces.ISkin"
      type="zope.publisher.interfaces.browser.IBrowserSkinType"
-     name="breamru"
+     name="control"
      />
   
   <z3c:layout

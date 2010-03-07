@@ -1,0 +1,25 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   i18n_domain="ice.control">
+
+  <include package="zope.viewlet" file="meta.zcml" />
+  <include package="z3c.form" file="meta.zcml" />
+  <include package="z3c.macro" file="meta.zcml" />
+  <include package="z3c.template" file="meta.zcml" />
+  <include package="z3c.pagelet" file="meta.zcml" />
+
+  <include package="zope.contentprovider" />
+  <include package="z3c.pagelet" />
+  <include package="z3c.form" />
+  <include package="z3c.formui" />
+  <include package="zope.app.zopeappgenerations" />
+  <include package="zope.dublincore" />
+  <include package="zope.app.generations" />
+  <include package="zope.app.generations" file="subscriber.zcml" />
+  <include package="z3c.configurator" />
+  <include package="zope.applicationcontrol" />
+  <include package="zope.size" />
+  <include package="zope.location" />
+  <include package="zope.app.publisher.browser" />
+
+</configure>
