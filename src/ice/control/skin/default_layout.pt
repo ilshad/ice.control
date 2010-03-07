@@ -5,16 +5,16 @@
 <head>
   <title>BlueBream</title>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <!--link rel="icon" type="image/png" href="static/favicon.png"
+  <!--link rel="icon" type="image/png" href="resources/img/favicon.png"
 	tal:attributes="href string:${site/@@absolute_url}/++resource++images/favicon.png" /-->
-  <link rel="stylesheet" type="text/css" href="static/style.css" media="all"
+  <link rel="stylesheet" type="text/css" href="resources/css/default.css" media="all"
 	tal:attributes="href string:${site/@@absolute_url}/++resource++css/default.css" />
 </head>
 <body>
   <div id="container">
     <table id="wrapper">
       <tr><td id="header" /></tr>
-      <tr><td id="main" tal:content="structure provider:pagelet" /></tr>
+      <tr><td id="main" tal:content="structure provider:pagelet">It works!</td></tr>
     </table>
   </div>
 </body>

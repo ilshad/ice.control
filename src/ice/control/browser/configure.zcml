@@ -1,5 +1,6 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
+   xmlns:browser="http://namespaces.zope.org/browser"
    xmlns:z3c="http://namespaces.zope.org/z3c"
    i18n_domain="ice.control">
 
@@ -28,6 +29,11 @@
      for=".menu.Menu"
      template="menu.pt"
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     />
+
+  <browser:defaultView
+     for=".interfaces.IControl"
+     name="generations.html"
      />
 
 </configure>
