@@ -1,18 +1,17 @@
-<configure
-   xmlns="http://namespaces.zope.org/zope"
-   i18n_domain="ice.control">
+<configure xmlns="http://namespaces.zope.org/zope">
 
-  <include package="zope.i18n" file="meta.zcml" />
-  <include package="zope.app.form.browser" file="meta.zcml" />
-  <include package="zope.app.container.browser" file="meta.zcml" />
-  <include package="zope.app.pagetemplate" file="meta.zcml" />
-  <include package="zope.app.publisher.xmlrpc" file="meta.zcml" />
-  <include package="zope.viewlet" file="meta.zcml" />
-  <include package="z3c.form" file="meta.zcml" />
-  <include package="z3c.macro" file="meta.zcml" />
-  <include package="z3c.template" file="meta.zcml" />
-  <include package="z3c.pagelet" file="meta.zcml" />
+  <include file="meta.zcml" />
 
+  <include package="zope.component" />
+  <include package="zope.traversing" />
+  <include package="zope.site" />
+  <include package="zope.annotation" />
+  <include package="zope.container" />
+  <include package="zope.componentvocabulary" />
+  <include package="zope.app.appsetup" />
+  <include package="zope.app.security" />
+  <include package="zope.app.publication" />
+  <include package="zope.principalregistry" />
   <include package="zope.copypastemove" />
   <include package="zope.publisher" />
   <include package="zope.formlib" />
@@ -28,17 +27,18 @@
   <include package="zope.traversing.browser" />
   <include package="zope.app.pagetemplate" />
   <include package="zope.contentprovider" />
-  <include package="z3c.pagelet" />
-  <include package="z3c.form" />
-  <include package="z3c.formui" />
   <include package="zope.app.zopeappgenerations" />
   <include package="zope.dublincore" />
   <include package="zope.app.generations" />
   <include package="zope.app.generations" file="subscriber.zcml" />
-  <include package="z3c.configurator" />
   <include package="zope.applicationcontrol" />
   <include package="zope.size" />
   <include package="zope.location" />
   <include package="zope.app.publisher.browser" />
+  <include package="z3c.configurator" />
+  <include package="z3c.pagelet" />
+  <include package="z3c.form" />
+  <include package="z3c.formui" />
+  <include package="z3c.zrtresource" />
 
 </configure>

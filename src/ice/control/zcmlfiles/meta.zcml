@@ -1,0 +1,24 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <include package="zope.component" file="meta.zcml" />
+  <include package="zope.security" file="meta.zcml" />
+  <include package="zope.publisher" file="meta.zcml" />
+  <include package="zope.browserresource" file="meta.zcml" />
+  <include package="zope.browsermenu" file="meta.zcml" />
+  <include package="zope.browserpage" file="meta.zcml" />
+  <include package="zope.securitypolicy" file="meta.zcml" />
+  <include package="zope.principalregistry" file="meta.zcml" />
+  <include package="zope.app.publication" file="meta.zcml" />
+  <include package="zope.i18n" file="meta.zcml" />
+  <include package="zope.app.form.browser" file="meta.zcml" />
+  <include package="zope.app.container.browser" file="meta.zcml" />
+  <include package="zope.app.pagetemplate" file="meta.zcml" />
+  <include package="zope.app.publisher.xmlrpc" file="meta.zcml" />
+  <include package="zope.viewlet" file="meta.zcml" />
+  <include package="z3c.form" file="meta.zcml" />
+  <include package="z3c.macro" file="meta.zcml" />
+  <include package="z3c.template" file="meta.zcml" />
+  <include package="z3c.pagelet" file="meta.zcml" />
+  <include package="z3c.zrtresource" file="meta.zcml" />
+
+</configure>

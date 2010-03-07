@@ -203,3 +203,7 @@ input[type=checkbox] {
     margin-top: -10px;
     margin-left: -10px;
 }
+
+#main {
+    padding: 10px;
+}
