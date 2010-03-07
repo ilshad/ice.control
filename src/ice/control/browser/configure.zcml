@@ -1,0 +1,20 @@
+<configure 
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:z3c="http://namespaces.zope.org/z3c"
+   i18n_domain="ice.control">
+
+  <adapter
+     name="menu"
+     for="zope.interface.Interface
+	  z3c.layer.pagelet.IPageletBrowserLayer
+	  z3c.pagelet.interfaces.IPagelet"
+     factory=".menu.Menu"
+     />
+
+  <z3c:template
+     for=".menu.Menu"
+     template="menu.pt"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     />
+
+</configure>

@@ -2,4 +2,14 @@
    xmlns="http://namespaces.zope.org/zope"
    i18n_domain="ice.control">
 
+  <!-- Include this configuration file if you like to
+       use all the features of this package. Otherwise
+       include only ice.control.browser and exact the submodules
+       you whant to use: all controls or some of controls
+       and skin if you need this admin UI skin -->
+
+  <include package="ice.control.browser" />
+  <include package="ice.control.controls" />
+  <include package="ice.control.skin" />
+
 </configure>

@@ -1,0 +1,16 @@
+<table class="system-control-menu"
+       tal:define="name python:request.getURL().split('/')[-1]">
+  <tr tal:repeat="pagelet python:view.pagelets">
+    <td class="selected"
+	tal:condition="python:pagelet.__name__ == name">
+      <a tal:attributes="href python:pagelet.__name__"
+	 tal:content="python:pagelet.title" />
+    </td>
+    <td class="unselected"
+	tal:condition="python:pagelet.__name__ != name">
+      <a tal:attributes="href python:pagelet.__name__"
+	 tal:content="python:pagelet.title" />
+    </td>
+  </tr>
+</table>
+
