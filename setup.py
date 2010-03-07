@@ -15,6 +15,6 @@ setup(name='ice.control',
       install_requires=['setuptools',
                         'z3c.testsetup',
                         'z3c.layer.pagelet',
-                        'z3c.template']
+                        'z3c.template'],
       include_package_data=True,
       zip_safe=False)
