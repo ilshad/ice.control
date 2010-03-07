@@ -2,7 +2,7 @@
    xmlns="http://namespaces.zope.org/zope"
    i18n_domain="ice.control">
 
-  <include package="ice.control.zcmlfiles" />
+  <include package="ice.control.zcml" />
 
   <securityPolicy
      component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy"
