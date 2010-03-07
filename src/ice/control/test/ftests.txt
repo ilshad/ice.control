@@ -1,0 +1,13 @@
+===========
+ice.control
+===========
+
+:doctest:
+:functional-zcml-layer: ftesting.zcml
+
+Open browser and test::
+
+  >>> from zope.testbrowser.testing import Browser
+  >>> browser = Browser()
+
+
