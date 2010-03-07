@@ -1,0 +1,16 @@
+<h1>
+  <b tal:content="view/id" />
+  Application Manager Details
+  &nbsp;-- <a href="generations.html">Back to listing</a> --
+</h1>
+<br/>
+<tal:block repeat="evolver view/getEvolvers">
+  <h2>
+    Evolver from Generation <b tal:content="evolver/from"/>
+    to Generation <b tal:content="evolver/to"/>
+  </h2>
+  <br />
+  <div tal:content="structure evolver/info">
+    Evolution information.
+  </div>
+</tal:block>

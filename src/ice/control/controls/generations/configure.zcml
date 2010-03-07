@@ -1,0 +1,36 @@
+<configure
+   xmlns="http://namespaces.zope.org/z3c"
+   i18n_domain="ice.control">
+
+  <!-- Browse database schema managers -->
+  <pagelet
+     for="ice.control.browser.interfaces.IControl"
+     name="generations.html"
+     class="zope.app.generations.browser.managers.Managers"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     permission="zope.ManageApplication"
+     provides="ice.control.browser.interfaces.IControlPagelet"
+     title="Generations"
+     weight="1"
+     />
+  <template
+     for="zope.app.generations.browser.managers.Managers"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     template="managers.pt"
+     />
+
+  <!-- Manager details view -->
+  <pagelet
+     for="ice.control.browser.interfaces.IControl"
+     name="generations_managerdetails.html"
+     class="zope.app.generations.browser.managerdetails.ManagerDetails"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     permission="zope.ManageApplication"
+     />
+  <template
+     for="zope.app.generations.browser.managerdetails.ManagerDetails"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     template="managerdetails.pt"
+     />
+
+</configure>

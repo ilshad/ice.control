@@ -1,11 +1,22 @@
-<configure 
+<configure
    xmlns="http://namespaces.zope.org/zope"
    xmlns:z3c="http://namespaces.zope.org/z3c"
    i18n_domain="ice.control">
 
+  <class class=".control.Control">
+    <require permission="zope.ManageApplication"
+	     interface=".interfaces.IControl" />
+  </class>
+
+  <utility
+     component=".control.control"
+     provides="zope.traversing.interfaces.IEtcNamespace"
+     name="control"
+     />
+
   <adapter
      name="menu"
-     for="zope.interface.Interface
+     for=".interfaces.IControl
 	  z3c.layer.pagelet.IPageletBrowserLayer
 	  z3c.pagelet.interfaces.IPagelet"
      factory=".menu.Menu"

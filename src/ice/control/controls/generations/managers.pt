@@ -1,0 +1,35 @@
+<form tal:attributes="action request/URL"
+      tal:define="status view/evolve" >
+  <p tal:condition="status">
+    <span tal:condition="status/to">
+      The database was updated to generation <span tal:content="status/to">
+	2</span> for <span tal:content="status/app">foo.bar</span>.</span>
+    <span tal:condition="not: status/to">
+      The database is up to date for <span tal:content="status/app">foo.bar</span>.
+    </span>
+  </p>
+  <table border="1">
+    <tr>
+      <th>Application</th>
+      <th>Minimum Generation</th>
+      <th>Maximum Generation</th>
+      <th>Current Database Generation</th>
+      <th>Evolve?</th>
+    </tr>
+    <tr tal:repeat="app view/applications">
+      <td>
+	<a tal:attributes="href string:generations_managerdetails.html?id=${app/id}"
+           tal:content="app/id">foo.bar</a>
+      </td>
+      <td tal:content="app/min">1</td>
+      <td tal:content="app/max">10</td>
+      <td tal:content="app/generation">2</td>
+      <td>
+	<input type="submit" value=" evolve " name="evolve"
+               tal:condition="app/evolve"
+               tal:attributes="name app/evolve">
+	  <span tal:condition="not: app/evolve">No, up to date</span>
+      </td>
+    </tr>
+  </table>
+</form>
