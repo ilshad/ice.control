@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(name='ice.control',
       version='0.1.0',
-      author='Ilshad Khabibullin',
+      author='Ilshad R. Khabibullin',
       author_email='astoon.net at gmail.com',
       url='',
       description='',
@@ -21,6 +21,7 @@ setup(name='ice.control',
                         'zope.app.zcmlfiles',
 
                         'z3c.testsetup',
+                        'z3c.configurator',
                         'z3c.layer.pagelet',
                         'z3c.template',
                         'z3c.formui'],

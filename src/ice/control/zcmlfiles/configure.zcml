@@ -2,12 +2,31 @@
    xmlns="http://namespaces.zope.org/zope"
    i18n_domain="ice.control">
 
+  <include package="zope.i18n" file="meta.zcml" />
+  <include package="zope.app.form.browser" file="meta.zcml" />
+  <include package="zope.app.container.browser" file="meta.zcml" />
+  <include package="zope.app.pagetemplate" file="meta.zcml" />
+  <include package="zope.app.publisher.xmlrpc" file="meta.zcml" />
   <include package="zope.viewlet" file="meta.zcml" />
   <include package="z3c.form" file="meta.zcml" />
   <include package="z3c.macro" file="meta.zcml" />
   <include package="z3c.template" file="meta.zcml" />
   <include package="z3c.pagelet" file="meta.zcml" />
 
+  <include package="zope.copypastemove" />
+  <include package="zope.publisher" />
+  <include package="zope.formlib" />
+  <include package="zope.app.form.browser" />
+  <include package="zope.browsermenu" />
+  <include package="zope.principalregistry" />
+  <include package="zope.authentication" />
+  <include package="zope.securitypolicy" />
+  <include package="zope.login" />
+  <include package="zope.app.zcmlfiles" file="menus.zcml" />
+  <include package="zope.app.authentication" />
+  <include package="zope.app.security.browser" />
+  <include package="zope.traversing.browser" />
+  <include package="zope.app.pagetemplate" />
   <include package="zope.contentprovider" />
   <include package="z3c.pagelet" />
   <include package="z3c.form" />
