@@ -1,0 +1,17 @@
+<configure
+   xmlns="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <resourceDirectory
+     name="images"
+     directory="images"
+     layer="..interfaces.ILayer"
+     />
+
+  <resourceDirectory
+     name="css"
+     directory="css"
+     layer="..interfaces.ILayer"
+     />
+
+</configure>

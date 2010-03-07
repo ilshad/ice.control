@@ -1,0 +1,21 @@
+/**
+*
+* System control
+*
+**/
+#control-sidebar {
+    width: 150px;
+}
+
+table.system-control-menu {
+    width: 100%;
+}
+
+table.system-control-menu td a {
+    display: block;
+}
+
+table.system-control-menu td.selected a {
+    color: #893167;
+    font-weight: bold;
+}

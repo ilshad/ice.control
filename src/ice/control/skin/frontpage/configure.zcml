@@ -1,0 +1,17 @@
+<configure
+   xmlns="http://namespaces.zope.org/z3c"
+   i18n_domain="ice.control">
+  
+  <pagelet
+     name="index.html"
+     for="zope.site.interfaces.IRootFolder"
+     class=".frontpage.Pagelet"
+     permission="zope.Public"
+     />
+  
+  <template
+     for=".frontpage.Pagelet"
+     template="frontpage.pt"
+     />
+
+</configure>

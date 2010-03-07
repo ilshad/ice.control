@@ -16,23 +16,13 @@
 #
 ##############################################################################
 
-from zope.interface import Interface
-from zope.schema import TextLine, Int
-from z3c.pagelet.interfaces import IPagelet
+from z3c.form.interfaces import IFormLayer
+from z3c.layer.pagelet import IPageletBrowserLayer
+from z3c.formui.interfaces import IDivFormLayer
+from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
-class IControl(Interface):
-    """Location for system control"""
+class ILayer(IFormLayer, IPageletBrowserLayer, IDefaultBrowserLayer):
+    """Pretty admin UI layer for BlueBream."""
 
-class IControlPagelet(IPagelet):
-    """I am response for control views.
-    Your pagelets should provide me."""
-
-    title = TextLine(
-        title=u'Title',
-        default=u'',
-        required=False)
-
-    weight = Int(
-        title=u'Weight',
-        default=99,
-        required=False)
+class ISkin(IDivFormLayer, ILayer):
+    """Pretty admin UI skin for BlueBream"""

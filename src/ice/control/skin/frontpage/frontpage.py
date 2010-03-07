@@ -16,23 +16,4 @@
 #
 ##############################################################################
 
-from zope.interface import Interface
-from zope.schema import TextLine, Int
-from z3c.pagelet.interfaces import IPagelet
-
-class IControl(Interface):
-    """Location for system control"""
-
-class IControlPagelet(IPagelet):
-    """I am response for control views.
-    Your pagelets should provide me."""
-
-    title = TextLine(
-        title=u'Title',
-        default=u'',
-        required=False)
-
-    weight = Int(
-        title=u'Weight',
-        default=99,
-        required=False)
+class Pagelet: pass

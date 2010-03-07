@@ -1,5 +1,33 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   xmlns:z3c="http://namespaces.zope.org/z3c"
    i18n_domain="ice.control">
+  
+  <interface
+     interface=".interfaces.ISkin"
+     type="zope.publisher.interfaces.browser.IBrowserSkinType"
+     name="breamru"
+     />
+  
+  <z3c:layout
+     layer=".interfaces.ILayer"
+     template="default_layout.pt"
+     />
+  
+  <z3c:layout
+     layer=".interfaces.ILayer"
+     template="control_layout.pt"
+     context="ice.control.browser.interfaces.IControl"
+     />
+  
+  <browser:defaultView
+     for="zope.container.interfaces.IContainer"
+     layer=".interfaces.ILayer"
+     name="index.html"
+     />
+
+  <include package=".frontpage" />
+  <include package=".resources" />
 
 </configure>
