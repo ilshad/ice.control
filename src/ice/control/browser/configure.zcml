@@ -4,8 +4,10 @@
    i18n_domain="ice.control">
 
   <class class=".control.Control">
-    <require permission="zope.ManageApplication"
-	     interface=".interfaces.IControl" />
+    <require
+       permission="zope.ManageApplication"
+       interface=".interfaces.IControl"
+       />
   </class>
 
   <utility
