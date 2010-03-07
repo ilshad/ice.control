@@ -13,8 +13,16 @@ setup(name='ice.control',
       namespace_packages=['ice',],
       package_dir={'':'src'},
       install_requires=['setuptools',
+
+                        'zope.testbrowser',
+                        'zope.viewlet',
+
+                        'zope.app.testing',
+                        'zope.app.zcmlfiles',
+
                         'z3c.testsetup',
                         'z3c.layer.pagelet',
-                        'z3c.template'],
+                        'z3c.template',
+                        'z3c.formui'],
       include_package_data=True,
       zip_safe=False)
