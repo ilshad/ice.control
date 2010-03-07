@@ -1,6 +1,6 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
-   i18n_domain="breamru">
+   i18n_domain="ice.control">
 
   <include package="zope.component" file="meta.zcml" />
   <include package="zope.security" file="meta.zcml" />
@@ -87,6 +87,6 @@
   <grantAll role="zope.Manager" />
   <grant role="zope.Manager" principal="zope.mgr" />
 
-  <include package="breamru" />
+  <include package="ice.control" />
 
 </configure>
