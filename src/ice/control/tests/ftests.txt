@@ -66,6 +66,10 @@ Resources loaded::
   >>> '@import url("http://localhost/@@/ice.control.tree.css/tree.css");' in browser.contents
   True
 
+Selected menu item::
+
+  >>> '<td class="selected">\n      <a href="tree.html">Tree</a>\n    </td>' in browser.contents
+  True
 
 Generations
 -----------
