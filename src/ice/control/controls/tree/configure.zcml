@@ -4,6 +4,8 @@
    xmlns:z3c="http://namespaces.zope.org/z3c"
    i18n_domain="ice.control">
 
+  <adapter factory=".xmlbase.XMLBase" />
+
   <z3c:pagelet
      for="ice.control.browser.interfaces.IControl"
      name="tree.html"

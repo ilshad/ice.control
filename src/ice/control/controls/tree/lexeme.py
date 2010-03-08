@@ -15,3 +15,23 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
+NAME = u'<name>%s</name>'
+
+URL = u'<url>%s</url>'
+
+TITLE = u'<title>%s</title>'
+
+ICON_URL = u'<icon_url>%s</icon_url>'
+
+IS_CONTAINER = u'<is_container>True</is_container>'
+
+SIZE = u'<size>%s</size>'
+
+LENGTH = u'<length>%s</length>'
+
+CHILDREN = u'<children>%s</children>'
+
+CHILD = u'<child>%s</child>'
+
+XML_HEAD = u'<?xml version="1.0" ?>'
