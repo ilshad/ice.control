@@ -3,5 +3,6 @@
    i18n_domain="ice.control">
 
   <include package=".generations" />
+  <include package=".tree" />
 
 </configure>

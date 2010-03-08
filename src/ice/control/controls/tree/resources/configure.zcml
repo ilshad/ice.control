@@ -1,0 +1,41 @@
+<configure
+   xmlns="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <resource
+     name="pl.png"
+     file="img/pl.png"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     />
+
+  <resource
+     name="mi.png"
+     file="img/mi.png"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     />
+
+  <resource
+     name="tree.css"
+     file="css/tree.css"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     />
+
+  <resource
+     name="tree.js"
+     file="js/tree.js"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     />
+
+  <resource
+     name="jquery.js"
+     file="js/jquery-1.4.2.min.js"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     />
+
+  <icon
+     name="control_icon"
+     for="zope.site.interfaces.IFolder"
+     file="icons/folder_icon.png"
+     />
+
+</configure>
