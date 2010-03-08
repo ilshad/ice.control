@@ -12,5 +12,5 @@
 	 tal:content="python:pagelet.title" />
     </td>
   </tr>
+  <tr><td class="nav"><a href="/">root</a></td></tr>
 </table>
-

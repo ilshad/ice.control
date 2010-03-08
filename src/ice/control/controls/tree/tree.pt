@@ -1,0 +1,8 @@
+<div class="box" id="contentsTree">
+  Loading ...
+</div>
+<!--script type="text/javascript"
+        tal:attributes="language string:JavaScript"
+        tal:define="root_url request/getApplicationURL"
+        tal:content="structure string:loadtree('${root_url}/');">
+</script-->

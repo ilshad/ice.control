@@ -4,6 +4,23 @@
    xmlns:z3c="http://namespaces.zope.org/z3c"
    i18n_domain="ice.control">
 
+  <z3c:pagelet
+     for="ice.control.browser.interfaces.IControl"
+     name="tree.html"
+     class=".tree.Pagelet"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     permission="zope.ManageContent"
+     provides="ice.control.browser.interfaces.IControlPagelet"
+     title="Tree"
+     weight="10"
+     />
+
+  <z3c:template
+     for=".tree.Pagelet"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     template="tree.pt"
+     />
+
   <include package=".resources" />
 
 </configure>

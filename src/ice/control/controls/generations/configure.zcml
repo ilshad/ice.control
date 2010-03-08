@@ -11,7 +11,7 @@
      permission="zope.ManageApplication"
      provides="ice.control.browser.interfaces.IControlPagelet"
      title="Generations"
-     weight="1"
+     weight="20"
      />
   <template
      for="zope.app.generations.browser.managers.Managers"

@@ -15,7 +15,7 @@
 
   <zrt-resource
      name="control.css"
-     file="css/default.css"
+     file="css/control.css"
      />
 
 </configure>
