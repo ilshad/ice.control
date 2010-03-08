@@ -16,25 +16,3 @@
 #
 ##############################################################################
 
-from zope.interface import implements
-from zope.component import getAdapters, getMultiAdapter
-from zope.contentprovider.interfaces import IContentProvider
-from z3c.template.interfaces import IContentTemplate
-from interfaces import IControlPagelet
-
-class Menu:
-    implements(IContentProvider)
-    
-    def __init__(self, context, request, view):
-        self.context = context
-        self.request = request
-        self.__parent__ = view
-
-    def update(self):
-        pagelets = getAdapters((self.context, self.request), IControlPagelet)
-        self.pagelets = [view for name, view in pagelets]
-        self.pagelets.sort(key = lambda x: x.weight)
-
-    def render(self):
-        template = getMultiAdapter((self, self.request), IContentTemplate)
-        return template(self)

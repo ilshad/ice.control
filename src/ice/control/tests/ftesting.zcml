@@ -14,14 +14,14 @@
   <grantAll role="zope.Manager" />
   <grant role="zope.Manager" principal="zope.mgr" />
 
-  <include package="ice.control" />
-
-  <browser:defaultSkin name="control" />
-
   <utility
-      name="ice.control"
-      provides="zope.app.generations.interfaces.ISchemaManager"
-      component="ice.control.tests.schemaManager"
-      />
+     name="ice.control"
+     provides="zope.app.generations.interfaces.ISchemaManager"
+     component="ice.control.tests.schemaManager"
+     />
+
+  <include package="ice.control" />
+  
+  <browser:defaultSkin name="control" />
 
 </configure>

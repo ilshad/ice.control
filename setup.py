@@ -20,6 +20,8 @@ setup(name='ice.control',
                         'zope.app.testing',
                         'zope.app.zcmlfiles',
 
+                        'zc.resourcelibrary',
+
                         'z3c.testsetup',
                         'z3c.configurator',
                         'z3c.layer.pagelet',

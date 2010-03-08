@@ -11,6 +11,7 @@
 	tal:attributes="href string:${site/@@absolute_url}/++resource++default.css" />
   <link rel="stylesheet" type="text/css" href="resources/css/control.css" media="all"
 	tal:attributes="href string:${site/@@absolute_url}/++resource++control.css" />
+  <!-- zc.resourcelibrary -->
 </head>
 <body>
   <div id="container">

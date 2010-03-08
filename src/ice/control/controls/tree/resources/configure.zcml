@@ -1,5 +1,6 @@
 <configure
    xmlns="http://namespaces.zope.org/browser"
+   xmlns:zope="http://namespaces.zope.org/zope"
    i18n_domain="ice.control">
 
   <resource
@@ -14,23 +15,14 @@
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
      />
 
-  <resource
-     name="tree.css"
-     file="css/tree.css"
-     layer="z3c.layer.pagelet.IPageletBrowserLayer"
-     />
-
-  <resource
-     name="tree.js"
-     file="js/tree.js"
-     layer="z3c.layer.pagelet.IPageletBrowserLayer"
-     />
-
-  <resource
-     name="jquery.js"
-     file="js/jquery-1.4.2.min.js"
-     layer="z3c.layer.pagelet.IPageletBrowserLayer"
-     />
+  <zope:resourceLibrary name="ice.control.tree.css">
+    <zope:directory source="css" include="tree.css" />
+  </zope:resourceLibrary>
+  
+  <zope:resourceLibrary name="ice.control.tree.js">
+    <zope:directory source="js" include="jquery-1.4.2.min.js
+					 tree.js" />
+  </zope:resourceLibrary>
 
   <icon
      name="control_icon"
