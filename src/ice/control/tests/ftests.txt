@@ -13,7 +13,9 @@ Open browser and test::
   >>> from zope.testbrowser.testing import Browser
   >>> browser = Browser()
 
-Skin resources::
+
+Skin resources
+--------------
 
   >>> browser.open(root_url)
   >>> browser.headers['status']
@@ -30,7 +32,9 @@ Skin resources::
   >>> browser.headers['status']
   '200 Ok'
 
-Open system control panel::
+
+System control panel
+--------------------
 
   >>> browser.open(root_url)
   >>> browser.getLink(text='System control').click()
@@ -47,7 +51,26 @@ Open system control panel::
   >>> browser.url == control_url + '/tree.html'
   True
 
-Generations::
+
+Contents tree
+-------------
+
+Resources loaded::
+
+  >>> 'script src="http://localhost/@@/ice.control.tree.js/tree.js"' in browser.contents
+  True
+
+  >>> 'script src="http://localhost/@@/ice.control.tree.js/jquery-1.4.2.min.js"' in browser.contents
+  True
+
+  >>> '@import url("http://localhost/@@/ice.control.tree.css/tree.css");' in browser.contents
+  True
+
+
+Generations
+-----------
+
+  >>> browser.open(control_url + '/tree.html')
 
   >>> browser.getLink('Generations').click()
   >>> browser.url == control_url + '/generations.html'
