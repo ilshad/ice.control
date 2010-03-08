@@ -5,12 +5,16 @@ ice.control
 :doctest:
 :functional-zcml-layer: ftesting.zcml
 
-Open browser and test::
+Boilerplates::
+
+  >>> import transaction
+  >>> import zope.component
+  >>> from zope.testbrowser.testing import Browser
+  >>> from zope.publisher.browser import TestRequest
+  >>> from zope.interface.verify import verifyObject
 
   >>> root_url = 'http://localhost'
   >>> control_url = root_url + '/++etc++control'
-
-  >>> from zope.testbrowser.testing import Browser
   >>> browser = Browser()
 
 
@@ -70,6 +74,76 @@ Selected menu item::
 
   >>> '<td class="selected">\n      <a href="tree.html">Tree</a>\n    </td>' in browser.contents
   True
+
+Create sample content::
+
+  >>> root = getRootFolder()
+  >>> root
+  <zope.site.folder.Folder object at ...>
+
+  >>> list(root)
+  []
+
+  >>> from zope.site.folder import Folder
+
+  >>> root['first'] = Folder()
+  >>> root['second'] = Folder()
+  >>> root['third'] = Folder()
+  >>> root['fourth'] = Folder()
+  >>> root['fifth'] = Folder()
+
+Verify xml presentation protocol staff::
+
+  >>> from ice.control.controls.tree.interfaces import IXML
+  >>> request = TestRequest()
+
+  >>> x = zope.component.getMultiAdapter((root, request), IXML)
+
+  >>> verifyObject(IXML, x)
+  True
+
+  >>> x.name()
+  u'<name></name>'
+
+  >>> x.url()
+  u'<url>http://127.0.0.1</url>'
+
+  >>> x.title()
+  u''
+
+  >>> x.icon_url()
+  u'<icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url>'
+  >>> x.size()  # ??
+  u'<size>${items} items</size>'
+
+  >>> x.is_container()
+  u'<is_container>True</is_container>'
+
+  >>> x.length()
+  u'<length>5</length>'
+
+  >>> x.sort_key() is None
+  True
+
+  >>> print x.children()
+  <child><name>fifth</name><url>http://127.0.0.1/fifth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child>
+  <child><name>first</name><url>http://127.0.0.1/first</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child>
+  <child><name>fourth</name><url>http://127.0.0.1/fourth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child>
+  <child><name>second</name><url>http://127.0.0.1/second</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child>
+  <child><name>third</name><url>http://127.0.0.1/third</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child>
+
+  >>> print x.xml_lexemes()
+  <name></name><url>http://127.0.0.1</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>5</length>
+
+  >>> print x.xml_document()
+  <?xml version="1.0" ?><document><name></name><url>http://127.0.0.1</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>5</length>
+  <child><name>fifth</name><url>http://127.0.0.1/fifth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child>
+  <child><name>first</name><url>http://127.0.0.1/first</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child>
+  <child><name>fourth</name><url>http://127.0.0.1/fourth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child>
+  <child><name>second</name><url>http://127.0.0.1/second</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child>
+  <child><name>third</name><url>http://127.0.0.1/third</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>${items} items</size><is_container>True</is_container><length>0</length></child></document>
+
+
 
 Generations
 -----------

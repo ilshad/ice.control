@@ -1,4 +1,5 @@
 """
+
 :unittest:
 """
 
@@ -8,7 +9,7 @@ from zope.interface.verify import verifyObject
 
 class Test(unittest.TestCase):
 
-    def test_lexemes(self):
+    def test_lexeme(self):
         from ice.control.controls.tree import lexeme
 
         self.assertEqual(lexeme.NAME % u'foo',
@@ -31,6 +32,8 @@ class Test(unittest.TestCase):
                          u'<child>xxx</child>')
         self.assertEqual(lexeme.XML_HEAD,
                          u'<?xml version="1.0" ?>')
+        self.assertEqual(lexeme.XML_ROOT % u'xxx',
+                         u'<document>xxx</document>')
 
     def test_verify(self):
         from ice.control.controls.tree.interfaces import IXML

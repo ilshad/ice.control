@@ -95,16 +95,20 @@ class XMLBase:
 
     def children(self):
         # If you need custom filter then reimplement this method.
-        # Otherwise this implementation is generic and correct for
-        # standard cases.
+        # Otherwise this implementation is generic and it is correct
+        # for standard cases.
         try:
             rc = IReadContainer(self.context)
         except TypeError:
             return u''
-        specs = [IXML(x) for x in rc.values()]
+        specs = []
+        for v in rc.values():
+            spec = queryMultiAdapter((v, self.request), IXML)
+            if spec:
+                specs.append(spec)
         specs.sort(key = lambda x: x.sort_key())
         lexemes = [CHILD % x.xml_lexemes() for x in specs]
-        return lexemes.join(u'\n')
+        return u'\n'.join(lexemes)
 
     def xml_lexemes(self):
         # This method is common and needn't to be reimplemented in subclasses
@@ -116,4 +120,4 @@ class XMLBase:
 
     def xml_document(self):
         # This method is common and needn't to be reimplemented in subclasses
-        return XML_HEAD + self.xml_all() + u'\n' + self.children()
+        return XML_HEAD + XML_ROOT % (self.xml_lexemes() + u'\n' + self.children())
