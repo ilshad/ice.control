@@ -31,9 +31,4 @@
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
      />
 
-  <browser:defaultView
-     for=".interfaces.IControl"
-     name="generations.html"
-     />
-
 </configure>

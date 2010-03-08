@@ -8,6 +8,7 @@ ice.control
 Open browser and test::
 
   >>> root_url = 'http://localhost'
+  >>> control_url = root_url + '/++etc++control'
 
   >>> from zope.testbrowser.testing import Browser
   >>> browser = Browser()
@@ -43,10 +44,14 @@ Open system control panel::
   >>> browser.open(root_url)
   >>> browser.getLink(text='System control').click()
 
-  >>> browser.url == root_url + '/++etc++control'
+  >>> browser.url == control_url + '/tree.html'
   True
 
 Generations::
+
+  >>> browser.getLink('Generations').click()
+  >>> browser.url == control_url + '/generations.html'
+  True
 
   >>> 'Generations' in browser.contents
   True
@@ -70,7 +75,7 @@ Generations::
   True
 
   >>> browser.getLink(text='ice.control').click()
-  >>> browser.url == root_url + '/++etc++control/generations_managerdetails.html?id=ice.control'
+  >>> browser.url == control_url + '/generations_managerdetails.html?id=ice.control'
   True
 
   >>> 'This is test generation' in browser.contents
