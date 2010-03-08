@@ -15,8 +15,6 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-""" Base adapter for any object to xml representation using common lexemes.
-"""
 
 from zope.interface import implements, Interface
 from zope.component import adapts, queryMultiAdapter
@@ -24,14 +22,14 @@ from zope.dublincore.interfaces import IZopeDublinCore
 from zope.traversing.browser.absoluteurl import absoluteURL
 from zope.interface.common.mapping import IEnumerableMapping
 from zope.container.interfaces import IReadContainer
-from zope.location.interfaces import ILocation
+from zope.location.interfaces import ILocationInfo
 from zope.size.interfaces import ISized
 from interfaces import IXML, ICON_ADAPTER_NAME
 from lexeme import *
 
 class XMLBase:
     implements(IXML)
-    adapts(Interface)
+    adapts(Interface, Interface)
 
     def __init__(self, context, request):
         self.context = context
@@ -40,7 +38,7 @@ class XMLBase:
     def name(self):
         # This method is filter
         try:
-            return NAME % ILocation(self.context).__name__
+            return NAME % ILocationInfo(self.context).getName()
         except TypeError:
             return None
 
@@ -51,7 +49,7 @@ class XMLBase:
 
     def title(self):
         # Sometimes you need to reimplement this method in subclass,
-        # mostly if an object not uses Dublin Core metadata annotation.
+        # mostly if an object does not uses Dublin Core metadata
         try:
             dc = IZopeDublinCore(self.context)
             return dc.title and TITLE % dc.title or u''
@@ -98,7 +96,7 @@ class XMLBase:
     def children(self):
         # If you need custom filter then reimplement this method.
         # Otherwise this implementation is generic and correct for
-        # any most standard cases.
+        # standard cases.
         try:
             rc = IReadContainer(self.context)
         except TypeError:
@@ -110,7 +108,7 @@ class XMLBase:
 
     def xml_lexemes(self):
         # This method is common and needn't to be reimplemented in subclasses
-        if self.name():
+        if self.name() is not None:
             return self.name() + self.url() + self.title() + \
                 self.icon_url() + self.size() + self.is_container() + \
                 self.length()

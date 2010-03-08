@@ -24,7 +24,7 @@ class IXML(zope.interface.Interface):
     """XML specification for content object"""
 
     def name():
-        """Location name: <name>...</name>. Or None"""
+        """Location name: <name>...</name> or None"""
 
     def url():
         """URL: <url>...</url> or empty string"""
