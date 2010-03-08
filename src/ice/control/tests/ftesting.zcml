@@ -1,44 +1,27 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
+   xmlns:browser="http://namespaces.zope.org/browser"
    i18n_domain="ice.control">
 
   <include package="ice.control.zcml" />
 
-  <securityPolicy
-     component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy"
-     />
+  <securityPolicy component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy" />
 
-  <unauthenticatedPrincipal
-     id="zope.anybody"
-     title="Unauthenticated User"
-     />
-
-  <grant
-     permission="zope.View"
-     principal="zope.anybody"
-     />
-
-  <principal
-     id="zope.mgr"
-     title="Manager"
-     login="mgr"
-     password="mgrpw"
-     />
-
-  <role
-     id="zope.Manager"
-     title="Site Manager"
-     />
-
-  <grantAll
-     role="zope.Manager"
-     />
-
-  <grant
-     role="zope.Manager"
-     principal="zope.mgr"
-     />
+  <unauthenticatedPrincipal id="zope.anybody" title="Unauthenticated User" />
+  <grant permission="zope.View" principal="zope.anybody" />
+  <principal id="zope.mgr" title="Manager" login="mgr" password="mgrpw" />
+  <role id="zope.Manager" title="Site Manager" />
+  <grantAll role="zope.Manager" />
+  <grant role="zope.Manager" principal="zope.mgr" />
 
   <include package="ice.control" />
+
+  <browser:defaultSkin name="control" />
+
+  <utility
+      name="ice.control"
+      provides="zope.app.generations.interfaces.ISchemaManager"
+      component="ice.control.tests.schemaManager"
+      />
 
 </configure>

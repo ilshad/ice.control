@@ -7,7 +7,71 @@ ice.control
 
 Open browser and test::
 
+  >>> root_url = 'http://localhost'
+
   >>> from zope.testbrowser.testing import Browser
   >>> browser = Browser()
 
+Skin resources::
 
+  >>> browser.open(root_url)
+  >>> browser.headers['status']
+  '200 Ok'
+
+  >>> 'http://localhost/++resource++default.css' in browser.contents
+  True
+
+  >>> browser.open('http://localhost/++resource++default.css')
+  >>> browser.headers['status']
+  '200 Ok'
+
+  >>> browser.open('http://localhost/++resource++img/bluebream_logo.png')
+  >>> browser.headers['status']
+  '200 Ok'
+
+Open system control panel::
+
+  >>> browser.open(root_url)
+  >>> browser.getLink(text='System control').click()
+  Traceback (most recent call last):
+  ...
+  httperror_seek_wrapper: HTTP Error 401: Unauthorized
+
+  >>> browser.addHeader('Authorization','Basic mgr:mgrpw')
+  >>> browser.handleErrors = False
+
+  >>> browser.open(root_url)
+  >>> browser.getLink(text='System control').click()
+
+  >>> browser.url == root_url + '/++etc++control'
+  True
+
+Generations::
+
+  >>> 'Generations' in browser.contents
+  True
+
+  >>> 'Application' in browser.contents
+  True
+
+  >>> 'Minimum Generation' in browser.contents
+  True
+
+  >>> 'Maximum Generation' in browser.contents
+  True
+
+  >>> 'Current Database Generation' in browser.contents
+  True
+
+  >>> 'Evolve?' in browser.contents
+  True
+
+  >>> 'ice.control' in browser.contents
+  True
+
+  >>> browser.getLink(text='ice.control').click()
+  >>> browser.url == root_url + '/++etc++control/generations_managerdetails.html?id=ice.control'
+  True
+
+  >>> 'This is test generation' in browser.contents
+  True
