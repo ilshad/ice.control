@@ -21,15 +21,16 @@ from zope.component import adapts, queryMultiAdapter
 from zope.dublincore.interfaces import IZopeDublinCore
 from zope.traversing.browser.absoluteurl import absoluteURL
 from zope.interface.common.mapping import IEnumerableMapping
+from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.container.interfaces import IReadContainer
 from zope.location.interfaces import ILocationInfo
 from zope.size.interfaces import ISized
 from interfaces import IXML, ICON_ADAPTER_NAME
 from lexeme import *
 
-class XMLBase:
+class XMLBase(object):
     implements(IXML)
-    adapts(Interface, Interface)
+    adapts(Interface, IBrowserRequest)
 
     def __init__(self, context, request):
         self.context = context

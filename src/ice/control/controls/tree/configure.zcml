@@ -5,6 +5,8 @@
    i18n_domain="ice.control">
 
   <adapter factory=".xmlbase.XMLBase" />
+  <adapter factory=".xmlnice.XMLReadContainer" />
+  <adapter factory=".xmlnice.XMLSite" />
 
   <z3c:pagelet
      for="ice.control.browser.interfaces.IControl"
