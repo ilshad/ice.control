@@ -109,7 +109,7 @@ class XMLBase(object):
                 specs.append(spec)
         specs.sort(key = lambda x: x.sort_key())
         lexemes = [CHILD % x.xml_lexemes() for x in specs]
-        return u'\n'.join(lexemes)
+        return CHILDREN % u'\n'.join(lexemes)
 
     def xml_lexemes(self):
         # This method is common and needn't to be reimplemented in subclasses

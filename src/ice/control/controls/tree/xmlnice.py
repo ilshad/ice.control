@@ -40,9 +40,21 @@ class XMLSite(XMLReadContainer):
     adapts(ISite, IBrowserRequest)
 
     def children(self):
+        try:
+            rc = IReadContainer(self.context)
+        except TypeError:
+            return u''
+        specs = []
+        for v in rc.values():
+            spec = queryMultiAdapter((v, self.request), IXML)
+            if spec:
+                specs.append(spec)
+        specs.sort(key = lambda x: x.sort_key())
+        lexemes = [CHILD % x.xml_lexemes() for x in specs]
+
         # add ++etc++site
         sm = self.context.getSiteManager()
         spec = queryMultiAdapter((sm, self.request), IXML)
-        lexemes = CHILD % spec.xml_lexemes()
-        children = super(XMLSite, self).children()
-        return lexemes + u'\n' + children
+        lexemes.append(CHILD % spec.xml_lexemes())
+
+        return CHILDREN % u'\n'.join(lexemes)

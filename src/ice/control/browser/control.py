@@ -17,10 +17,17 @@
 ##############################################################################
 
 from zope.location import Location
-from zope.interface import implements
+from zope.interface import implements, directlyProvides
+from zope.traversing.interfaces import IContainmentRoot
+from zope.security.checker import ProxyFactory, NamesChecker
 from interfaces import IControl
+
+controlRoot = Location()
+directlyProvides(controlRoot, IContainmentRoot)
+controlRoot = ProxyFactory(controlRoot, NamesChecker("__class__"))
 
 class Control(Location): implements(IControl)
 
 control = Control()
+control.__parent__ = controlRoot
 control.__name__ = u'++etc++control'

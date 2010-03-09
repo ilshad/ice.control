@@ -126,24 +126,24 @@ Verify xml presentation protocol staff::
   True
 
   >>> print x.children()
-  <child><name>++etc++site</name><url>http://127.0.0.1/++etc++site</url><size>1</size><is_container>True</is_container><length>1</length></child>
-  <child><name>fifth</name><url>http://127.0.0.1/fifth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
+  <children><child><name>fifth</name><url>http://127.0.0.1/fifth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>first</name><url>http://127.0.0.1/first</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>fourth</name><url>http://127.0.0.1/fourth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>second</name><url>http://127.0.0.1/second</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>third</name><url>http://127.0.0.1/third</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
+  <child><name>++etc++site</name><url>http://127.0.0.1/++etc++site</url><size>1</size><is_container>True</is_container><length>1</length></child></children>
 
   >>> print x.xml_lexemes()
   <name></name><url>http://127.0.0.1</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>5</size><is_container>True</is_container><length>5</length>
 
   >>> print x.xml_document()
   <?xml version="1.0" ?><document><name></name><url>http://127.0.0.1</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>5</size><is_container>True</is_container><length>5</length>
-  <child><name>++etc++site</name><url>http://127.0.0.1/++etc++site</url><size>1</size><is_container>True</is_container><length>1</length></child>
-  <child><name>fifth</name><url>http://127.0.0.1/fifth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
+  <children><child><name>fifth</name><url>http://127.0.0.1/fifth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>first</name><url>http://127.0.0.1/first</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>fourth</name><url>http://127.0.0.1/fourth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>second</name><url>http://127.0.0.1/second</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
-  <child><name>third</name><url>http://127.0.0.1/third</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child></document>
+  <child><name>third</name><url>http://127.0.0.1/third</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
+  <child><name>++etc++site</name><url>http://127.0.0.1/++etc++site</url><size>1</size><is_container>True</is_container><length>1</length></child></children></document>
 
 
 Generations
