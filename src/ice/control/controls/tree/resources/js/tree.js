@@ -6,7 +6,7 @@
 *
 **/
 
-var LOAD_BRANCH = '@@loadBranch.xml';
+var LOAD_BRANCH = '@@getControlBranchTree.xml';
 var TREE_CONTAINER = 'treeContainer';
 
 var gBaseURL;

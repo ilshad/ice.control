@@ -146,6 +146,30 @@ Verify xml presentation protocol staff::
   <child><name>++etc++site</name><url>http://127.0.0.1/++etc++site</url><size>1</size><is_container>True</is_container><length>1</length></child></children></document>
 
 
+Ajax view::
+
+  >>> browser.open(root_url + '/@@getControlBranchTree.xml')
+  >>> browser.headers['status']
+  '200 Ok'
+
+  >>> print browser.contents
+  <?xml version="1.0" ?><document><name></name><url>http://localhost</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>5</size><is_container>True</is_container><length>5</length>
+  <children><child><name>fifth</name><url>http://localhost/fifth</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
+  <child><name>first</name><url>http://localhost/first</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
+  <child><name>fourth</name><url>http://localhost/fourth</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
+  <child><name>second</name><url>http://localhost/second</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
+  <child><name>third</name><url>http://localhost/third</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
+  <child><name>++etc++site</name><url>http://localhost/++etc++site</url><size>1</size><is_container>True</is_container><length>1</length></child></children></document>
+
+  >>> browser.open(root_url + '/first/@@getControlBranchTree.xml')
+  >>> browser.headers['status']
+  '200 Ok'
+
+  >>> print browser.contents
+  <?xml version="1.0" ?><document><name>first</name><url>http://localhost/first</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length>
+  <children></children></document>
+
+
 Generations
 -----------
 
