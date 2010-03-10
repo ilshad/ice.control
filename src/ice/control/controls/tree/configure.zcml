@@ -26,16 +26,16 @@
      />
 
   <browser:page
-     name="getControlBranchTree.xml"
+     name="getControlTreeNode.xml"
      class=".ajax.Ajax"
-     attribute="branchTree"
+     attribute="getControlTreeNode"
      permission="zope.ManageContent"
      />
 
   <browser:page
-     name="getControlNode.xml"
+     name="getControlTreeChildren.xml"
      class=".ajax.Ajax"
-     attribute="getNode"
+     attribute="getControlTreeChildren"
      permission="zope.ManageContent"
      />
 

@@ -25,7 +25,7 @@ from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.container.interfaces import IReadContainer
 from zope.location.interfaces import ILocationInfo
 from zope.size.interfaces import ISized
-from interfaces import IXML, ICONS, XML_TEMPLATE
+from interfaces import IXML, ICONS, XMLDOC, XMLNODE
 
 class XMLBase(object):
     implements(IXML)
@@ -91,14 +91,12 @@ class XMLBase(object):
 
     def to_xml(self):
         # You needn't reimplement this never in your life, man
-        return u'''<node name="%s" path="%s" title="%s" icon_url="%s"
-                         size="%s" length="%s" is_container="%s" />
-                ''' % (self.name(),       self.path(),    self.title(),
-                       self.icon_url(),   self.size(),    self.length(),
-                       self.is_container() and u'true' or u'false')
+        return XMLNODE % (self.name(),       self.path(),    self.title(),
+                          self.icon_url(),   self.size(),    self.length(),
+                          self.is_container() and u'true' or u'false')
 
     def node_xmldoc(self):
-        return XML_TEMPLATE % self.to_xml()
+        return XMLDOC % self.to_xml()
 
     def children_xmldoc(self):
         # If you need custom filter then reimplement this method.
@@ -107,10 +105,10 @@ class XMLBase(object):
         try:
             rc = IReadContainer(self.context)
         except TypeError:
-            return XML_TEMPLATE % u''
+            return XMLDOC % u''
         specs = [queryMultiAdapter((value, self.request), IXML)
                 for value in rc.values()]
         specs = filter(lambda x:x, specs)
         specs.sort(key = lambda x: x.sort_key())
         nodes = [x.to_xml() for x in specs]
-        return XML_TEMPLATE % u'\n'.join(nodes)
+        return XMLDOC % u'\n'.join(nodes)

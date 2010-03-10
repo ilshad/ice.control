@@ -20,7 +20,7 @@ from zope.component import adapts, queryMultiAdapter
 from zope.container.interfaces import IReadContainer
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.component.interfaces import ISite
-from interfaces import IXML, XML_TEMPLATE
+from interfaces import IXML, XMLDOC
 from xmlbase import XMLBase
 
 class XMLReadContainer(XMLBase):
@@ -42,7 +42,7 @@ class XMLSite(XMLReadContainer):
         try:
             rc = IReadContainer(self.context)
         except TypeError:
-            return XML_TEMPLATE % u''
+            return XMLDOC % u''
         specs = [queryMultiAdapter((value, self.request), IXML)
                 for value in rc.values()]
         specs = filter(lambda x:x, specs)
@@ -54,4 +54,4 @@ class XMLSite(XMLReadContainer):
         sm_spec = queryMultiAdapter((sm, self.request), IXML)
         nodes.append(sm_spec.to_xml())
 
-        return XML_TEMPLATE % u'\n'.join(nodes)
+        return XMLDOC % u'\n'.join(nodes)

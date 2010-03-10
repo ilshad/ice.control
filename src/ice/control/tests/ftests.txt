@@ -165,6 +165,49 @@ Verify xml presentation protocol staff::
         size="1" length="1" is_container="true" />
   </document>
 
+Ajax view::
+
+  >>> browser.open(root_url + '/@@getControlTreeNode.xml')
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <document>
+  <node name="" path="http://localhost" title=""
+        icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
+	size="5" length="5" is_container="true" />
+  </document>
+
+  >>> browser.open(root_url + '/second/@@getControlTreeNode.xml')
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <document>
+  <node name="second" path="http://localhost/second" title=""
+        icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
+	size="0" length="0" is_container="true" />
+  </document>
+
+  >>> browser.open(root_url + '/@@getControlTreeChildren.xml')
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <document>
+  <node name="fifth" path="http://localhost/fifth" title=""
+       icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
+       size="0" length="0" is_container="true" />
+  <node name="first" path="http://localhost/first" title=""
+       icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
+       size="0" length="0" is_container="true" />
+  <node name="fourth" path="http://localhost/fourth" title=""
+        icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
+        size="0" length="0" is_container="true" />
+  <node name="second" path="http://localhost/second" title=""
+        icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
+        size="0" length="0" is_container="true" />
+  <node name="third" path="http://localhost/third" title=""
+        icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
+        size="0" length="0" is_container="true" />
+  <node name="++etc++site" path="http://localhost/++etc++site" title="" icon_url=""
+        size="1" length="1" is_container="true" />
+  </document>
+
 
 Generations
 -----------

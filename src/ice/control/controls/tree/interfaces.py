@@ -19,7 +19,11 @@
 import zope.interface
 
 ICONS = 'control_icon'
-XML_TEMPLATE = u'<?xml version="1.0" ?>\n<document>\n%s</document>'
+
+XMLDOC = u'<?xml version="1.0" ?>\n<document>\n%s\n</document>'
+
+XMLNODE = u'''<node name="%s" path="%s" title="%s" icon_url="%s"
+                    size="%s" length="%s" is_container="%s" />'''
 
 class IXML(zope.interface.Interface):
     """XML specification for content object"""

@@ -28,11 +28,12 @@ def setHeaders(response):
 
 class Ajax:
 
-    def branchTree(self):
-        setHeaders(self.request.response)
-        xml = getMultiAdapter((self.context, self.request), IXML)
-        return xml.xml_document()
-
     def getNode(self):
-        setheaders(self.request.response)
-        xml = getMultiAdapter((self.context, self.request), IXML)
+        setHeaders(self.request.response)
+        return getMultiAdapter((self.context, self.request), IXML)
+
+    def getControlTreeNode(self):
+        return self.getNode().node_xmldoc()
+
+    def getControlTreeChildren(self):
+        return self.getNode().children_xmldoc()
