@@ -18,49 +18,57 @@
 
 import zope.interface
 
-ICON_ADAPTER_NAME = 'control_icon'
+ICONS = 'control_icon'
+XML_TEMPLATE = u'<?xml version="1.0" ?>\n<document>\n%s</document>'
 
 class IXML(zope.interface.Interface):
     """XML specification for content object"""
 
     def name():
-        """Location name: <name>...</name> or None"""
+        """Return unicode string: location name or empty string"""
 
-    def url():
-        """URL: <url>...</url> or empty string"""
+    def path():
+        """Return unicode string: URL or empty string"""
 
     def title():
-        """Title: <title>...</title> or empty string"""
+        """Return unicode string: title or empty string"""
 
     def icon_url():
-        """Content Type Icon URL: <icon_url>...</icon_url>
-        or empty string."""
-
-    def size():
-        """Size for dispaly: <size>...</size> or empty string"""
+        """Return unicode string: icon URL or empty string"""
 
     def is_container():
-        """Container or none: <is_container>True</is_container>
-        or empty string."""
+        """Return boolean: container or none"""
+
+    def size():
+        """Return unicode string: size for dispaly or empty string"""
 
     def length():
-        """Number of children if it is container:
-        <length>...</length> or empty string."""
+        """Return unicode string with number of children to display in
+        tree or empty string"""
 
     def sort_key():
-        """Return key for sorting (within parent container)
-        or empty string."""
+        """Return any type, key for sorting (within parent container)"""
 
-    def children():
-        """XML describes my children: <children>...</children>
-        or empty string. Use <child>...</child> xml tag to describe
-        each child. Use xml_lexemes to populate this tag. Sorted by
-        size for sorting."""
+    def to_xml():
+        """Return xml node:
+          <node name=".." path=".." title=".."
+                icon_url=".." is_container="..true/..false" 
+                size=".." length=".." />"""
 
-    def xml_lexemes():
-        """All xml lexemes concatenated into string,
-        except of children."""
+    def node_xmldoc():
+        """Return valid XML document with one node for navigation tree:
+        <?xml version="1.0" ?>
+        <document>
+          <node ... />
+        </document>"""
 
-    def xml_document():
-        """Valid XML document: entire XML definition
-        in valid xml document."""
+    def children_xmldoc():
+        """Return valid XML document with number of nodes to create
+        children: 
+        <?xml version="1.0" ?>
+        <document>
+          <node ... />
+          <node ... />
+          <node ... />
+        </document>
+        Sorted by size for sorting."""

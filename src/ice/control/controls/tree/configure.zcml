@@ -32,6 +32,13 @@
      permission="zope.ManageContent"
      />
 
+  <browser:page
+     name="getControlNode.xml"
+     class=".ajax.Ajax"
+     attribute="getNode"
+     permission="zope.ManageContent"
+     />
+
   <include package=".resources" />
 
 </configure>

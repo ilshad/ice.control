@@ -20,41 +20,38 @@ from zope.component import adapts, queryMultiAdapter
 from zope.container.interfaces import IReadContainer
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.component.interfaces import ISite
-from interfaces import IXML
+from interfaces import IXML, XML_TEMPLATE
 from xmlbase import XMLBase
-from lexeme import *
 
 class XMLReadContainer(XMLBase):
     adapts(IReadContainer, IBrowserRequest)
 
-    def size(self):
-        return SIZE % len(self.context)
-
     def is_container(self):
-        return IS_CONTAINER
+        return True
+
+    def size(self):
+        return len(self.context)
 
     def length(self):
-        return LENGTH % len(self.context)
+        return len(self.context)
 
 class XMLSite(XMLReadContainer):
     adapts(ISite, IBrowserRequest)
 
-    def children(self):
+    def children_xmldoc(self):
         try:
             rc = IReadContainer(self.context)
         except TypeError:
-            return u''
-        specs = []
-        for v in rc.values():
-            spec = queryMultiAdapter((v, self.request), IXML)
-            if spec:
-                specs.append(spec)
+            return XML_TEMPLATE % u''
+        specs = [queryMultiAdapter((value, self.request), IXML)
+                for value in rc.values()]
+        specs = filter(lambda x:x, specs)
         specs.sort(key = lambda x: x.sort_key())
-        lexemes = [CHILD % x.xml_lexemes() for x in specs]
+        nodes = [x.to_xml() for x in specs]
 
         # add ++etc++site
         sm = self.context.getSiteManager()
-        spec = queryMultiAdapter((sm, self.request), IXML)
-        lexemes.append(CHILD % spec.xml_lexemes())
+        sm_spec = queryMultiAdapter((sm, self.request), IXML)
+        nodes.append(sm_spec.to_xml())
 
-        return CHILDREN % u'\n'.join(lexemes)
+        return XML_TEMPLATE % u'\n'.join(nodes)

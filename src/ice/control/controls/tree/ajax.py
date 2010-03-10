@@ -32,3 +32,7 @@ class Ajax:
         setHeaders(self.request.response)
         xml = getMultiAdapter((self.context, self.request), IXML)
         return xml.xml_document()
+
+    def getNode(self):
+        setheaders(self.request.response)
+        xml = getMultiAdapter((self.context, self.request), IXML)

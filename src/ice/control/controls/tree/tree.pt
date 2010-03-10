@@ -1,7 +1,7 @@
 <tal:block replace="resource_library:ice.control.tree.css" />
 <tal:block replace="resource_library:ice.control.tree.js" />
 
-<div class="box" id="treeContainer">
+<div id="treeContainer">
   Loading ...
 </div>
 <script type="text/javascript"
