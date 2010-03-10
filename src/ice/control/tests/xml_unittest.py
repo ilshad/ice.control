@@ -26,6 +26,8 @@ class Test(unittest.TestCase):
                          u'<size>77</size>')
         self.assertEqual(lexeme.LENGTH % 77,
                          u'<length>77</length>')
+        self.assertEqual(lexeme.THIS % u'xxx',
+                         u'<this>xxx</this>')
         self.assertEqual(lexeme.CHILDREN % u'xxx',
                          u'<children>xxx</children>')
         self.assertEqual(lexeme.CHILD % u'xxx',

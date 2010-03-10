@@ -137,7 +137,7 @@ Verify xml presentation protocol staff::
   <name></name><url>http://127.0.0.1</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>5</size><is_container>True</is_container><length>5</length>
 
   >>> print x.xml_document()
-  <?xml version="1.0" ?><document><name></name><url>http://127.0.0.1</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>5</size><is_container>True</is_container><length>5</length>
+  <?xml version="1.0" ?><document><this><name></name><url>http://127.0.0.1</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>5</size><is_container>True</is_container><length>5</length></this>
   <children><child><name>fifth</name><url>http://127.0.0.1/fifth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>first</name><url>http://127.0.0.1/first</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>fourth</name><url>http://127.0.0.1/fourth</url><icon_url>http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
@@ -153,7 +153,7 @@ Ajax view::
   '200 Ok'
 
   >>> print browser.contents
-  <?xml version="1.0" ?><document><name></name><url>http://localhost</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>5</size><is_container>True</is_container><length>5</length>
+  <?xml version="1.0" ?><document><this><name></name><url>http://localhost</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>5</size><is_container>True</is_container><length>5</length></this>
   <children><child><name>fifth</name><url>http://localhost/fifth</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>first</name><url>http://localhost/first</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
   <child><name>fourth</name><url>http://localhost/fourth</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></child>
@@ -166,7 +166,7 @@ Ajax view::
   '200 Ok'
 
   >>> print browser.contents
-  <?xml version="1.0" ?><document><name>first</name><url>http://localhost/first</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length>
+  <?xml version="1.0" ?><document><this><name>first</name><url>http://localhost/first</url><icon_url>http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png</icon_url><size>0</size><is_container>True</is_container><length>0</length></this>
   <children></children></document>
 
 

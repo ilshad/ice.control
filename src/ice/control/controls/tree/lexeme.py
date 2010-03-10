@@ -37,3 +37,5 @@ CHILD = u'<child>%s</child>'
 XML_HEAD = u'<?xml version="1.0" ?>'
 
 XML_ROOT = u'<document>%s</document>'
+
+THIS = u'<this>%s</this>'

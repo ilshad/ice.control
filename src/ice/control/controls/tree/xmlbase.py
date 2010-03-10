@@ -121,4 +121,4 @@ class XMLBase(object):
 
     def xml_document(self):
         # This method is common and needn't to be reimplemented in subclasses
-        return XML_HEAD + XML_ROOT % (self.xml_lexemes() + u'\n' + self.children())
+        return XML_HEAD + XML_ROOT % (THIS % self.xml_lexemes() + u'\n' + self.children())
