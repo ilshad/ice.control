@@ -15,3 +15,20 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
+from rfc822 import formatdate, time
+from zope.component import getMultiAdapter
+from interfaces import IXML
+
+def setHeaders(response):
+    response.setHeader('Content-Type', 'text/xml')
+    response.setHeader('Pragma', 'no-cache')
+    response.setHeader('Cache-Control', 'no-cache')
+    response.setHeader('Expires', formatdate(time.time() - 7 * 86400))
+
+class Ajax:
+
+    def branchTree(self):
+        setHeaders(self.request.response)
+        xml = getMultiAdapter((self.context, self.request), IXML)
+        return xml.xml_document()

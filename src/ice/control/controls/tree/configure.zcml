@@ -25,6 +25,13 @@
      template="tree.pt"
      />
 
+  <browser:page
+     name="getControlBranchTree.xml"
+     class=".ajax.Ajax"
+     attribute="branchTree"
+     permission="zope.ManageContent"
+     />
+
   <include package=".resources" />
 
 </configure>

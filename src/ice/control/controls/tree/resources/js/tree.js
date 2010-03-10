@@ -13,15 +13,6 @@ var gBaseURL;
 var gContainer;
 var gTree;
 
-// This XML grammar defines contents tree
-var contentsTreeXMLGrammar = {
-    
-}
-
-// Tokenizer / lexical analyser generator
-function Lexer (grammar) {
-}
-
 // Majesty Omphalos
 function TreeNode () {
     this.path = null;
@@ -42,19 +33,11 @@ TreeNode.prototype.load = function () {
 		 url: gBaseURL + LOAD_BRANCH,
 		 dataType: "xml",
 		 data: {path: this.path},
-		 success: this.parseAndCompile})
+		 success: this.parse})
 }
 
-// XML --> HTML
-TreeNode.prototype.parseAndCompile = function (xml) {
-    // parse
-    lexer = new Lexer(contentsTreeXMLGrammar);
-    var tokens = jQuery.map(
-	jQuery("document", xml).children(),
-	lexer.tokenize);
-    // compile
-    for (var item in tokens) {
-	if (item.
+TreeNode.prototype.parse = function (xml) {
+    
 }
 
 // invoked when document onload
