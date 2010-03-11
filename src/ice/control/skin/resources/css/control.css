@@ -8,6 +8,7 @@
 **/
 #control-sidebar {
     width: 150px;
+    padding-top: 20px;
 }
 
 table.system-control-menu {

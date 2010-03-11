@@ -3,3 +3,13 @@
 * Copyright (C) 2010 Ilshad R. Khabibullin <astoon.net at gmail.com>
 *
 **/
+
+div.dom-node {
+    border-left: 2px solid #B28FB0;
+    margin-left: 10px;
+}
+
+#treeContainer a.dom-node-anchor > img {
+    margin-bottom: -5px;
+    margin-right: 10px;
+}

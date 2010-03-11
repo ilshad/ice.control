@@ -51,9 +51,12 @@ class XMLBase(object):
         # Sometimes you need to reimplement this method in subclass,
         # mostly if an object does not uses Dublin Core metadata
         try:
-            return IZopeDublinCore(self.context).title
+            title = IZopeDublinCore(self.context).title
+            if title:
+                return u'[ ' + title + ' ]'
         except TypeError:
-            return u''
+            pass
+        return u''
 
     def icon_url(self):
         # This method needn't to reimplement never. Define icon for

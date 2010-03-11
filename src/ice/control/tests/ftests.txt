@@ -112,7 +112,7 @@ Verify xml presentation protocol staff::
   u''
 
   >>> x.icon_url()
-  'http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png'
+  'http://127.0.0.1/@@/zope-component-interfaces-ISite-control_icon.png'
 
   >>> x.size()
   5
@@ -128,14 +128,14 @@ Verify xml presentation protocol staff::
 
   >>> print x.to_xml()
   <node name="" path="http://127.0.0.1" title=""
-        icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"
+        icon_url="http://127.0.0.1/@@/zope-component-interfaces-ISite-control_icon.png"
         size="5" length="5" is_container="true" />
 
   >>> print x.node_xmldoc()
   <?xml version="1.0" ?>
   <document>
   <node name="" path="http://127.0.0.1" title=""
-	icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"
+	icon_url="http://127.0.0.1/@@/zope-component-interfaces-ISite-control_icon.png"
         size="5" length="5" is_container="true" />
   </document>
 
@@ -143,7 +143,8 @@ Verify xml presentation protocol staff::
   <?xml version="1.0" ?>
   <document>
   <node name="fifth" path="http://127.0.0.1/fifth" title=""
-        icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"            size="0" length="0" is_container="true" />
+        icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"
+	size="0" length="0" is_container="true" />
   <BLANKLINE>
   <node name="first" path="http://127.0.0.1/first" title=""
         icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"
@@ -172,7 +173,7 @@ Ajax view::
   <?xml version="1.0" ?>
   <document>
   <node name="" path="http://localhost" title=""
-        icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
+        icon_url="http://localhost/@@/zope-component-interfaces-ISite-control_icon.png"
 	size="5" length="5" is_container="true" />
   </document>
 

@@ -3,31 +3,37 @@
    xmlns:zope="http://namespaces.zope.org/zope"
    i18n_domain="ice.control">
 
+  <zope:resourceLibrary name="ice.control.tree.css">
+    <zope:directory source="css" include="tree.css" />
+  </zope:resourceLibrary>
+
+  <zope:resourceLibrary name="ice.control.tree.js">
+    <zope:directory source="js" include="jquery-1.4.2.min.js
+					 tree.js" />
+  </zope:resourceLibrary>
+
+  <!-- expand / collapse tree branch -->
   <resource
      name="pl.png"
      file="img/pl.png"
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
      />
-
   <resource
      name="mi.png"
      file="img/mi.png"
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
      />
 
-  <zope:resourceLibrary name="ice.control.tree.css">
-    <zope:directory source="css" include="tree.css" />
-  </zope:resourceLibrary>
-  
-  <zope:resourceLibrary name="ice.control.tree.js">
-    <zope:directory source="js" include="jquery-1.4.2.min.js
-					 tree.js" />
-  </zope:resourceLibrary>
-
+  <!-- icons -->
   <icon
      name="control_icon"
      for="zope.site.interfaces.IFolder"
      file="icons/folder_icon.png"
+     />
+  <icon
+     name="control_icon"
+     for="zope.component.interfaces.ISite"
+     file="icons/site_icon.png"
      />
 
 </configure>

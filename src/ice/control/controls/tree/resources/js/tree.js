@@ -6,8 +6,9 @@
 *
 **/
 
-var LOAD_BRANCH =          '@@getControlBranchTree.xml';
-var LOAD_NODE =            '@@getControlNode.xml';
+var LOAD_NODE =            '@@getControlTreeNode.xml';
+var LOAD_CHILDREN =        '@@getControlTreeChildren.xml';
+
 var TREE_CONTAINER =       'treeContainer';
 
 var DOM_NODE =             'dom-node';
@@ -15,82 +16,91 @@ var DOM_NODE_SELF =        'dom-node-self';
 var DOM_NODE_CHILDREN =    'dom-node-children';
 var DOM_NODE_EXPANDER =    'dom-node-expander';
 var DOM_NODE_ANCHOR =      'dom-node-anchor';
+var DOM_NODE_NAME =        'dom-node-name';
+var DOM_NODE_TITLE =       'dom-node-title';
 
 var gBaseURL;
 var gContainer;
 var gTree;
 
 // Majesty Omphalos
-function TreeNode () {
-    this.path =         null;
+function TreeNode (path, parent) {
+    this.path =         path;
+    this.parentNode =   parent;
     this.domNode =      null;
-    this.parentNode =   null;
     this.childNodes =   new Array();
     this.isCollapsed =  true;
 }
 
 TreeNode.prototype.appendChild = function (node) {
     this.childNodes.push(node);
-    var childrenDomNode = this.childrenDomNode();
+    var childrenDomNode = this.domNode.childNodes[1];
     childrenDomNode.appendChild(node.domNode);
     node.parentNode = this;
 }
 
-TreeNode.prototype.load = function (callback) {
+TreeNode.prototype.loadNode = function (callback) {
     node = this;
     jQuery.ajax({type: "POST",
-		 url: gBaseURL + LOAD_BRANCH,
+		 url: gBaseURL + LOAD_NODE,
 		 dataType: "xml",
 		 data: {path: this.path},
 		 success: function (xml) {
-		     node.parseAndBuild(node, xml, callback)
+		     node.parseAndBuildNode(jQuery('node', xml));
+		     callback.call()
 		 }})
 }
 
-TreeNode.prototype.parseAndBuild = function (node, xml, callback) {
-    // parse context related variables from responseXML
-    var this_name =          jQuery('this > name', xml).text();
-    var this_url =           jQuery('this > url', xml).text();
-    var this_icon_url =      jQuery('this > icon_url', xml).text();
-    var this_size =          parseInt(jQuery('this > size', xml).text());
-    var this_length =        parseInt(jQuery('this > length', xml).text());
-    var this_is_container =  jQuery('this > size', xml).text() == 'True' ? true : false;
+TreeNode.prototype.loadChildren = function (callback) {
+    node = this;
+    jQuery.ajax({type: "POST",
+		 url: gBaseURL + LOAD_CHILDREN,
+		 dataType: "xml",
+		 data: {path: this.path},
+		 success: function (xml) {
+		     node.parseAndBuildChildren(xml);
+		     callback.call()
+		 }})
+}
 
-    // build HTML containers
-    var dom_node =           this.createElement('div', DOM_NODE);
-    var dom_node_self =      this.createElement('div', DOM_NODE_SELF);
-    var dom_node_children =  this.createElement('div', DOM_NODE_CHILDREN);
+TreeNode.prototype.parseAndBuildNode = function (xml) {
+    var dom_node =           this.createElement('div', 'class', DOM_NODE);
+    var dom_node_self =      this.createElement('div', 'class', DOM_NODE_SELF);
+    var dom_node_children =  this.createElement('div', 'class', DOM_NODE_CHILDREN);
+    var expander =           this.createElement('a', 'class', DOM_NODE_EXPANDER, '&nbsp;');
+    var anchor =             this.createElement('a', 'class', DOM_NODE_ANCHOR, '&nbsp;');
+    var icon =               this.createElement('img', 'src', xml.attr('icon_url'));
+    var name =               this.createElement('span', 'class', DOM_NODE_NAME, xml.attr('name'));
+    var title =              this.createElement('span', 'class', DOM_NODE_TITLE, xml.attr('title'));
 
-    // build HTML details
-    var expander =           this.createElement('a', DOM_NODE_EXPANDER, '&nbsp;')
-    var anchor =             this.createElement('a', DOM_NODE_ANCHOR, '&nbsp;')
+    dom_node_self.setAttribute('path', xml.attr('path'));
 
-    dom_node_self.setAttribute('path', this_url);
     dom_node_self.appendChild(expander);
     dom_node_self.appendChild(anchor);
+    dom_node_self.appendChild(title);
+
+    anchor.appendChild(icon);
+    anchor.appendChild(name);
 
     dom_node.appendChild(dom_node_self);
     dom_node.appendChild(dom_node_children);
 
-    node.domNode = dom_node;
-
-    callback.call()
-
-    // children nodes
-    var children = jQuery('children > child', xml).each(
-	function (i) {
-	    //
-	}
-    )
+    this.domNode = dom_node;
 }
 
-TreeNode.prototype.childrenDomNode = function () {
-    return this.domNode.childNodes[1];
+TreeNode.prototype.parseAndBuildChildren = function (xml, callback) {
+    root = this;
+    jQuery('node', xml).each(function (i) {
+	var url = jQuery(this).attr('path');
+	child = new TreeNode(url, root);
+	child.parseAndBuildNode(jQuery(this));
+	root.appendChild(child);
+    })
 }
 
-TreeNode.prototype.createElement = function (type, klass, inner) {
+TreeNode.prototype.createElement = function (type, attr_name, attr_val, inner) {
     var node = document.createElement(type);
-    node.setAttribute('class', klass);
+    node.setAttribute(attr_name, attr_val);
     if (inner) jQuery(node).html(inner);
     return node;
 }
@@ -99,10 +109,11 @@ TreeNode.prototype.createElement = function (type, klass, inner) {
 function loadtree (root_url, base_url) {
     gBaseURL = base_url;
     gContainer = document.getElementById(TREE_CONTAINER);
-    gTree = new TreeNode();
-    gTree.path = root_url;
-    gTree.load(function () {
+    gTree = new TreeNode(root_url, null);
+    gTree.loadNode(function () {
 	jQuery(gContainer).empty();
 	gContainer.appendChild(gTree.domNode);
-    })
+    });
+
+    gTree.loadChildren(function () {})
 }
