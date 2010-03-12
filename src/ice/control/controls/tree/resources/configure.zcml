@@ -23,6 +23,11 @@
      file="img/mi.png"
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
      />
+  <resource
+     name="simple.png"
+     file="img/simple.png"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     />
 
   <!-- icons -->
   <icon

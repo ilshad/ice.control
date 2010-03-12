@@ -4,12 +4,25 @@
 *
 **/
 
-div.dom-node {
+#treeContainer div.dom-node {
     border-left: 2px solid #B28FB0;
-    margin-left: 10px;
+    margin-left: 11px;
+    padding-left: 10px;
+    height: 30px;
+}
+
+#treeContainer > div.dom-node {
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 #treeContainer a.dom-node-anchor > img {
     margin-bottom: -5px;
-    margin-right: 10px;
+    margin-right: 2px;
+    margin-left: 10px;
+}
+
+#treeContainer a.dom-node-expander > img {
+    margin-bottom: -5px;
 }

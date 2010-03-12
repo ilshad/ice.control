@@ -9,6 +9,10 @@
 var LOAD_NODE =            '@@getControlTreeNode.xml';
 var LOAD_CHILDREN =        '@@getControlTreeChildren.xml';
 
+var EXPANDED_ICON =        '++resource++mi.png';
+var COLLAPSED_ICON =       '++resource++pl.png';
+var SIMPLE_ICON =          '++resource++simple.png';
+
 var TREE_CONTAINER =       'treeContainer';
 
 var DOM_NODE =             'dom-node';
@@ -29,7 +33,7 @@ function TreeNode (path, parent) {
     this.parentNode =   parent;
     this.domNode =      null;
     this.childNodes =   new Array();
-    this.isCollapsed =  true;
+    this.isExpanded =   true;
 }
 
 TreeNode.prototype.appendChild = function (node) {
@@ -37,6 +41,22 @@ TreeNode.prototype.appendChild = function (node) {
     var childrenDomNode = this.domNode.childNodes[1];
     childrenDomNode.appendChild(node.domNode);
     node.parentNode = this;
+}
+
+TreeNode.prototype.expand = function () {
+    var exp_icon = this.createElement('img', 'src', gBaseURL + EXPANDED_ICON);
+    var expander = jQuery('a.dom-node-expander', this.domNode);
+    expander.empty();
+    expander.append(exp_icon);
+    this.isExpanded = true;
+}
+
+TreeNode.prototype.collapse = function () {
+    var col_icon = this.createElement('img', 'src', gBaseURL + COLLAPSED_ICON);
+    var expander = jQuery('a.dom-node-expander', this.domNode);
+    expander.empty();
+    expander.append(col_icon);
+    this.isExpanded = false;
 }
 
 TreeNode.prototype.loadNode = function (callback) {
@@ -67,14 +87,13 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
     var dom_node =           this.createElement('div', 'class', DOM_NODE);
     var dom_node_self =      this.createElement('div', 'class', DOM_NODE_SELF);
     var dom_node_children =  this.createElement('div', 'class', DOM_NODE_CHILDREN);
-    var expander =           this.createElement('a', 'class', DOM_NODE_EXPANDER, '&nbsp;');
-    var anchor =             this.createElement('a', 'class', DOM_NODE_ANCHOR, '&nbsp;');
+    var expander =           this.createElement('a', 'class', DOM_NODE_EXPANDER);
+    var anchor =             this.createElement('a', 'class', DOM_NODE_ANCHOR);
     var icon =               this.createElement('img', 'src', xml.attr('icon_url'));
     var name =               this.createElement('span', 'class', DOM_NODE_NAME, xml.attr('name'));
     var title =              this.createElement('span', 'class', DOM_NODE_TITLE, xml.attr('title'));
 
-    dom_node_self.setAttribute('path', xml.attr('path'));
-
+    this.domNode = dom_node;
     dom_node_self.appendChild(expander);
     dom_node_self.appendChild(anchor);
     dom_node_self.appendChild(title);
@@ -85,7 +104,15 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
     dom_node.appendChild(dom_node_self);
     dom_node.appendChild(dom_node_children);
 
-    this.domNode = dom_node;
+    if (parseInt(xml.attr('length')) > 0) {
+	this.collapse()
+    } else {
+	var simple = this.createElement('img', 'src', gBaseURL + SIMPLE_ICON);
+	expander.appendChild(simple);
+    }
+
+    dom_node.setAttribute('path', xml.attr('path'));
+
 }
 
 TreeNode.prototype.parseAndBuildChildren = function (xml, callback) {
@@ -113,7 +140,7 @@ function loadtree (root_url, base_url) {
     gTree.loadNode(function () {
 	jQuery(gContainer).empty();
 	gContainer.appendChild(gTree.domNode);
-    });
-
-    gTree.loadChildren(function () {})
+	gTree.expand();
+	gTree.loadChildren(function () {})
+    })
 }
