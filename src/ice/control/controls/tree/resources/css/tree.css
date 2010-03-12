@@ -5,9 +5,9 @@
 **/
 
 #treeContainer div.dom-node {
-    border-left: 2px solid #B28FB0;
+/*    border-left: 2px solid #B28FB0;*/
     margin-left: 11px;
-    padding-left: 10px;
+    padding-left: 35px; /*17px*/
     height: 30px;
 }
 
@@ -16,13 +16,20 @@
     margin-left: 0;
     padding-left: 0;
 }
-
+#treeContainer a.dom-node-anchor {
+    margin-left: 10px;
+}
 #treeContainer a.dom-node-anchor > img {
     margin-bottom: -5px;
     margin-right: 2px;
-    margin-left: 10px;
 }
 
 #treeContainer a.dom-node-expander > img {
     margin-bottom: -5px;
+}
+
+#treeContainer span.dom-node-title {
+    margin-left: 10px;
+    color: #999999;
+    font-weight: bold;
 }
