@@ -17,7 +17,7 @@
   <utility
      name="ice.control"
      provides="zope.app.generations.interfaces.ISchemaManager"
-     component="ice.control.tests.schemaManager"
+     component="ice.control.tests.generations.schemaManager"
      />
 
   <include package="ice.control" />
