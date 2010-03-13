@@ -1,6 +1,6 @@
 /**
 *
-* Copyright (C) 2010 Ilshad R. Khabibullin http://astoon.zwiki.org
+* Copyright (C) 2010 Ilshad R. Khabibullin <astoon.net at gmail.com>
 *
 * Dynamic tree and object dashboard for ice.control package.
 *
@@ -26,6 +26,7 @@ var DOM_NODE_TITLE =       'dom-node-title';
 var gBaseURL;
 var gContainer;
 var gTree;
+var gNodesList;
 
 // Majesty Omphalos
 function TreeNode (path, parent) {
@@ -57,6 +58,9 @@ TreeNode.prototype.collapse = function () {
     expander.empty();
     expander.append(col_icon);
     this.isExpanded = false;
+
+    node = this;
+    expander.click(function () {console.log(node)})
 }
 
 TreeNode.prototype.loadNode = function (callback) {
@@ -98,7 +102,7 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
     dom_node_self.appendChild(anchor);
     dom_node_self.appendChild(title);
 
-    anchor.appendChild(icon);
+    if (xml.attr('icon_url')) anchor.appendChild(icon);
     anchor.appendChild(name);
 
     dom_node.appendChild(dom_node_self);
@@ -111,8 +115,7 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
 	expander.appendChild(simple);
     }
 
-    dom_node.setAttribute('path', xml.attr('path'));
-
+    dom_node.setAttribute('path', xml.attr('path'))
 }
 
 TreeNode.prototype.parseAndBuildChildren = function (xml, callback) {
