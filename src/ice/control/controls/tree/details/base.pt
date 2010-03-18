@@ -1,0 +1,3 @@
+<h1>Welcome to Details form</h1>
+for
+<h2 tal:content="context/__name__" />

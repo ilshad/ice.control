@@ -8,6 +8,7 @@
 
 var LOAD_NODE =            '@@getControlTreeNode.xml';
 var LOAD_CHILDREN =        '@@getControlTreeChildren.xml';
+var LOAD_DETAILS =         '@@getControlTreeDetails';
 
 var EXPANDED_ICON =        '++resource++mi.png';
 var COLLAPSED_ICON =       '++resource++pl.png';

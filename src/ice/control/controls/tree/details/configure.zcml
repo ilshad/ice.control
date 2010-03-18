@@ -1,0 +1,13 @@
+<configure
+   xmlns="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <page
+     for="zope.interface.Interface"
+     name="getControlTreeDetails"
+     class=".base.DetailsBase"
+     template="base.pt"
+     permission="zope.ManageContent"
+     />
+
+</configure>
