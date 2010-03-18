@@ -22,6 +22,7 @@ var DOM_NODE_EXPANDER =    'dom-node-expander';
 var DOM_NODE_ANCHOR =      'dom-node-anchor';
 var DOM_NODE_NAME =        'dom-node-name';
 var DOM_NODE_TITLE =       'dom-node-title';
+var WITHOUT_ICON =         'anchor-without-icon';
 
 var gBaseURL;
 var gContainer;
@@ -132,7 +133,9 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
     dom_node_self.appendChild(anchor);
     dom_node_self.appendChild(title);
 
-    if (xml.attr('icon_url')) anchor.appendChild(icon);
+    if (xml.attr('icon_url')) { anchor.appendChild(icon) }
+    else { jQuery(anchor).addClass(WITHOUT_ICON) }
+
     anchor.appendChild(name);
 
     dom_node.appendChild(dom_node_self);

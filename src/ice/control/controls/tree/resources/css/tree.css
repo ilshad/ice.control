@@ -18,6 +18,10 @@
 #treeContainer a.dom-node-anchor {
     margin-left: 10px;
 }
+#treeContainer a.anchor-without-icon {
+    padding-left: 27px;
+}
+
 #treeContainer a.dom-node-anchor > img {
     margin-bottom: -5px;
     margin-right: 2px;
