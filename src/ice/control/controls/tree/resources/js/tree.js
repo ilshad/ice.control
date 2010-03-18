@@ -46,10 +46,10 @@ TreeNode.prototype.appendChild = function (dom, node) {
 
 TreeNode.prototype.nodeLookUp = function () {
     var ext_nodes = [this.domNode];
-    var ex_height = [jQuery(this.domNode).height()];
-    jQuery(this.domNode).parents('div.dom-node').each(function (i) {
+    var ex_height = [$(this.domNode).height()];
+    $(this.domNode).parents('div.dom-node').each(function (i) {
 	ext_nodes.push(this);
-	ex_height.push(jQuery(this).height());
+	ex_height.push($(this).height());
     });
     return {ext_nodes: ext_nodes,
 	    ex_height: ex_height}
@@ -57,20 +57,20 @@ TreeNode.prototype.nodeLookUp = function () {
 
 TreeNode.prototype.expand = function () {
     var dom_children = this.createElement('div', 'class', DOM_NODE_CHILDREN);
-    jQuery(this.domNode.childNodes[0]).after(dom_children);
+    $(this.domNode.childNodes[0]).after(dom_children);
     
     var ex = this.nodeLookUp();
 
     var node = this;
     this.loadChildren(dom_children, function () {
-	var h = jQuery(dom_children).height();
-	jQuery(ex.ext_nodes).each(function (i) {
-	    jQuery(this).height(ex.ex_height[i] + h);
+	var h = $(dom_children).height();
+	$(ex.ext_nodes).each(function (i) {
+	    $(this).height(ex.ex_height[i] + h);
 	});
     });
 
     var exp_icon = this.createElement('img', 'src', gBaseURL + EXPANDED_ICON);
-    var expander = jQuery('a.dom-node-expander', this.domNode);
+    var expander = $('a.dom-node-expander', this.domNode);
     expander.empty();
     expander.append(exp_icon);
     this.isExpanded = true;
@@ -78,17 +78,17 @@ TreeNode.prototype.expand = function () {
 
 TreeNode.prototype.collapse = function () {
     var dom_children = this.domNode.childNodes[1];
-    var h = jQuery(dom_children).height();
+    var h = $(dom_children).height();
     var ex = this.nodeLookUp();
     
-    jQuery(dom_children).remove();
+    $(dom_children).remove();
 
-    jQuery(ex.ext_nodes).each(function (i) {
-	jQuery(this).height(ex.ex_height[i] - h);
+    $(ex.ext_nodes).each(function (i) {
+	$(this).height(ex.ex_height[i] - h);
     });
 
     var col_icon = this.createElement('img', 'src', gBaseURL + COLLAPSED_ICON);
-    var expander = jQuery('a.dom-node-expander', this.domNode);
+    var expander = $('a.dom-node-expander', this.domNode);
     expander.empty();
     expander.append(col_icon);
     this.isExpanded = false;
@@ -96,19 +96,19 @@ TreeNode.prototype.collapse = function () {
 
 TreeNode.prototype.loadNode = function (callback) {
     var node = this;
-    jQuery.ajax({type: "POST",
+    $.ajax({type: "POST",
 		 url: node.path + LOAD_NODE,
 		 dataType: "xml",
 		 data: {},
 		 success: function (xml) {
-		     node.parseAndBuildNode(jQuery('node', xml));
+		     node.parseAndBuildNode($('node', xml));
 		     callback.call()
 		 }})
 }
 
 TreeNode.prototype.loadChildren = function (dom, callback) {
     var node = this;
-    jQuery.ajax({type: "POST",
+    $.ajax({type: "POST",
 		 url: node.path + LOAD_CHILDREN,
 		 dataType: "xml",
 		 data: {},
@@ -134,7 +134,7 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
     dom_node_self.appendChild(title);
 
     if (xml.attr('icon_url')) { anchor.appendChild(icon) }
-    else { jQuery(anchor).addClass(WITHOUT_ICON) }
+    else { $(anchor).addClass(WITHOUT_ICON) }
 
     anchor.appendChild(name);
 
@@ -162,10 +162,10 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
 
 TreeNode.prototype.parseAndBuildChildren = function (dom, xml) {
     var root = this;
-    jQuery('node', xml).each(function (i) {
-	var url = jQuery(this).attr('path');
+    $('node', xml).each(function (i) {
+	var url = $(this).attr('path');
 	child = new TreeNode(url, root);
-	child.parseAndBuildNode(jQuery(this));
+	child.parseAndBuildNode($(this));
 	root.appendChild(dom, child);
     })
 }
@@ -173,7 +173,7 @@ TreeNode.prototype.parseAndBuildChildren = function (dom, xml) {
 TreeNode.prototype.createElement = function (type, attr_name, attr_val, inner) {
     var node = document.createElement(type);
     node.setAttribute(attr_name, attr_val);
-    if (inner) jQuery(node).html(inner);
+    if (inner) $(node).html(inner);
     return node;
 }
 
@@ -183,7 +183,7 @@ function loadtree (root_url, base_url) {
     gContainer = document.getElementById(TREE_CONTAINER);
     gTree = new TreeNode(root_url, null);
     gTree.loadNode(function () {
-	jQuery(gContainer).empty();
+	$(gContainer).empty();
 	gContainer.appendChild(gTree.domNode);
 	gTree.expand();
     })
