@@ -94,8 +94,8 @@ class XMLBase(object):
 
     def to_xml(self):
         # You needn't reimplement this never in your life, man
-        return XMLNODE % (self.name(),       self.path(),    self.title(),
-                          self.icon_url(),   self.size(),    self.length(),
+        return XMLNODE % (self.name(), self.path() + u"/", self.title(),
+                          self.icon_url(), self.size(), self.length(),
                           self.is_container() and u'true' or u'false')
 
     def node_xmldoc(self):

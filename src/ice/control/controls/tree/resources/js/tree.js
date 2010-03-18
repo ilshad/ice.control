@@ -34,17 +34,29 @@ function TreeNode (path, parent) {
     this.parentNode =   parent;
     this.domNode =      null;
     this.childNodes =   new Array();
-    this.isExpanded =   true;
+    this.isExpanded =   null;
 }
 
-TreeNode.prototype.appendChild = function (node) {
+TreeNode.prototype.appendChild = function (dom, node) {
     this.childNodes.push(node);
-    var childrenDomNode = this.domNode.childNodes[1];
-    childrenDomNode.appendChild(node.domNode);
+    dom.appendChild(node.domNode);
     node.parentNode = this;
 }
 
 TreeNode.prototype.expand = function () {
+    var dom_children =  this.createElement('div', 'class', DOM_NODE_CHILDREN);
+    jQuery(this.domNode.childNodes[0]).after(dom_children);
+
+    var node = this;
+    this.loadChildren(dom_children, function () {
+	if (jQuery(node.domNode).next().length > 0) {
+	    var h = jQuery(dom_children).height();
+	    var stub = document.createElement('div');
+	    stub.setAttribute('height', h);
+	    jQuery(node.domNode).after(jQuery(stub));
+	}
+    })
+
     var exp_icon = this.createElement('img', 'src', gBaseURL + EXPANDED_ICON);
     var expander = jQuery('a.dom-node-expander', this.domNode);
     expander.empty();
@@ -53,51 +65,49 @@ TreeNode.prototype.expand = function () {
 }
 
 TreeNode.prototype.collapse = function () {
+    jQuery(this.domNode.childNodes[1]).empty();
     var col_icon = this.createElement('img', 'src', gBaseURL + COLLAPSED_ICON);
     var expander = jQuery('a.dom-node-expander', this.domNode);
     expander.empty();
     expander.append(col_icon);
     this.isExpanded = false;
-
-    node = this;
-    expander.click(function () {console.log(node)})
 }
 
 TreeNode.prototype.loadNode = function (callback) {
-    node = this;
+    var node = this;
     jQuery.ajax({type: "POST",
-		 url: gBaseURL + LOAD_NODE,
+		 url: node.path + LOAD_NODE,
 		 dataType: "xml",
-		 data: {path: this.path},
+		 data: {},
 		 success: function (xml) {
 		     node.parseAndBuildNode(jQuery('node', xml));
 		     callback.call()
 		 }})
 }
 
-TreeNode.prototype.loadChildren = function (callback) {
-    node = this;
+TreeNode.prototype.loadChildren = function (dom, callback) {
+    var node = this;
     jQuery.ajax({type: "POST",
-		 url: gBaseURL + LOAD_CHILDREN,
+		 url: node.path + LOAD_CHILDREN,
 		 dataType: "xml",
-		 data: {path: this.path},
+		 data: {},
 		 success: function (xml) {
-		     node.parseAndBuildChildren(xml);
+		     node.parseAndBuildChildren(dom, xml);
 		     callback.call()
 		 }})
 }
 
 TreeNode.prototype.parseAndBuildNode = function (xml) {
-    var dom_node =           this.createElement('div', 'class', DOM_NODE);
-    var dom_node_self =      this.createElement('div', 'class', DOM_NODE_SELF);
-    var dom_node_children =  this.createElement('div', 'class', DOM_NODE_CHILDREN);
-    var expander =           this.createElement('a', 'class', DOM_NODE_EXPANDER);
-    var anchor =             this.createElement('a', 'class', DOM_NODE_ANCHOR);
-    var icon =               this.createElement('img', 'src', xml.attr('icon_url'));
-    var name =               this.createElement('span', 'class', DOM_NODE_NAME, xml.attr('name'));
-    var title =              this.createElement('span', 'class', DOM_NODE_TITLE, xml.attr('title'));
+    var dom_node = this.createElement('div', 'class', DOM_NODE);
+    var dom_node_self = this.createElement('div', 'class', DOM_NODE_SELF);
+    var expander = this.createElement('a', 'class', DOM_NODE_EXPANDER);
+    var anchor = this.createElement('a', 'class', DOM_NODE_ANCHOR);
+    var icon = this.createElement('img', 'src', xml.attr('icon_url'));
+    var name = this.createElement('span', 'class', DOM_NODE_NAME, xml.attr('name'));
+    var title = this.createElement('span', 'class', DOM_NODE_TITLE, xml.attr('title'));
 
     this.domNode = dom_node;
+
     dom_node_self.appendChild(expander);
     dom_node_self.appendChild(anchor);
     dom_node_self.appendChild(title);
@@ -106,25 +116,34 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
     anchor.appendChild(name);
 
     dom_node.appendChild(dom_node_self);
-    dom_node.appendChild(dom_node_children);
+    dom_node.setAttribute('style', 'display: block');
 
     if (parseInt(xml.attr('length')) > 0) {
-	this.collapse()
+	expander.appendChild(
+	    this.createElement('img', 'src', gBaseURL + COLLAPSED_ICON));
+	this.isExpanded = false;
     } else {
-	var simple = this.createElement('img', 'src', gBaseURL + SIMPLE_ICON);
-	expander.appendChild(simple);
+	expander.appendChild(
+	    this.createElement('img', 'src', gBaseURL + SIMPLE_ICON));
     }
 
-    dom_node.setAttribute('path', xml.attr('path'))
+    var node = this;
+    expander.onclick = function () {
+	if (node.isExpanded == null) {return false}
+	if (node.isExpanded == true) {node.collapse(); return false}
+	if (node.isExpanded == false) {node.expand(); return false}
+    }
+
+    dom_node.setAttribute('path', xml.attr('path'));
 }
 
-TreeNode.prototype.parseAndBuildChildren = function (xml, callback) {
-    root = this;
+TreeNode.prototype.parseAndBuildChildren = function (dom, xml) {
+    var root = this;
     jQuery('node', xml).each(function (i) {
 	var url = jQuery(this).attr('path');
 	child = new TreeNode(url, root);
 	child.parseAndBuildNode(jQuery(this));
-	root.appendChild(child);
+	root.appendChild(dom, child);
     })
 }
 
@@ -144,6 +163,5 @@ function loadtree (root_url, base_url) {
 	jQuery(gContainer).empty();
 	gContainer.appendChild(gTree.domNode);
 	gTree.expand();
-	gTree.loadChildren(function () {})
     })
 }

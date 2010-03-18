@@ -10,7 +10,6 @@
     padding-left: 35px; /*17px*/
     height: 30px;
 }
-
 #treeContainer > div.dom-node {
     border-left: 0;
     margin-left: 0;
@@ -23,11 +22,9 @@
     margin-bottom: -5px;
     margin-right: 2px;
 }
-
 #treeContainer a.dom-node-expander > img {
     margin-bottom: -5px;
 }
-
 #treeContainer span.dom-node-title {
     margin-left: 10px;
     color: #999999;

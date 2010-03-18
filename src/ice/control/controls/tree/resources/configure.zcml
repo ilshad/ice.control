@@ -40,5 +40,10 @@
      for="zope.component.interfaces.ISite"
      file="icons/site_icon.png"
      />
+  <icon
+     name="control_icon"
+     for="zope.error.interfaces.IErrorReportingUtility"
+     file="icons/error_report.png"
+     />
 
 </configure>
