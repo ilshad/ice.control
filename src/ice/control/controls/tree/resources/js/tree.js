@@ -23,6 +23,11 @@ var DOM_NODE_ANCHOR =      'dom-node-anchor';
 var DOM_NODE_NAME =        'dom-node-name';
 var DOM_NODE_TITLE =       'dom-node-title';
 var WITHOUT_ICON =         'anchor-without-icon';
+var DETAILS =              'details';
+var DETAILS_WRAP =         'details-wrap';
+var DETAILS_HEAD =         'details-head';
+var DETAILS_CLOSE =        'details-close';
+var DETAILS_MINIMIZE =     'details-minimize';
 
 var gBaseURL;
 var gContainer;
@@ -32,6 +37,8 @@ var gNodesList;
 // Majesty Omphalos
 function TreeNode (path, parent) {
     this.path =         path;
+    this.name =         null;
+    this.title =        null;
     this.parentNode =   parent;
     this.domNode =      null;
     this.childNodes =   new Array();
@@ -119,13 +126,16 @@ TreeNode.prototype.loadChildren = function (dom, callback) {
 }
 
 TreeNode.prototype.parseAndBuildNode = function (xml) {
+    this.name = xml.attr('name');
+    this.title = xml.attr('title');
+
     var dom_node = this.createElement('div', 'class', DOM_NODE);
     var dom_node_self = this.createElement('div', 'class', DOM_NODE_SELF);
     var expander = this.createElement('a', 'class', DOM_NODE_EXPANDER);
     var anchor = this.createElement('a', 'class', DOM_NODE_ANCHOR);
     var icon = this.createElement('img', 'src', xml.attr('icon_url'));
-    var name = this.createElement('span', 'class', DOM_NODE_NAME, xml.attr('name'));
-    var title = this.createElement('span', 'class', DOM_NODE_TITLE, xml.attr('title'));
+    var name = this.createElement('span', 'class', DOM_NODE_NAME, this.name);
+    var title = this.createElement('span', 'class', DOM_NODE_TITLE, this.title);
 
     this.domNode = dom_node;
 
@@ -149,14 +159,19 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
 	expander.appendChild(
 	    this.createElement('img', 'src', gBaseURL + SIMPLE_ICON));
     }
-
+    
+    // Click it
     var node = this;
     expander.onclick = function () {
 	if (node.isExpanded == null) {return false}
 	if (node.isExpanded == true) {node.collapse(); return false}
 	if (node.isExpanded == false) {node.expand(); return false}
     }
+    anchor.onclick = function () {
+	node.openDetails();
+    }
 
+    // Identify me explicity
     dom_node.setAttribute('path', xml.attr('path'));
 }
 
@@ -170,6 +185,36 @@ TreeNode.prototype.parseAndBuildChildren = function (dom, xml) {
     })
 }
 
+TreeNode.prototype.openDetails = function () {
+    var details = this.createElement('div', 'class', DETAILS);
+    var detailsWrap = this.createElement('div', 'class', DETAILS_WRAP, '&nbsp');
+    var detailsHead = this.createElement('div', 'class', DETAILS_HEAD, '&nbsp');
+    var detailsClose = this.createElement('a', 'class', DETAILS_CLOSE, 'X');
+    var detailsMinimize = this.createElement('a', 'class', DETAILS_MINIMIZE, '_');
+    var name = this.createElement('span', 'class', DOM_NODE_NAME, this.name);
+    var title = this.createElement('span', 'class', DOM_NODE_TITLE, this.title);
+
+    detailsClose.onclick = function () {
+	$(details).fadeOut("normal", function() {$(details).remove()})
+    }
+
+    $(detailsWrap)
+	.width(600)
+	.height(400)
+
+    $(details)
+	.append($(detailsWrap))
+	.prependTo($('#' + TREE_CONTAINER))
+	.fadeIn();
+
+    $(detailsHead)
+	.prependTo($(detailsWrap))
+	.append($(detailsClose))
+	.append($(detailsMinimize))
+	.append($(name))
+	.append($(title))
+}
+
 TreeNode.prototype.createElement = function (type, attr_name, attr_val, inner) {
     var node = document.createElement(type);
     node.setAttribute(attr_name, attr_val);
@@ -177,7 +222,7 @@ TreeNode.prototype.createElement = function (type, attr_name, attr_val, inner) {
     return node;
 }
 
-// invoked when document onload
+// onload document
 function loadtree (root_url, base_url) {
     gBaseURL = base_url;
     gContainer = document.getElementById(TREE_CONTAINER);
