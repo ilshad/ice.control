@@ -22,5 +22,6 @@
       </tr>
     </table>
   </div>
+  <div id="spinner">&nbsp;</div>
 </body>
 </html>
