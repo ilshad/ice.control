@@ -43,25 +43,28 @@ TreeNode.prototype.appendChild = function (dom, node) {
     node.parentNode = this;
 }
 
-TreeNode.prototype.expand = function () {
-    var dom_children = this.createElement('div', 'class', DOM_NODE_CHILDREN);
-    jQuery(this.domNode.childNodes[0]).after(dom_children);
-    
-    // Find all the dom nodes to be extended
+TreeNode.prototype.nodeLookUp = function () {
     var ext_nodes = [this.domNode];
     var ex_height = [jQuery(this.domNode).height()];
     jQuery(this.domNode).parents('div.dom-node').each(function (i) {
 	ext_nodes.push(this);
 	ex_height.push(jQuery(this).height());
     });
+    return {ext_nodes: ext_nodes,
+	    ex_height: ex_height}
+}
 
-    // Load children and pass callback to
-    // expand all the parent nodes explicity
+TreeNode.prototype.expand = function () {
+    var dom_children = this.createElement('div', 'class', DOM_NODE_CHILDREN);
+    jQuery(this.domNode.childNodes[0]).after(dom_children);
+    
+    var ex = this.nodeLookUp();
+
     var node = this;
     this.loadChildren(dom_children, function () {
 	var h = jQuery(dom_children).height();
-	jQuery(ext_nodes).each(function (i) {
-	    jQuery(this).height(ex_height[i] + h);
+	jQuery(ex.ext_nodes).each(function (i) {
+	    jQuery(this).height(ex.ex_height[i] + h);
 	});
     });
 
@@ -73,7 +76,16 @@ TreeNode.prototype.expand = function () {
 }
 
 TreeNode.prototype.collapse = function () {
-    jQuery(this.domNode.childNodes[1]).remove();
+    var dom_children = this.domNode.childNodes[1];
+    var h = jQuery(dom_children).height();
+    var ex = this.nodeLookUp();
+    
+    jQuery(dom_children).remove();
+
+    jQuery(ex.ext_nodes).each(function (i) {
+	jQuery(this).height(ex.ex_height[i] - h);
+    });
+
     var col_icon = this.createElement('img', 'src', gBaseURL + COLLAPSED_ICON);
     var expander = jQuery('a.dom-node-expander', this.domNode);
     expander.empty();
