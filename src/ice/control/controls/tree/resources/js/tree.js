@@ -253,7 +253,36 @@ TreeNode.prototype.minimizeDetails = function (details) {
     }
 }
 
-//TreeNode.prototype.refresh
+TreeNode.prototype.refresh = function () {
+    var node = this;
+    $.ajax({type: "POST",
+	    url: node.path + LOAD_NODE,
+	    dataType: "xml",
+	    data: {},
+	    success: function (xml) {
+		description = $('node', xml);
+
+		var name = description.attr('name');
+		if (name != node.name) {
+		    node.name = name;
+		    $('span.' + DOM_NODE_NAME,
+		      node.domNode.childNodes[0]).text(name);
+		}
+
+		var path = description.attr('path');
+		if (path != node.path) {
+		    node.path = path;
+		    node.domNode.setAttribute('path', path);
+		}
+
+		var title = description.attr('title');
+		if (title != node.title) {
+		    node.title = title;
+		    $('span.' + DOM_NODE_TITLE,
+		      node.domNode.childNodes[0]).text(title);
+		}
+	    }})
+}
 
 TreeNode.prototype.createElement = function (type, attr_name, attr_val, inner) {
     var node = document.createElement(type);
