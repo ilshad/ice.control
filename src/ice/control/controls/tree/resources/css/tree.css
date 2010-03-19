@@ -47,7 +47,9 @@
     height: 400px;
     maring: 0;
     padding: 3px;
-    border: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
 }
 #treeContainer div.details-head {
     maring: 0;
@@ -75,6 +77,28 @@
 #treeContainer a.details-minimize:hover {
     background-color: #fff;
     color: #56085B;
+}
+#treeContainer div.details-menu {
+    maring: 0;
+    padding: 0 0 3px 0;
+    height: 20px;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    line-height: 20px;
+    font-family: "Arial","Helvetica",sans-serif;
+    font-size: 14px;
+    text-align: right;
+}
+#treeContainer div.details-menu a {
+    display: inline;
+    margin-right: 5px;
+    padding: 0 5px;
+    border: 1px solid #fff;
+}
+#treeContainer div.details-menu a:hover {
+    background-color: #fff;
+    color: #333;
 }
 #treeContainer div.details,
 #treeContainer div.details a,

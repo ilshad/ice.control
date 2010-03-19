@@ -8,7 +8,8 @@
 
 var LOAD_NODE =            '@@getControlTreeNode.xml';
 var LOAD_CHILDREN =        '@@getControlTreeChildren.xml';
-var LOAD_DETAILS =         '@@getControlTreeDetails';
+var LOAD_DETAILS =         '@@getControlDetailsDefault';
+var LOAD_MENU =            '@@getControlDetailsMenu';
 
 var EXPANDED_ICON =        '++resource++mi.png';
 var COLLAPSED_ICON =       '++resource++pl.png';
@@ -30,6 +31,7 @@ var DETAILS_WRAP =         'details-wrap';
 var DETAILS_HEAD =         'details-head';
 var DETAILS_CLOSE =        'details-close';
 var DETAILS_MINIMIZE =     'details-minimize';
+var DETAILS_MENU =         'details-menu';
 var DOCK =                 'dock';
 var URL =                  'url';
 
@@ -200,6 +202,7 @@ TreeNode.prototype.openDetails = function () {
     var detailsHead = this.createElement('div', 'class', DETAILS_HEAD, '&nbsp');
     var detailsClose = this.createElement('a', 'class', DETAILS_CLOSE, 'X');
     var detailsMinimize = this.createElement('a', 'class', DETAILS_MINIMIZE, '_');
+    var detailsMenu = this.createElement('div', 'class', DETAILS_MENU, '&nbsp;');
     var url = this.createElement('span', 'class', URL, this.path);
 
     var node = this;
@@ -222,8 +225,10 @@ TreeNode.prototype.openDetails = function () {
     $(details)
 	.prependTo($('#' + TREE_CONTAINER))
 	.append($(detailsWrap))
+	.append($(detailsMenu))
 	.fadeIn("normal", function () {
-	    $(detailsWrap).load(path + LOAD_DETAILS)
+	    $(detailsWrap).load(path + LOAD_DETAILS);
+	    $(detailsMenu).load(path + LOAD_MENU);
 	});
 
     $(detailsHead)
@@ -262,6 +267,12 @@ function loadtree (root_url, base_url) {
 	gContainer.appendChild(gTree.domNode);
 	gTree.expand();
     })
+}
+
+// click on Details Menu
+function loadControlDetails (url, node) {
+    var detailsWrap = node.parentNode.parentNode.childNodes[1];
+    $(detailsWrap).load(url);
 }
 
 /* Loading... */

@@ -2,12 +2,35 @@
    xmlns="http://namespaces.zope.org/browser"
    i18n_domain="ice.control">
 
+  <!-- Menu -->
+  <menu
+     id="control_details"
+     title="Object Details"
+     />
   <page
      for="zope.interface.Interface"
-     name="getControlTreeDetails"
+     name="getControlDetailsMenu"
+     template="menu.pt"
+     permission="zope.ManageContent"
+     />
+
+  <!-- Some details pages -->
+  <page
+     for="zope.interface.Interface"
+     name="getControlDetailsDefault"
      class=".base.DetailsBase"
      template="base.pt"
      permission="zope.ManageContent"
+     menu="control_details"
+     title="Default"
+     />
+  <page
+     for="zope.interface.Interface"
+     name="getControlDetailsIntrospector"
+     template="introspector.pt"
+     permission="zope.ManageContent"
+     menu="control_details"
+     title="Introspector"
      />
 
 </configure>
