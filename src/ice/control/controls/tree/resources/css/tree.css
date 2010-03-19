@@ -62,6 +62,7 @@
 }
 #treeContainer div.details-head span.url {
     margin-left: 10px;
+    font-size: 12px;
 }
 #treeContainer a.details-close,
 #treeContainer a.details-minimize {
