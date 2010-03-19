@@ -193,7 +193,7 @@ input[type=checkbox] {
 
 #spinner {
     display: none;
-    background: #fff url(../img/spinner.gif) no-repeat scroll center top;
+    background: transparent url(../img/spinner.gif) no-repeat scroll center top;
     height: 20px;
     width: 220px;
     position: fixed;

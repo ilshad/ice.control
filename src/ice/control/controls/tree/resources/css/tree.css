@@ -86,3 +86,14 @@
 #treeContainer div.details h6 {
     color: #fff;
 }
+#treeDetailsDock div.dock {
+    display: inline;
+    background-color: #37506E;
+    color: #fff;
+    padding: 3px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+#treeDetailsDock div.dock:hover {
+    background-color: #7C5580;
+}

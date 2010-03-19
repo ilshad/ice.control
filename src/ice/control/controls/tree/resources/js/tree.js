@@ -15,6 +15,7 @@ var COLLAPSED_ICON =       '++resource++pl.png';
 var SIMPLE_ICON =          '++resource++simple.png';
 
 var TREE_CONTAINER =       'treeContainer';
+var DETAILS_DOCK =         'treeDetailsDock';
 
 var DOM_NODE =             'dom-node';
 var DOM_NODE_SELF =        'dom-node-self';
@@ -29,6 +30,7 @@ var DETAILS_WRAP =         'details-wrap';
 var DETAILS_HEAD =         'details-head';
 var DETAILS_CLOSE =        'details-close';
 var DETAILS_MINIMIZE =     'details-minimize';
+var DOCK =                 'dock';
 var URL =                  'url';
 
 var gBaseURL;
@@ -45,6 +47,7 @@ function TreeNode (path, parent) {
     this.domNode =      null;
     this.childNodes =   new Array();
     this.isExpanded =   null;
+    this.dock =         null;
 }
 
 TreeNode.prototype.appendChild = function (dom, node) {
@@ -128,7 +131,7 @@ TreeNode.prototype.loadChildren = function (dom, callback) {
 }
 
 TreeNode.prototype.parseAndBuildNode = function (xml) {
-    this.name = xml.attr('name');
+    this.name = xml.attr('name') || 'root';
     this.title = xml.attr('title');
 
     var dom_node = this.createElement('div', 'class', DOM_NODE);
@@ -170,7 +173,11 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
 	if (node.isExpanded == false) {node.expand(); return false}
     }
     anchor.onclick = function () {
-	node.openDetails();
+	if (node.dock != null) {
+	    $(node.dock).click();
+	} else {
+	    node.openDetails();
+	}
     }
 
     // Identify me explicity
@@ -195,12 +202,23 @@ TreeNode.prototype.openDetails = function () {
     var detailsMinimize = this.createElement('a', 'class', DETAILS_MINIMIZE, '_');
     var url = this.createElement('span', 'class', URL, this.path);
 
+    var node = this;
+
     detailsClose.onclick = function () {
-	$(details).fadeOut("normal", function() {$(details).remove()})
+	$(details).fadeOut("normal", function() {
+	    $(details).remove();
+	    if (node.dock != null) {
+		$(node.dock).remove()
+		node.dock = null;
+	    }
+	});
     }
 
+    detailsMinimize.onclick = function () {
+	node.minimizeDetails(details);
+    }
+    
     var path = this.path;
-
     $(details)
 	.prependTo($('#' + TREE_CONTAINER))
 	.append($(detailsWrap))
@@ -213,7 +231,18 @@ TreeNode.prototype.openDetails = function () {
 	.append($(detailsClose))
 	.append($(detailsMinimize))
 	.append($(url))
+}
 
+TreeNode.prototype.minimizeDetails = function (details) {
+    $(details).slideUp();
+
+    if (this.dock == null) {
+	var dock = this.createElement('div', 'class', DOCK, this.name);
+	var dock_box = document.getElementById(DETAILS_DOCK);
+	$(dock).appendTo($(dock_box));
+	dock.onclick = function () { $(details).slideDown() }
+	this.dock = dock;
+    }
 }
 
 TreeNode.prototype.createElement = function (type, attr_name, attr_val, inner) {

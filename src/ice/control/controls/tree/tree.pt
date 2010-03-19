@@ -1,9 +1,9 @@
 <tal:block replace="resource_library:ice.control.tree.css" />
 <tal:block replace="resource_library:ice.control.tree.js" />
-
 <div id="treeContainer">
   Loading ...
 </div>
+<div id="treeDetailsDock"></div>
 <script type="text/javascript"
         tal:attributes="language string:JavaScript"
         tal:define="root_url request/getApplicationURL;
