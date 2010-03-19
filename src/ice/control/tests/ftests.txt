@@ -127,14 +127,14 @@ Verify xml presentation protocol staff::
   True
 
   >>> print x.to_xml()
-  <node name="" path="http://127.0.0.1" title=""
+  <node name="" path="http://127.0.0.1/" title=""
         icon_url="http://127.0.0.1/@@/zope-component-interfaces-ISite-control_icon.png"
         size="5" length="5" is_container="true" />
 
   >>> print x.node_xmldoc()
   <?xml version="1.0" ?>
   <document>
-  <node name="" path="http://127.0.0.1" title=""
+  <node name="" path="http://127.0.0.1/" title=""
 	icon_url="http://127.0.0.1/@@/zope-component-interfaces-ISite-control_icon.png"
         size="5" length="5" is_container="true" />
   </document>
@@ -142,27 +142,27 @@ Verify xml presentation protocol staff::
   >>> print x.children_xmldoc()
   <?xml version="1.0" ?>
   <document>
-  <node name="fifth" path="http://127.0.0.1/fifth" title=""
+  <node name="fifth" path="http://127.0.0.1/fifth/" title=""
         icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"
 	size="0" length="0" is_container="true" />
   <BLANKLINE>
-  <node name="first" path="http://127.0.0.1/first" title=""
+  <node name="first" path="http://127.0.0.1/first/" title=""
         icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"
         size="0" length="0" is_container="true" />
   <BLANKLINE>
-  <node name="fourth" path="http://127.0.0.1/fourth" title=""
+  <node name="fourth" path="http://127.0.0.1/fourth/" title=""
         icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"
         size="0" length="0" is_container="true" />
   <BLANKLINE>
-  <node name="second" path="http://127.0.0.1/second" title=""
+  <node name="second" path="http://127.0.0.1/second/" title=""
         icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"
         size="0" length="0" is_container="true" />
   <BLANKLINE>
-  <node name="third" path="http://127.0.0.1/third" title=""
+  <node name="third" path="http://127.0.0.1/third/" title=""
         icon_url="http://127.0.0.1/@@/zope-site-interfaces-IFolder-control_icon.png"
         size="0" length="0" is_container="true" />
   <BLANKLINE>
-  <node name="++etc++site" path="http://127.0.0.1/++etc++site" title="" icon_url=""
+  <node name="++etc++site" path="http://127.0.0.1/++etc++site/" title="" icon_url=""
         size="1" length="1" is_container="true" />
   </document>
 
@@ -172,7 +172,7 @@ Ajax view::
   >>> print browser.contents
   <?xml version="1.0" ?>
   <document>
-  <node name="" path="http://localhost" title=""
+  <node name="" path="http://localhost/" title=""
         icon_url="http://localhost/@@/zope-component-interfaces-ISite-control_icon.png"
 	size="5" length="5" is_container="true" />
   </document>
@@ -181,7 +181,7 @@ Ajax view::
   >>> print browser.contents
   <?xml version="1.0" ?>
   <document>
-  <node name="second" path="http://localhost/second" title=""
+  <node name="second" path="http://localhost/second/" title=""
         icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
 	size="0" length="0" is_container="true" />
   </document>
@@ -190,22 +190,22 @@ Ajax view::
   >>> print browser.contents
   <?xml version="1.0" ?>
   <document>
-  <node name="fifth" path="http://localhost/fifth" title=""
+  <node name="fifth" path="http://localhost/fifth/" title=""
        icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
        size="0" length="0" is_container="true" />
-  <node name="first" path="http://localhost/first" title=""
+  <node name="first" path="http://localhost/first/" title=""
        icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
        size="0" length="0" is_container="true" />
-  <node name="fourth" path="http://localhost/fourth" title=""
+  <node name="fourth" path="http://localhost/fourth/" title=""
         icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
         size="0" length="0" is_container="true" />
-  <node name="second" path="http://localhost/second" title=""
+  <node name="second" path="http://localhost/second/" title=""
         icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
         size="0" length="0" is_container="true" />
-  <node name="third" path="http://localhost/third" title=""
+  <node name="third" path="http://localhost/third/" title=""
         icon_url="http://localhost/@@/zope-site-interfaces-IFolder-control_icon.png"
         size="0" length="0" is_container="true" />
-  <node name="++etc++site" path="http://localhost/++etc++site" title="" icon_url=""
+  <node name="++etc++site" path="http://localhost/++etc++site/" title="" icon_url=""
         size="1" length="1" is_container="true" />
   </document>
 
