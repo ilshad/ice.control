@@ -32,5 +32,14 @@
      menu="control_details"
      title="Introspector"
      />
+  <page
+     for="zope.interface.Interface"
+     name="getControlDetailsDublinCore"
+     class=".dublincore.EditDublinCore"
+     template="dublincore.pt"
+     permission="zope.ManageContent"
+     menu="control_details"
+     title="Metadata"
+     />
 
 </configure>

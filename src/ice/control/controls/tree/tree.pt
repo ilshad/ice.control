@@ -5,7 +5,6 @@
 </div>
 <div id="treeDetailsDock"></div>
 <script type="text/javascript"
-        tal:attributes="language string:JavaScript"
         tal:define="root_url request/getApplicationURL;
 	            base_url context/@@absolute_url;"
         tal:content="structure string:loadtree('${root_url}/', '${root_url}/');">

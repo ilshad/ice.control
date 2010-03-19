@@ -111,25 +111,25 @@ TreeNode.prototype.collapse = function () {
 TreeNode.prototype.loadNode = function (callback) {
     var node = this;
     $.ajax({type: "POST",
-		 url: node.path + LOAD_NODE,
-		 dataType: "xml",
-		 data: {},
-		 success: function (xml) {
-		     node.parseAndBuildNode($('node', xml));
-		     callback.call()
-		 }})
+	    url: node.path + LOAD_NODE,
+	    dataType: "xml",
+	    data: {},
+	    success: function (xml) {
+		node.parseAndBuildNode($('node', xml));
+		callback.call()
+	    }})
 }
 
 TreeNode.prototype.loadChildren = function (dom, callback) {
     var node = this;
     $.ajax({type: "POST",
-		 url: node.path + LOAD_CHILDREN,
-		 dataType: "xml",
-		 data: {},
-		 success: function (xml) {
-		     node.parseAndBuildChildren(dom, xml);
-		     callback.call()
-		 }})
+	    url: node.path + LOAD_CHILDREN,
+	    dataType: "xml",
+	    data: {},
+	    success: function (xml) {
+		node.parseAndBuildChildren(dom, xml);
+		callback.call()
+	    }})
 }
 
 TreeNode.prototype.parseAndBuildNode = function (xml) {
@@ -214,11 +214,13 @@ TreeNode.prototype.openDetails = function () {
 		$(node.dock).remove()
 		node.dock = null;
 	    }
+	    node.refresh();
 	});
     }
 
     detailsMinimize.onclick = function () {
 	node.minimizeDetails(details);
+	node.refresh();
     }
     
     var path = this.path;
@@ -236,6 +238,7 @@ TreeNode.prototype.openDetails = function () {
 	.append($(detailsClose))
 	.append($(detailsMinimize))
 	.append($(url))
+
 }
 
 TreeNode.prototype.minimizeDetails = function (details) {
@@ -249,6 +252,8 @@ TreeNode.prototype.minimizeDetails = function (details) {
 	this.dock = dock;
     }
 }
+
+//TreeNode.prototype.refresh
 
 TreeNode.prototype.createElement = function (type, attr_name, attr_val, inner) {
     var node = document.createElement(type);
@@ -270,9 +275,19 @@ function loadtree (root_url, base_url) {
 }
 
 // click on Details Menu
-function loadControlDetails (url, node) {
+// and submit Details Forms
+function loadControlDetails (url, node, data) {
     var detailsWrap = node.parentNode.parentNode.childNodes[1];
-    $(detailsWrap).load(url);
+    $(detailsWrap).load(url, data || {}, function () {
+	$('form', detailsWrap).submit(function () {
+	    var data = {};
+	    $(this.elements).each(function () {
+		data[this.name] = this.value;
+	    });
+	    loadControlDetails(this.action, node, data);
+	    return false;
+	});
+    });
 }
 
 /* Loading... */
@@ -280,5 +295,5 @@ $(function() {
     $("#spinner").ajaxStart(
 	function() {$(this).show()}
     ).ajaxStop(
-	function() {$(this).hide()})
+	function() {$(this).hide()});
 });

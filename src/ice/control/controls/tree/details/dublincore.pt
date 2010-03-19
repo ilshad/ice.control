@@ -1,0 +1,46 @@
+<h1>Dublin Core Metadata</h1>
+
+<form action="request/URL" method="post"
+      tal:attributes="action request/URL"
+      tal:define="data view/edit">
+  <table>
+    
+    <tr tal:condition="data/message">
+      <td tal:content="data/message" />
+    </tr>
+    
+    <tr>
+      <td>Title</td>
+      <td><input type="text" name="dctitle" size="50" value="Title"
+		 tal:attributes="value data/dctitle" /></td>
+    </tr>
+    
+    <tr>
+      <td>Description</td>
+      <td><textarea name="dcdescription" rows="12" cols="45"
+                    tal:content="data/dcdescription" /></td>
+    </tr>
+    
+    <tr>
+      <td>Created</td>
+      <td tal:content="data/created" />
+    </tr>
+    
+    <tr>
+      <td>Content Last Modified</td>
+      <td tal:content="data/modified" />
+    </tr>
+    
+    <tr>
+      <td>Creator</td>
+      <td><span tal:repeat="creator data/creators"
+		tal:content="creator" /></td>
+    </tr>
+    
+    <tr>
+      <td><input type="reset" value="Refresh" /></td>
+      <td><input type="submit" name="save" value="Save" /></td>
+    </tr>
+    
+  </table>
+</form>

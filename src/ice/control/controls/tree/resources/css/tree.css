@@ -35,8 +35,7 @@
 }
 #treeContainer div.details {
     position: absolute;
-    background: #777;
-    border: 1px solid #777;
+    background: #000;
     display: none;
     color: #fff;
     opacity: 0.85;
