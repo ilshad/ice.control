@@ -43,27 +43,26 @@
     padding: 10px;
 }
 #treeContainer div.details-wrap {
+    width: 600px;
+    height: 400px;
     maring: 0;
-    padding: 0;
+    padding: 3px;
     border: 1px solid #eee;
 }
 #treeContainer div.details-head {
     maring: 0;
     padding: 0;
     height: 20px;
-    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
     line-height: 20px;
     font-family:"Arial","Helvetica",sans-serif;
     font-size:14px;
 }
-#treeContainer div.details-head span.dom-node-name {
+#treeContainer div.details-head span.url {
     margin-left: 10px;
 }
-#treeContainer div.details-head span.dom-node-title {
-    margin-left: 10px;
-    color: #fff;
-}
-
 #treeContainer a.details-close,
 #treeContainer a.details-minimize {
     background-color: #56085B;
@@ -75,4 +74,14 @@
 #treeContainer a.details-minimize:hover {
     background-color: #fff;
     color: #56085B;
+}
+#treeContainer div.details,
+#treeContainer div.details a,
+#treeContainer div.details h1,
+#treeContainer div.details h2,
+#treeContainer div.details h3,
+#treeContainer div.details h4,
+#treeContainer div.details h5,
+#treeContainer div.details h6 {
+    color: #fff;
 }

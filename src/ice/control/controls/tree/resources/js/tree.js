@@ -29,6 +29,7 @@ var DETAILS_WRAP =         'details-wrap';
 var DETAILS_HEAD =         'details-head';
 var DETAILS_CLOSE =        'details-close';
 var DETAILS_MINIMIZE =     'details-minimize';
+var URL =                  'url';
 
 var gBaseURL;
 var gContainer;
@@ -192,28 +193,27 @@ TreeNode.prototype.openDetails = function () {
     var detailsHead = this.createElement('div', 'class', DETAILS_HEAD, '&nbsp');
     var detailsClose = this.createElement('a', 'class', DETAILS_CLOSE, 'X');
     var detailsMinimize = this.createElement('a', 'class', DETAILS_MINIMIZE, '_');
-    var name = this.createElement('span', 'class', DOM_NODE_NAME, this.name);
-    var title = this.createElement('span', 'class', DOM_NODE_TITLE, this.title);
+    var url = this.createElement('span', 'class', URL, this.path);
 
     detailsClose.onclick = function () {
 	$(details).fadeOut("normal", function() {$(details).remove()})
     }
 
-    $(detailsWrap)
-	.width(600)
-	.height(400)
+    var path = this.path;
 
     $(details)
-	.append($(detailsWrap))
 	.prependTo($('#' + TREE_CONTAINER))
-	.fadeIn();
+	.append($(detailsWrap))
+	.fadeIn("normal", function () {
+	    $(detailsWrap).load(path + LOAD_DETAILS)
+	});
 
     $(detailsHead)
-	.prependTo($(detailsWrap))
+	.prependTo($(details))
 	.append($(detailsClose))
 	.append($(detailsMinimize))
-	.append($(name))
-	.append($(title))
+	.append($(url))
+
 }
 
 TreeNode.prototype.createElement = function (type, attr_name, attr_val, inner) {
