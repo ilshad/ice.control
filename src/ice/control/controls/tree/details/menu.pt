@@ -1,0 +1,7 @@
+<tal:block repeat="view context/@@view_get_menu/control_details">
+  <a tal:attributes="onclick string:loadControlDetails('${context/@@absolute_url}/${view/action}', this)"
+     tal:content="view/title">
+    label
+  </a>
+</tal:block>
+
