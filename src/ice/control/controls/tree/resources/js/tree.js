@@ -196,6 +196,24 @@ TreeNode.prototype.parseAndBuildChildren = function (dom, xml) {
     })
 }
 
+// click on Details Menu
+function loadControlDetails (url, node, data) {
+    var detailsWrap = node.parentNode.parentNode.childNodes[1];
+    $(detailsWrap).load(url, data || {}, function () {
+	
+	// submit Details Forms
+	$('form', detailsWrap).submit(function () {
+	    var data = {};
+	    $(this.elements).each(function () {
+		data[this.name] = this.value;
+	    });
+	    loadControlDetails(this.action, node, data);
+	    return false;
+	});
+	
+    });
+}
+
 TreeNode.prototype.openDetails = function () {
     var details = this.createElement('div', 'class', DETAILS);
     var detailsWrap = this.createElement('div', 'class', DETAILS_WRAP, '&nbsp');
@@ -229,7 +247,19 @@ TreeNode.prototype.openDetails = function () {
 	.append($(detailsWrap))
 	.append($(detailsMenu))
 	.fadeIn("normal", function () {
-	    $(detailsWrap).load(path + LOAD_DETAILS);
+	    $(detailsWrap).load(path + LOAD_DETAILS, {}, function () {
+
+		// submit Details Forms
+		$('form', detailsWrap).submit(function () {
+		    var data = {};
+		    $(this.elements).each(function () {
+			data[this.name] = this.value;
+		    });
+		    loadControlDetails(this.action, node, data);
+		    return false;
+		});
+	    });
+
 	    $(detailsMenu).load(path + LOAD_MENU);
 	});
 
@@ -238,7 +268,6 @@ TreeNode.prototype.openDetails = function () {
 	.append($(detailsClose))
 	.append($(detailsMinimize))
 	.append($(url))
-
 }
 
 TreeNode.prototype.minimizeDetails = function (details) {
@@ -261,20 +290,6 @@ TreeNode.prototype.refresh = function () {
 	    data: {},
 	    success: function (xml) {
 		description = $('node', xml);
-
-		var name = description.attr('name');
-		if (name != node.name) {
-		    node.name = name;
-		    $('span.' + DOM_NODE_NAME,
-		      node.domNode.childNodes[0]).text(name);
-		}
-
-		var path = description.attr('path');
-		if (path != node.path) {
-		    node.path = path;
-		    node.domNode.setAttribute('path', path);
-		}
-
 		var title = description.attr('title');
 		if (title != node.title) {
 		    node.title = title;
@@ -301,22 +316,6 @@ function loadtree (root_url, base_url) {
 	gContainer.appendChild(gTree.domNode);
 	gTree.expand();
     })
-}
-
-// click on Details Menu
-// and submit Details Forms
-function loadControlDetails (url, node, data) {
-    var detailsWrap = node.parentNode.parentNode.childNodes[1];
-    $(detailsWrap).load(url, data || {}, function () {
-	$('form', detailsWrap).submit(function () {
-	    var data = {};
-	    $(this.elements).each(function () {
-		data[this.name] = this.value;
-	    });
-	    loadControlDetails(this.action, node, data);
-	    return false;
-	});
-    });
 }
 
 /* Loading... */
