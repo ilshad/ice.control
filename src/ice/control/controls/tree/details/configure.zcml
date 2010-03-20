@@ -1,5 +1,6 @@
 <configure
    xmlns="http://namespaces.zope.org/browser"
+   xmlns:z3c="http://namespaces.zope.org/z3c"
    i18n_domain="ice.control">
 
   <!-- Menu -->
@@ -13,7 +14,6 @@
      template="menu.pt"
      permission="zope.ManageContent"
      />
-
   <!-- Some details pages -->
   <page
      for="zope.interface.Interface"
@@ -23,6 +23,14 @@
      permission="zope.ManageContent"
      menu="control_details"
      title="Default"
+     />
+  <page
+     for="zope.container.interfaces.IContainer"
+     name="getControlDetailsContents"
+     class=".contents.Contents"
+     permission="zope.ManageContent"
+     menu="control_details"
+     title="Contents"
      />
   <page
      for="zope.interface.Interface"

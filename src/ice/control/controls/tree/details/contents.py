@@ -16,7 +16,19 @@
 #
 ##############################################################################
 
-from base import DetailsBase
+from zope.app.pagetemplate import ViewPageTemplateFile
+from z3c.contents.browser import Contents as ContentsBase
+from ice.control.controls.tree.details.base import DetailsBase
+from z3c.form import form
 
-class Contents(DetailsBase):
-    pass
+class Contents(DetailsBase, ContentsBase):
+
+    render = ViewPageTemplateFile('contents.pt')
+
+    allowCopy = False
+    allowPaste = False
+    allowRename = True
+
+    def __call__(self):
+        self.update()
+        return self.render()

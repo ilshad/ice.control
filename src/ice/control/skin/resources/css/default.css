@@ -148,7 +148,7 @@ textarea {
     width: 99%;
     height: 100px;
 }
-input[type=submit], button {
+input[type=submit], input[type=reset], button {
     border: 1px solid #bfbfbf;
     padding:1px 10px;
     cursor:pointer;
