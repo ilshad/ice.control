@@ -40,6 +40,7 @@
   <include package="z3c.form" />
   <include package="z3c.formui" />
   <include package="z3c.zrtresource" />
+  <include package="z3c.contents" />
   <include package="zc.resourcelibrary" />
 
 </configure>

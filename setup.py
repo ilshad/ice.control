@@ -27,6 +27,7 @@ setup(name='ice.control',
                         'z3c.layer.pagelet',
                         'z3c.template',
                         'z3c.formui',
-                        'z3c.zrtresource'],
+                        'z3c.zrtresource',
+                        'z3c.contents'],
       include_package_data=True,
       zip_safe=False)
