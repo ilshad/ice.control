@@ -50,9 +50,14 @@
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
 }
+
 #treeContainer div.details-wrap #status-message {
     color: yellow;
 }
+#treeContainer div.details-wrap #contents tr.odd {
+    background-color: #111;
+}
+
 #treeContainer div.details-head {
     maring: 0;
     padding: 0;

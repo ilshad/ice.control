@@ -14,6 +14,7 @@
      template="menu.pt"
      permission="zope.ManageContent"
      />
+
   <!-- Some details pages -->
   <page
      for="zope.interface.Interface"
