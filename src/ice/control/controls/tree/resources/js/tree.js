@@ -204,9 +204,21 @@ function loadControlDetails (url, node, data) {
 	// submit Details Forms
 	$('form', detailsWrap).submit(function () {
 	    var data = {};
-	    $(this.elements).each(function () {
+	    $(this.elements).not('input:checkbox').each(function () {
 		data[this.name] = this.value;
 	    });
+	    
+	    // checkbox inputs need handle correct
+	    var checked = $('input:checkbox:enabled:checked', this);
+	    checked.each(function (i) {
+		if (data[this.name + ':list']) {
+		    data[this.name + ':list'].push(this.value);
+		} else {
+		    data[this.name + ':list'] = [this.value];
+		}
+	    });
+
+	    console.log(data);
 	    loadControlDetails(this.action, node, data);
 	    return false;
 	});
@@ -249,7 +261,7 @@ TreeNode.prototype.openDetails = function () {
 	.fadeIn("normal", function () {
 	    $(detailsWrap).load(path + LOAD_DETAILS, {}, function () {
 
-		// submit Details Forms
+		// submit Details Forms --not works yet--
 		$('form', detailsWrap).submit(function () {
 		    var data = {};
 		    $(this.elements).each(function () {

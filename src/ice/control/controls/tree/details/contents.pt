@@ -1,8 +1,8 @@
 <div metal:use-macro="macro:form">
   <div metal:fill-slot="main">
 
-    <!--fieldset tal:condition="view/allowSearch"
-	      tal:content="structure view/searchForm/render" /-->
+    <fieldset tal:condition="view/allowSearch"
+	      tal:content="structure view/searchForm/render" />
 
     <div style="width:550px; height:300px; overflow:auto;"
 	 tal:content="structure view/renderTable" />

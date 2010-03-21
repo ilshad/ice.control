@@ -3,11 +3,15 @@
    xmlns:z3c="http://namespaces.zope.org/z3c"
    i18n_domain="ice.control">
 
-  <!-- Menu -->
+  <!--
+      Menu
+    -->
+
   <menu
      id="control_details"
      title="Object Details"
      />
+
   <page
      for="zope.interface.Interface"
      name="getControlDetailsMenu"
@@ -15,7 +19,10 @@
      permission="zope.ManageContent"
      />
 
-  <!-- Some details pages -->
+  <!--
+      Some details pages
+    -->
+
   <page
      for="zope.interface.Interface"
      name="getControlDetailsDefault"
@@ -25,14 +32,9 @@
      menu="control_details"
      title="Default"
      />
-  <page
-     for="zope.container.interfaces.IContainer"
-     name="getControlDetailsContents"
-     class=".contents.Contents"
-     permission="zope.ManageContent"
-     menu="control_details"
-     title="Contents"
-     />
+
+  <include file="contents.zcml" />
+
   <page
      for="zope.interface.Interface"
      name="getControlDetailsIntrospector"
@@ -41,6 +43,7 @@
      menu="control_details"
      title="Introspector"
      />
+
   <page
      for="zope.interface.Interface"
      name="getControlDetailsDublinCore"

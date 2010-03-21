@@ -1,0 +1,46 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <browser:page
+     for="zope.container.interfaces.IContainer"
+     name="getControlDetailsContents"
+     class=".contents.Contents"
+     permission="zope.ManageContent"
+     menu="control_details"
+     title="Contents"
+     />
+
+  <!--
+      Disable sorting
+    -->
+
+  <adapter
+     factory="z3c.table.header.ColumnHeader"
+     for="zope.container.interfaces.IContainer
+          zope.interface.Interface
+          .contents.Contents
+          z3c.contents.column.RenameColumn"
+     provides="z3c.table.interfaces.IColumnHeader"
+     />
+
+  <adapter
+     factory="z3c.table.header.ColumnHeader"
+     for="zope.container.interfaces.IContainer
+          zope.interface.Interface
+          .contents.Contents
+          z3c.table.column.CreatedColumn"
+     provides="z3c.table.interfaces.IColumnHeader"
+      />
+
+  <adapter
+     factory="z3c.table.header.ColumnHeader"
+     for="zope.container.interfaces.IContainer
+          zope.interface.Interface
+          .contents.Contents
+          z3c.table.column.ModifiedColumn"
+     provides="z3c.table.interfaces.IColumnHeader"
+     />
+
+</configure>

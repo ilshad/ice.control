@@ -25,6 +25,7 @@ class Contents(ContentsBase):
 
     allowCopy = False
     allowPaste = False
+    allowSearch = False
 
     def __call__(self):
         self.update()
@@ -32,4 +33,8 @@ class Contents(ContentsBase):
 
     def setupCopyPasteMove(self):
         super(Contents, self).setupCopyPasteMove()
-        self.supportsCut = False
+        self.supportsCut = False # this is hack
+
+    def update(self):
+        super(Contents, self).update()
+        print self.request.get('contents-checkBoxColumn-0-selectedItems:list[]')
