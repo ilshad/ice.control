@@ -69,6 +69,12 @@
 #treeContainer div.details-wrap #contents tr.odd {
     background-color: #111;
 }
+#treeContainer div.details-wrap #contents tr.selected {
+    color: yellow;
+}
+#treeContainer div.details-wrap #contents tr.selected a {
+    color: yellow;
+}
 #treeContainer div.details-wrap #contents div.batch {
     text-align: center;
 }
