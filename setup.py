@@ -1,12 +1,18 @@
+import os
 from setuptools import setup, find_packages
+
+
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name='ice.control',
       version='0.1.0',
       author='Ilshad R. Khabibullin',
       author_email='astoon.net at gmail.com',
-      url='',
-      description='',
-      long_description='',
+      url='http://astoon.zwiki.org/ice.control',
+      description='System Administration and Site Management for BlueBream',
+      long_description = (read('src/ice/control/doc/README')) +\
+          '\n\n' + read('src/ice/control/doc/CHANGES'),
       license='GPL v.3',
       classifiers=[],
       packages=find_packages('src'),

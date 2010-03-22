@@ -1,0 +1,64 @@
+Package ice.control is designed to be used in Zope Toolkit
+environment, especially in BlueBream web framework. It means that
+many snippets of the code is taken from Zope and Zope Community and
+licensed under Zope Public License Version 2.1 (ZPL), see
+http://www.zope.org/Resources/License. And it is Copyright of Zope
+Foundation and Contributors.
+
+The code of ice.control package is distributed under terms of the
+GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Author:
+
+* Copyright (C) 2010 Ilshad R. Khabibullin
+
+  email:  astoon.net at gmail.com
+  www:    astoon.zwiki.org
+
+Contributors:
+
+  -- not yet --
+
+This package also contains:
+
+* jQuery JavaScript Library v1.4.2
+  http://jquery.com/
+
+* Copyright 2010, John Resig
+  Dual licensed under the MIT or GPL Version 2 licenses.
+  http://jquery.org/license
+
+  jQuery distribution includes Sizzle.js
+  http://sizzlejs.com/
+  Copyright 2010, The Dojo Foundation
+  Released under the MIT, BSD, and GPL Licenses.
+
+* Icons /src/ice/control/controls/tree/resources/icons/folder_icon.png
+  and /src/ice/control/controls/tree/resources/icons/site_icon.png
+  is from "Gnome Noble" icon theme.
+
+  License: GPL-2
+
+  Copyright: 2009, Victor Castillejo <perfectska04@gmail.com>
+  	     2002-2008, Ulisse Perusin <uli.peru@gmail.com>
+             2002-2008, Riccardo Buzzotta <raozuzu@yahoo.it>
+             2002-2008, Josef Vybíral <cornelius@vybiral.info>
+             2002-2008, Hylke Bons <h.bons@student.rug.nl>
+             2002-2008, Ricardo González <rick@jinlabs.com>
+             2002-2008, Lapo Calamandrei <calamandrei@gmail.com>
+             2002-2008, Rodney Dawes <dobey@novell.com>
+             2002-2008, Luca Ferretti <elle.uca@libero.it>
+             2002-2008, Tuomas Kuosmanen <tigert@gimp.org>
+             2002-2008, Andreas Nilsson <nisses.mail@home.se>
+             2002-2008, Jakub Steiner <jimmac@novell.com>
+
+   Contact: Victor Castillejo <perfectska04@gmail.com>
+
+* Icon src/ice/control/skin/resources/img/bluebream_logo.png is
+  official logo of BlueBream project, http://bluebream.zope.org,
+  author of the logo is Hiran V (http://hiran.in/), and it is not
+  licensed, AFAIK.
