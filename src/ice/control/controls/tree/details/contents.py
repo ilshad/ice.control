@@ -26,6 +26,9 @@ class Contents(ContentsBase):
     allowCopy = False
     allowPaste = False
 
+    batchSize = 10
+    startBatchingAt = 10
+
     def __call__(self):
         self.update()
         return self.render()

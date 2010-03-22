@@ -54,6 +54,11 @@
 #treeContainer div.details-wrap #status-message {
     color: yellow;
 }
+#treeContainer div.details-wrap #contents div.contents-table {
+    width: 550px;
+    height: 300px;
+    overflow: auto;
+}
 #treeContainer div.details-wrap #contents th {
     background-color: #A1A1F1;
     color: #000;
@@ -70,13 +75,13 @@
 #treeContainer div.details-wrap #contents div.batch a {
     margin: 0 2px;
     padding: 0 5px;
-    color: #A1A1F1;
+    color: #777;
 }
 #treeContainer div.details-wrap #contents div.batch a:hover {
     color: #fff;
 }
 #treeContainer div.details-wrap #contents div.batch a.current {
-    border: 1px solid #A1A1F1;
+    border: 1px solid #777;
 }
 #treeContainer div.details-wrap #contents div.batch a.current:hover {
     border: 1px solid #fff;
