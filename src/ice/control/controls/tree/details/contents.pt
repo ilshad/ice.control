@@ -1,17 +1,19 @@
 <div metal:use-macro="macro:form">
   <div metal:fill-slot="main">
 
-    <tal:block define="batchStart python:request.get('contents-batchStart');
-		       batchSize python:request.get('contents-batchStart');">
-      <input type="hidden"
-	     name="contents-batchStart"
-	     tal:condition="batchStart"
-	     tal:attributes="value batchStart" />
-      <input type="hidden"
-	     name="contents-batchSize"
-	     tal:condition="batchSize"
-	     tal:attributes="value batchSize" />
-    </tal:block>
+    <tal:if condition="not: python: request.get('search.buttons.search')">
+      <tal:block define="batchStart python:request.get('contents-batchStart');
+			 batchSize python:request.get('contents-batchStart');">
+	<input type="hidden"
+	       name="contents-batchStart"
+	       tal:condition="batchStart"
+	       tal:attributes="value batchStart" />
+	<input type="hidden"
+	       name="contents-batchSize"
+	       tal:condition="batchSize"
+	       tal:attributes="value batchSize" />
+      </tal:block>
+    </tal:if>
       
     <fieldset tal:condition="view/allowSearch"
 	      tal:content="structure view/searchForm/render" />
