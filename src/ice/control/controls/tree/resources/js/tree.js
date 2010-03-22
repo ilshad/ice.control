@@ -197,32 +197,25 @@ TreeNode.prototype.parseAndBuildChildren = function (dom, xml) {
 }
 
 // click on Details Menu
-function loadControlDetails (url, node, data) {
+function loadControlDetails (url, data, node, callback) {
     var detailsWrap = node.parentNode.parentNode.childNodes[1];
-    $(detailsWrap).load(url, data || {}, function () {
-	
-	// submit Details Forms
-	$('form', detailsWrap).submit(function () {
-	    var data = {};
-	    $(this.elements).not('input:checkbox').each(function () {
-		data[this.name] = this.value;
-	    });
-	    
-	    // checkbox inputs need handle correct
-	    var checked = $('input:checkbox:enabled:checked', this);
-	    checked.each(function (i) {
-		if (data[this.name + ':list']) {
-		    data[this.name + ':list'].push(this.value);
-		} else {
-		    data[this.name + ':list'] = [this.value];
-		}
-	    });
+    $(detailsWrap).load(url, data || "", function () {
 
-	    console.log(data);
-	    loadControlDetails(this.action, node, data);
+	// submit Form
+	$('form', detailsWrap).submit(function () {
+	    loadControlDetails(this.action, $(this).serialize(), node);
 	    return false;
 	});
-	
+
+	// click link
+	$('a', detailsWrap).click(function () {
+	    loadControlDetails(this.href.split("?")[0],
+			       this.href.split("?")[1],
+			       node);
+	    return false;
+	});
+
+	if (callback) callback.call();
     });
 }
 
@@ -267,7 +260,7 @@ TreeNode.prototype.openDetails = function () {
 		    $(this.elements).each(function () {
 			data[this.name] = this.value;
 		    });
-		    loadControlDetails(this.action, node, data);
+		    loadControlDetails(this.action, data, node);
 		    return false;
 		});
 	    });

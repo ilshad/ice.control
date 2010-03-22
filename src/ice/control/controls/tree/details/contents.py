@@ -25,7 +25,6 @@ class Contents(ContentsBase):
 
     allowCopy = False
     allowPaste = False
-    allowSearch = False
 
     def __call__(self):
         self.update()
@@ -37,4 +36,4 @@ class Contents(ContentsBase):
 
     def update(self):
         super(Contents, self).update()
-        print self.request.get('contents-checkBoxColumn-0-selectedItems:list[]')
+        print ":::", self.request.get('contents-checkBoxColumn-0-selectedItems')
