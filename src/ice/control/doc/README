@@ -1,3 +1,145 @@
 =====================================================================
 ice.control - System Administration and Site Management for BlueBream
 =====================================================================
+
+.. contents::
+   :local:
+
+
+Getting started
+===============
+
+If you have not yet a BlueBream project, just create it. For example,
+using paster template. See
+http://wiki.zope.org/bluebream/AlternateProjectTemplates for details.
+
+Add `ice.control` package into dependencies of your project. There
+are 2 ways: using release package from PiPY server or using Git
+branch from GitHub repository.
+
+
+Download from PyPI server
++++++++++++++++++++++++++
+
+Download newest release package from PyPI server. For this, just
+add the package into setup.py::
+
+   install_requires=[...
+                    'ice.control'
+                    ],
+
+
+Download development Git branch
++++++++++++++++++++++++++++++++
+
+Download development Git branch from GitHub repository using
+`mr.developer` buildout extention. You have much more control on the
+source code using this way.
+
+It requires number of steps first time, but simple to maintain in
+futher. First, add follow lines into buildout.cfg, section [buildout]::
+
+  [buildout]
+  ...
+
+  extensions = mr.developer
+  sources-dir = dev
+  sources = sources
+
+then run buildout to create `develop` script::
+
+  $ bin/buildout
+
+then add section [sources] into buildout.cfg::
+
+  [sources]
+  ice.control = git git://github.com/astoon/ice.control.git
+
+and run the script to download the branch::
+
+  $ bin/develop checkout ice.*
+
+You'll see now the package branch in /dev directory. Allow to run tests
+from ice.control package. For this, edit buildout.cfg again::
+
+  [test]
+  ...
+  eggs = sample
+         ice.control
+
+and add dependency for your project in setup.py::
+
+   install_requires=[...
+                    'ice.control'
+                    ],
+
+Finally, run buildout::
+
+  $ bin/buildout
+
+
+Include zcml files 
+++++++++++++++++++
+
+There are number of options to use ice.control. To use entire
+functionality of the package, add follow lines into configure.zcml::
+
+  <include package="ice.control.zcml" />
+  <include package="ice.control" />
+  <browser:defaultSkin name="control" />
+
+it means you like to use `control system`, default control modules
+for this system (`controls`), simple skin, make this skin default,
+make alternate layout template for controls, and use hepler module
+to garantee that you have included all the needed registrations for
+the other packages.
+
+NOTE: if you are newcomer in BlueBream and used bluebream_simple
+paster template, remove `welcome` module, remove all the lines from
+configure.zcml except of <include file="securitypolicy.zcml" />
+and paste those (above) lines before it. Remove last three lines
+from tests/ftests.txt to avoid confusion.
+
+Summary, it is not necessary to include entire ice.control
+package. Functionaliy of ice.control (i.e. `controls`) can be
+used from __any__ layout skin based on z3c.pagelet. Make sure you
+have special place for zc.resourcelibrary and place for sidebar
+in layout template. For this, see skin/configure.zcml, directive
+z3c:layout for context ice.control.browser.interfaces.IControl
+and learn it. I.e. you might use special layout template only for
+this context.
+
+Now run tests and run the server::
+
+  $ bin/test
+  $ bin/paster serve debug.ini
+
+
+Admin UI for BlueBream
+======================
+
+Login (user:admin, password:admin in fresh project) and go to
+"System Control", which follow to virtual context, ++etc++control.
+All the `controls` are here. This context is non-exist object,
+just to avoid any confusion with exist or future view on you
+project.
+
+In "Tree" you have content tree which show database structure.
+Open / close tree branches by clicking on triangles. Click links
+(names or icons) to open "Details" ajax pseudo-window. See menu
+at bottom of this pseudo-window.
+
+For example, in development mode you might to use introspector and
+interactive ajax shell to interact with python environment and
+database. Edit persistent objects, inspect them.
+
+There are Edit Dublin Core Metadata form if you have zope.dublincore
+in your environment.
+
+"Contents" view on containers, to rename and remove contained items.
+
+Close pseudo-windows or minimize it into "dock". Open number of
+"Details" windows, minimize them, and etc.
+
+Summary, views in "Details" pseudo-window based on pluggable
+mechanism and you might add your own view if you like it.
