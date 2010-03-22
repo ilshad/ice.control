@@ -43,4 +43,17 @@
      provides="z3c.table.interfaces.IColumnHeader"
      />
 
+  <!--
+      Show name without link
+      -->
+
+  <adapter
+     name="renameColumn"
+     factory=".contents.RenameColumn"
+     for="zope.container.interfaces.IContainer
+          zope.interface.Interface
+          .contents.Contents"
+     provides="z3c.table.interfaces.IColumn"
+     />
+
 </configure>

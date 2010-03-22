@@ -16,8 +16,10 @@
 #
 ##############################################################################
 
+from zope.traversing import api
 from zope.app.pagetemplate import ViewPageTemplateFile
 from z3c.contents.browser import Contents as ContentsBase
+from z3c.contents.column import RenameColumn as RenameColumnBase
 
 class Contents(ContentsBase):
 
@@ -36,3 +38,8 @@ class Contents(ContentsBase):
     def setupCopyPasteMove(self):
         super(Contents, self).setupCopyPasteMove()
         self.supportsCut = False # this is hack
+
+class RenameColumn(RenameColumnBase):
+
+    def renderLink(self, item):
+        return api.getName(item)
