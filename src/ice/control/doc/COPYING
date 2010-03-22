@@ -1,3 +1,14 @@
+Author:
+
+* Copyright (C) 2010 Ilshad R. Khabibullin
+
+  email:  astoon.net at gmail.com
+  www:    astoon.zwiki.org
+
+Contributors:
+
+  -- not yet --
+
 Package ice.control is designed to be used in Zope Toolkit
 environment, especially in BlueBream web framework. It means that
 many snippets of the code is taken from Zope and Zope Community and
@@ -11,17 +22,6 @@ Foundation, either version 3 of the License.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-Author:
-
-* Copyright (C) 2010 Ilshad R. Khabibullin
-
-  email:  astoon.net at gmail.com
-  www:    astoon.zwiki.org
-
-Contributors:
-
-  -- not yet --
 
 This package also contains:
 

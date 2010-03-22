@@ -1,0 +1,32 @@
+# -*- mode: org -*-
+
+* Admin UI
+** TODO Interactive python shell in JavaScript
+Interact to python runtime, persistent objects.
+Available in develop mode.
+In "Details" pseudo-window. So, it has its own context.
+** "Contents" view
+*** DONE delete objects
+*** DONE rename objects
+*** DONE batching
+*** DONE simple search
+*** TODO advanced search
+** TODO Additional search
+Not optimized, just for admin tasks on big trees.
+Search names and open tree here.
+Hm... may be in dedicated `control'. Enter search string,
+-> will be opened `Tree' control and needed level in
+the tree.
+** TODO z3c.configurator integration (plaggable)
+** DONE Edit Dublin Core Metadata
+** TODO Introspector
+* REPL
+** TODO able to run alternate shell with repl on some port
+It seems is should be based on the same module , like
+JavaScript interactive shell.
+* Emacs
+** TODO Convenient analog of SLIME to use with alternate shell
+* Application Management
+** TODO "Add Site" functionality
+ice.control.site
+
