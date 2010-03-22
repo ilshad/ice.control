@@ -54,8 +54,12 @@
 #treeContainer div.details-wrap #status-message {
     color: yellow;
 }
-#treeContainer div.details-wrap #contents th a {
-    color: #FF9200;
+#treeContainer div.details-wrap #contents th {
+    background-color: #A1A1F1;
+    color: #000;
+    border: 1px solid #7B7AC6;
+    font-weight: normal;
+    padding: 0 1em;
 }
 #treeContainer div.details-wrap #contents tr.odd {
     background-color: #111;
@@ -66,12 +70,17 @@
 #treeContainer div.details-wrap #contents div.batch a {
     margin: 0 2px;
     padding: 0 5px;
-    color: #1100E7;
+    color: #A1A1F1;
+}
+#treeContainer div.details-wrap #contents div.batch a:hover {
+    color: #fff;
 }
 #treeContainer div.details-wrap #contents div.batch a.current {
-    border: 1px solid #1100E7;
+    border: 1px solid #A1A1F1;
 }
-
+#treeContainer div.details-wrap #contents div.batch a.current:hover {
+    border: 1px solid #fff;
+}
 #treeContainer div.details-head {
     maring: 0;
     padding: 0;

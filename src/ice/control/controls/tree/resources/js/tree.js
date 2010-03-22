@@ -202,8 +202,11 @@ function loadControlDetails (url, data, node, callback) {
     $(detailsWrap).load(url, data || "", function () {
 
 	// submit Form
-	$('form', detailsWrap).submit(function () {
-	    loadControlDetails(this.action, $(this).serialize(), node);
+	$('input:submit', detailsWrap).click(function () {
+	    var form = $(this).parents('form')[0];
+	    var params = $(form).serialize();
+	    params = params.concat('&' + this.name + '=' + this.value)
+	    loadControlDetails(form.action, params, node);
 	    return false;
 	});
 
