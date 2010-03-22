@@ -1,6 +1,7 @@
 # -*- mode: org -*-
 
 * Admin UI
+** Default Details view - I not know yet what should be here
 ** TODO Interactive python shell in JavaScript
 Interact to python runtime, persistent objects.
 Available in develop mode.
