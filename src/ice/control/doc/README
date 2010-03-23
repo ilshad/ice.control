@@ -14,27 +14,26 @@ using paster template. See
 http://wiki.zope.org/bluebream/AlternateProjectTemplates for details.
 
 Add `ice.control` package into dependencies of your project. There
-are 2 ways: using release package from PiPY server or using Git
+are 2 ways: using release package from PyPI server or using Git
 branch from GitHub repository.
 
 
-Download from PyPI server
-+++++++++++++++++++++++++
+Install from PyPI server
+++++++++++++++++++++++++
 
-Download newest release package from PyPI server. For this, just
-add the package into setup.py::
+Install newest release package from PyPI server and resolve dependencies.
+For this, just add the package into setup.py::
 
    install_requires=[...
                     'ice.control'
                     ],
 
 
-Download development Git branch
-+++++++++++++++++++++++++++++++
+Install from Git repository
++++++++++++++++++++++++++++
 
-Download development Git branch from GitHub repository using
-`mr.developer` buildout extention. You have much more control on the
-source code using this way.
+Download sources from GitHub repository using `mr.developer` buildout
+extention. You have much more control on the source code using this way.
 
 It requires number of steps first time, but simple to maintain in
 futher. First, add follow lines into buildout.cfg, section [buildout]::
@@ -118,35 +117,34 @@ Now run tests and run the server::
 Admin UI for BlueBream
 ======================
 
-Login (user:admin, password:admin in fresh project) and go to
-"System Control", which follow to virtual context, ++etc++control.
-All the `controls` are here. This context is non-exist object,
-just to avoid any confusion with exist or future view on you
-project.
+THere are virtual context, `++etc++control` for the `controls`.
+It is not real persistent object.
 
-In "Tree" you have content tree which show database structure.
-Open / close tree branches by clicking on triangles. Click links
-(names or icons) to open "Details" ajax pseudo-window. See menu
-at bottom of this pseudo-window.
+In "Tree" `controls` are contents' tree which show database
+structure. Open / close tree branches by clicking on triangles.
+Click links (names or icons) to open "Details" ajax pseudo-window.
+See menu at bottom of this pseudo-window.
 
-For example, in development mode you might to use introspector and
-interactive ajax shell to interact with python environment and
-database. Edit persistent objects, inspect them.
+This "Details" ajax psudo-window might be closed or minimized
+into "dock". It containes number of sub-views, depend on context
+and depend on your custom registrations:
 
-There are Edit Dublin Core Metadata form if you have zope.dublincore
-in your environment.
+"Contents" - for containers, allow to rename and remove contained
+items. Uses pagination ("batching") when lenght of the listing is
+>10.
 
-"Contents" ajax view available on containers. It should be used
-to rename or remove contained items. If the list of contained items
-is too long (>10) then it uses pagination.
+"Metadata" - form for edit Dublin core Metadata.
 
-Close pseudo-windows or minimize it into "dock". Open number of
-"Details" windows, minimize them, and etc.
+"Introspector" - inspect persistent objects.
 
-Important ajax view is "Configurator", which is responsible to
-z3c.configurator form. This is general way to manage database.
-It available by default in contexts `zope.component.interfaces.ISite`.
-You can extend this, see documentation in z3c.confgurator.
+"REPL" - interactive Python shell to inspect and edit persistent
+objects, interact with this instance. Uses current context.
 
-Summary, views in "Details" ajax pseudo-window based on pluggable
-mechanism and you can add your own views if you like it.
+"Configurator" - general way to manage ZODB. Default - only in
+contexts of `zope.component.interfaces.ISite`.
+
+You might like to add your custom views to "Details". See below.
+
+There are another `controls`, not only contents tree. See and
+learn UI. You might like to add your custom `controls` also, see
+below.

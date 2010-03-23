@@ -1,9 +1,9 @@
 # -*- mode: org -*-
 
 * Admin UI
-** Default Details view - I not know yet what should be here
-** TODO Interactive python shell in JavaScript
-Interact to python runtime, persistent objects.
+** Default Details view - I not know what must be here
+** TODO REPL: Interactive python shell in JavaScript
+Interact to Python runtime and persistent objects.
 Available in develop mode.
 In "Details" pseudo-window. So, it has its own context.
 ** "Contents" view
@@ -12,21 +12,18 @@ In "Details" pseudo-window. So, it has its own context.
 *** DONE batching
 *** DONE simple search
 *** TODO advanced search
-** TODO Additional search
-Not optimized, just for admin tasks on big trees.
-Search names and open tree here.
-Hm... may be in dedicated `control'. Enter search string,
--> will be opened `Tree' control and needed level in
-the tree.
-** TODO z3c.configurator integration (plaggable)
+extend facilities of "search" subform in "contents" view.
+"Globber".
+So, search results can show few items.
+** TODO z3c.configurator integration, plug-in
 ** DONE Edit Dublin Core Metadata
 ** TODO Introspector
-* REPL
+* REPL on port
 ** TODO able to run alternate shell with repl on some port
 It seems is should be based on the same module , like
 JavaScript interactive shell.
 * Emacs
-** TODO Convenient analog of SLIME to use with alternate shell
+** TODO Convenient analog of SLIME to use with REPL on port
 * Application Management
 ** TODO "Add Site" functionality
 ice.control.site
