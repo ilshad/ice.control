@@ -16,10 +16,12 @@
 #
 ##############################################################################
 
-from zope.dublincore.interfaces import IZopeDublinCore
+class DetailsDefaultNameBase:
 
-class DetailsInfoBase:
+    def __call__(self):
+        return u"@@getControlDetailsInfoBase"
 
-    def getTitle(self):
-        dc = IZopeDublinCore(self.context, None)
-        return dc and dc.title
+class DetailsDefaultNameContainer:
+
+    def __call__(self):
+        return u"@@getControlDetailsContents"

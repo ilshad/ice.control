@@ -13,9 +13,27 @@
      />
 
   <page
-     for="zope.interface.Interface"
+     for="*"
      name="getControlDetailsMenu"
      template="menu.pt"
+     permission="zope.ManageContent"
+     />
+
+  <!--
+      Get default details view name for context
+    -->
+
+  <page
+     for="*"
+     name="getControlDetailsDefaultName"
+     class=".default.DetailsDefaultNameBase"
+     permission="zope.ManageContent"
+     />
+
+  <page
+     for="zope.container.interfaces.IContainer"
+     name="getControlDetailsDefaultName"
+     class=".default.DetailsDefaultNameContainer"
      permission="zope.ManageContent"
      />
 
@@ -24,9 +42,9 @@
     -->
 
   <page
-     for="zope.interface.Interface"
-     name="getControlDetailsDefault"
-     class=".base.DetailsBase"
+     for="*"
+     name="getControlDetailsInfoBase"
+     class=".base.DetailsInfoBase"
      template="base.pt"
      permission="zope.ManageContent"
      menu="control_details"
@@ -36,7 +54,7 @@
   <include file="contents.zcml" />
 
   <page
-     for="zope.interface.Interface"
+     for="*"
      name="getControlDetailsIntrospector"
      template="introspector.pt"
      permission="zope.ManageContent"
@@ -45,7 +63,7 @@
      />
 
   <page
-     for="zope.interface.Interface"
+     for="*"
      name="getControlDetailsDublinCore"
      class=".dublincore.EditDublinCore"
      template="dublincore.pt"
