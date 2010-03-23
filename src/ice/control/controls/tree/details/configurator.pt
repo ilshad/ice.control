@@ -1,8 +1,59 @@
-<div metal:use-macro="view/base_template/macros/form" >
-  <div metal:fill-slot="above_buttons">
-    <tal:block tal:repeat="subform view/subforms">
-      <p tal:content="subform/prefix"></p>
-      <div tal:replace="structure subform" /><hr/>
-    </tal:block>
+<form action="." metal:define-macro="master"
+      tal:attributes="action request/URL" method="post"
+      class="edit-form" enctype="multipart/form-data"
+      id="zc.page.browser_form">
+  <div id="viewspace" metal:define-slot="viewspace">
+    <h1 tal:condition="view/label" tal:content="view/label" />
+    <div class="form-status" tal:define="status view/status" tal:condition="status">
+      <div class="summary" tal:content="view/status" />
+      <ul class="errors" tal:condition="view/errors">
+	<li tal:repeat="error view/error_views">
+          <span tal:replace="structure error" />
+	</li>
+      </ul>
+    </div>
+    <table class="form-fields">
+      <tbody tal:omit-tag="">
+	<tal:block omit-tag="" repeat="widget view/widgets">
+          <tr>
+            <td class="label" tal:define="hint widget/hint">
+              <label tal:condition="python:hint"
+                     tal:attributes="for widget/name"
+                     onmousedown="toggleFormFieldHelp(this,1)"
+                     onmouseup="toggleFormFieldHelp(this,0)"
+                     onmouseout="toggleFormFieldHelp(this,0)"
+                     style="cursor: help">
+                <span class="required" tal:condition="widget/required">*</span>
+		<span tal:content="widget/label" />
+              </label>
+              <label tal:condition="python:not hint"
+                     tal:attributes="for widget/name">
+		<span class="required" tal:condition="widget/required">*</span>
+		<span tal:content="widget/label" />
+              </label>
+            </td>
+            <td class="field" tal:define="hint widget/hint">
+              <div class="form-fields-help"
+                   tal:content="hint"
+                   tal:condition="hint"
+                   tal:attributes="id string:field-help-for-${widget/name}"
+                   onclick="this.style.visibility='hidden';"
+                   style="visibility: hidden; position: absolute;" />
+              <div class="widget" tal:content="structure widget" />
+              <div class="error" tal:condition="widget/error" tal:replace="structure widget/error" />
+            </td>
+          </tr>
+	</tal:block>
+      </tbody>
+    </table>
   </div>
-</div>
+  <tal:block tal:repeat="subform view/subforms">
+    <p tal:content="subform/prefix"></p>
+    <div tal:replace="structure subform" /><hr/>
+  </tal:block>
+  <div id="actionsView">
+    <span class="actionButtons" tal:condition="view/availableActions">
+      <input tal:repeat="action view/actions" tal:replace="structure action/render" />
+    </span>
+  </div>
+</form>

@@ -22,6 +22,5 @@ from zope.browserpage import ViewPageTemplateFile
 from z3c.configurator.browser import views
 
 class ConfigureForm(views.ConfigureForm):
-    implements(ISubPageForm)
 
     template = ViewPageTemplateFile('configurator.pt')
