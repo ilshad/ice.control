@@ -1,0 +1,8 @@
+<div metal:use-macro="view/base_template/macros/form" >
+  <div metal:fill-slot="above_buttons">
+    <tal:block tal:repeat="subform view/subforms">
+      <p tal:content="subform/prefix"></p>
+      <div tal:replace="structure subform" /><hr/>
+    </tal:block>
+  </div>
+</div>

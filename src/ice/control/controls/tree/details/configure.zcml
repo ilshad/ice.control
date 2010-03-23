@@ -30,7 +30,7 @@
      template="base.pt"
      permission="zope.ManageContent"
      menu="control_details"
-     title="Default"
+     title="Base Info"
      />
 
   <include file="contents.zcml" />
@@ -52,6 +52,15 @@
      permission="zope.ManageContent"
      menu="control_details"
      title="Metadata"
+     />
+
+  <page
+     for="zope.component.interfaces.ISite"
+     name="getControlDetailsConfigurators"
+     class=".configurator.ConfigureForm"
+     permission="z3c.configurator.ManageConfigurations"
+     menu="control_details"
+     title="Configurators"
      />
 
 </configure>
