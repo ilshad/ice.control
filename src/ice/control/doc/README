@@ -143,12 +143,10 @@ is too long (>10) then it uses pagination.
 Close pseudo-windows or minimize it into "dock". Open number of
 "Details" windows, minimize them, and etc.
 
-Important ajax view is "Configurator". It availabe on context
-objects which adapted to configurator (see z3c.configurator
-documentstion). If you used `<include package="ice.control" />`
-to turn on all the functionality if ice.control package then
-configurator form availale on containers which provide interface
-`zope.component.interfaces.ISite`.
+Important ajax view is "Configurator", which is responsible to
+z3c.configurator form. This is general way to manage database.
+It available by default in contexts `zope.component.interfaces.ISite`.
+You can extend this, see documentation in z3c.confgurator.
 
-Summary, views in "Details" pseudo-window based on pluggable
-mechanism and you might add your own view if you like it.
+Summary, views in "Details" ajax pseudo-window based on pluggable
+mechanism and you can add your own views if you like it.
