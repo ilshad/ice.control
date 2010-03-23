@@ -9,7 +9,7 @@
 var LOAD_NODE =            '@@getControlTreeNode.xml';
 var LOAD_CHILDREN =        '@@getControlTreeChildren.xml';
 var LOAD_MENU =            '@@getControlDetailsMenu';
-var DETAILS_DEFAULT_NAME = '@@getControlDetailsDefaultName';
+var DETAILS_DEFAULT =      '@@getControlDetailsDefaultInfo';
 
 var EXPANDED_ICON =        '++resource++mi.png';
 var COLLAPSED_ICON =       '++resource++pl.png';
@@ -255,24 +255,20 @@ TreeNode.prototype.openDetails = function () {
 	.append($(detailsWrap))
 	.append($(detailsMenu))
 	.fadeIn("normal", function () {
-	    $.post(path + DETAILS_DEFAULT_NAME, '', function (text) {
-		var default_name = text;
+	    $(detailsWrap).load(path + DETAILS_DEFAULT, {}, function () {
 		
-		$(detailsWrap).load(path + default_name, {}, function () {
-		    
-		    // submit Details Forms --not works yet--
-		    $('form', detailsWrap).submit(function () {
-			var data = {};
-			$(this.elements).each(function () {
-			    data[this.name] = this.value;
-			});
-			loadControlDetails(this.action, data, node);
-			return false;
+		// submit Details Forms --not works yet--
+		$('form', detailsWrap).submit(function () {
+		    var data = {};
+		    $(this.elements).each(function () {
+			data[this.name] = this.value;
 		    });
+		    loadControlDetails(this.action, data, node);
+		    return false;
 		});
-		
-		$(detailsMenu).load(path + LOAD_MENU);
 	    });
+	    
+	    $(detailsMenu).load(path + LOAD_MENU);
 	});
 
     $(detailsHead)

@@ -20,30 +20,12 @@
      />
 
   <!--
-      Get default details view name for context
-    -->
-
-  <page
-     for="*"
-     name="getControlDetailsDefaultName"
-     class=".default.DetailsDefaultNameBase"
-     permission="zope.ManageContent"
-     />
-
-  <page
-     for="zope.container.interfaces.IContainer"
-     name="getControlDetailsDefaultName"
-     class=".default.DetailsDefaultNameContainer"
-     permission="zope.ManageContent"
-     />
-
-  <!--
       Some details pages
     -->
 
   <page
      for="*"
-     name="getControlDetailsInfoBase"
+     name="getControlDetailsDefaultInfo"
      class=".base.DetailsInfoBase"
      template="base.pt"
      permission="zope.ManageContent"
