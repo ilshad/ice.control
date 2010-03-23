@@ -43,12 +43,12 @@
       Details menu
       -->
   
-  <menu
+  <browser:menu
      id="control_details"
      title="Object Details"
      />
 
-  <page
+  <browser:page
      for="*"
      name="getControlDetailsMenu"
      template="menu.pt"
