@@ -1,0 +1,11 @@
+<configure
+   xmlns="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <include package=".base" />
+  <include package=".configurator" />
+  <include package=".contents" />
+  <include package=".dublincore" />
+  <include package=".introspector" />
+
+</configure>

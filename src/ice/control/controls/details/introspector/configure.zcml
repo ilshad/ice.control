@@ -1,0 +1,14 @@
+<configure
+   xmlns="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <page
+     for="*"
+     name="getControlDetailsIntrospector"
+     template="introspector.pt"
+     permission="zope.ManageContent"
+     menu="control_details"
+     title="Introspector"
+     />
+
+</configure>

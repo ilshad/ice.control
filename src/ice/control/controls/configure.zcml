@@ -4,5 +4,6 @@
 
   <include package=".generations" />
   <include package=".tree" />
+  <include package=".details" />
 
 </configure>

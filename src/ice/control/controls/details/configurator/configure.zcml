@@ -1,0 +1,14 @@
+<configure
+   xmlns="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <page
+     for="*"
+     name="getControlDetailsConfigurators"
+     class=".configurator.ConfigureForm"
+     permission="z3c.configurator.ManageConfigurations"
+     menu="control_details"
+     title="Configurators"
+     />
+
+</configure>

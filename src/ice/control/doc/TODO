@@ -15,7 +15,7 @@ In "Details" pseudo-window. So, it has its own context.
 extend facilities of "search" subform in "contents" view.
 "Globber".
 So, search results can show few items.
-** TODO z3c.configurator integration, plug-in
+** DONE z3c.configurator integration, plug-in
 ** DONE Edit Dublin Core Metadata
 ** TODO Introspector
 * REPL on port

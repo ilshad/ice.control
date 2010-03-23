@@ -39,7 +39,22 @@
      permission="zope.ManageContent"
      />
 
+  <!--
+      Details menu
+      -->
+  
+  <menu
+     id="control_details"
+     title="Object Details"
+     />
+
+  <page
+     for="*"
+     name="getControlDetailsMenu"
+     template="menu.pt"
+     permission="zope.ManageContent"
+     />
+
   <include package=".resources" />
-  <include package=".details" />
 
 </configure>
