@@ -267,7 +267,7 @@ TreeNode.prototype.openDetails = function () {
 		    return false;
 		});
 	    });
-	    
+
 	    $(detailsMenu).load(path + LOAD_MENU);
 	});
 
@@ -275,7 +275,7 @@ TreeNode.prototype.openDetails = function () {
 	.prependTo($(details))
 	.append($(detailsClose))
 	.append($(detailsMinimize))
-	.append($(url))
+	.append($(url));
 }
 
 TreeNode.prototype.minimizeDetails = function (details) {

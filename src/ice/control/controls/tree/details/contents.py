@@ -37,7 +37,7 @@ class Contents(ContentsBase):
 
     def setupCopyPasteMove(self):
         super(Contents, self).setupCopyPasteMove()
-        self.supportsCut = False # this is hack
+        self.supportsCut = False # hack
 
 class RenameColumn(RenameColumnBase):
 

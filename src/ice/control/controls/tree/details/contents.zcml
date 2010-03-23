@@ -1,16 +1,6 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
-   xmlns:browser="http://namespaces.zope.org/browser"
    i18n_domain="ice.control">
-
-  <browser:page
-     for="zope.container.interfaces.IContainer"
-     name="getControlDetailsContents"
-     class=".contents.Contents"
-     permission="zope.ManageContent"
-     menu="control_details"
-     title="Contents"
-     />
 
   <!--
       Disable sorting

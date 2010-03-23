@@ -1,18 +1,14 @@
-### -*- coding: utf-8 -*- ####################################################
+##############################################################################
 #
-#  Copyright (C) 2010 Ilshad R. Khabibullin <astoon.net at gmail.com>
+# Copyright (c) 2002 Zope Corporation and Contributors.
+# All Rights Reserved.
 #
-#  This library is free software: you can redistribute it and/or modify it
-#  under the terms of the GNU General Public License as published by the Free
-#  Software Foundation, either version 3 of the License.
-#
-#  This software is distributed in the hope that it will be useful, but
-#  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-#  or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-#  for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with this software.  If not, see <http://www.gnu.org/licenses/>.
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
 

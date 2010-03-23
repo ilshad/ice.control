@@ -33,6 +33,15 @@
      title="Base Info"
      />
 
+  <page
+     for="zope.container.interfaces.IContainer"
+     name="getControlDetailsContents"
+     class=".contents.Contents"
+     permission="zope.ManageContent"
+     menu="control_details"
+     title="Contents"
+     />
+
   <include file="contents.zcml" />
 
   <page
@@ -55,7 +64,7 @@
      />
 
   <page
-     for="zope.component.interfaces.ISite"
+     for="*"
      name="getControlDetailsConfigurators"
      class=".configurator.ConfigureForm"
      permission="z3c.configurator.ManageConfigurations"
