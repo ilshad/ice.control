@@ -4,6 +4,7 @@
    i18n_domain="ice.control">
 
   <include package="ice.control.zcml" />
+  <include package="ice.control" />
 
   <securityPolicy component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy" />
 
@@ -19,8 +20,6 @@
      provides="zope.app.generations.interfaces.ISchemaManager"
      component="ice.control.tests.generations.schemaManager"
      />
-
-  <include package="ice.control" />
   
   <browser:defaultSkin name="control" />
 

@@ -101,11 +101,13 @@
 #treeContainer div.details-wrap #introspector code {
     color: #D38C29;
 }
-#treeContainer div.details-wrap #introspector a {
+#treeContainer div.details-wrap #introspector a,
+#treeContainer div.details-wrap #introspector a code {
     color: #B368C1;
 }
-#treeContainer div.details-wrap #introspector a:hover {
-    color: #EFA2FF;
+#treeContainer div.details-wrap #introspector a:hover,
+#treeContainer div.details-wrap #introspector a code:hover {
+    color: #EFA2FF !important;
 }
 #treeContainer div.details-head {
     maring: 0;

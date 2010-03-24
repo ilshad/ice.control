@@ -17,7 +17,7 @@ extend facilities of "search" subform in "contents" view.
 So, search results can show few items.
 ** DONE z3c.configurator integration, plug-in
 ** DONE Edit Dublin Core Metadata
-** TODO Introspector
+** DONE Introspector
 ** TODO Local registry - inspect and heal
 * REPL on port
 ** TODO able to run alternate shell with repl on some port
