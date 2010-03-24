@@ -17,9 +17,30 @@
 ##############################################################################
 
 from zope.dublincore.interfaces import IZopeDublinCore
+from zope.app.component.browser.registration import IRegistrationDisplay
+from zope.component import getSiteManager, getMultiAdapter
+
+def _registrations(context, comp):
+    sm = getSiteManager(context)
+    for r in sm.registeredUtilities():
+        if r.component == comp or comp is None:
+            yield r
+    for r in sm.registeredAdapters():
+        if r.factory == comp or comp is None:
+            yield r
+    for r in sm.registeredSubscriptionAdapters():
+        if r.factory == comp or comp is None:
+            yield r
+    for r in sm.registeredHandlers():
+        if r.factory == comp or comp is None:
+            yield r
 
 class DetailsInfoBase:
 
     def getTitle(self):
         dc = IZopeDublinCore(self.context, None)
         return dc and dc.title
+
+    def getRegistrations(self):
+        return [getMultiAdapter((r, self.request), IRegistrationDisplay)
+                for r in sorted(_registrations(self.context, self.context))]
