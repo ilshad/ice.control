@@ -1,0 +1,15 @@
+<configure
+   xmlns="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <page
+     for="zope.site.interfaces.ILocalSiteManager"
+     name="getControlDetailsLocalRegistrations"
+     class=".registrations.LocalRegistrations"
+     permission="zope.ManageServices"
+     menu="control_details"
+     title="Registrations"
+     />
+
+</configure>
+

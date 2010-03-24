@@ -51,7 +51,15 @@
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;
 }
-
+#treeContainer div.details-wrap .detailed {
+    color: #BA9E65;
+}
+#treeContainer div.details div.details-wrap a {
+    color: #B368C1;
+}
+#treeContainer div.details div.details-wrap a:hover {
+    color: #EFA2FF;
+}
 #treeContainer div.details-wrap #status-message,
 #treeContainer div.details-wrap div.form-status {
     color: yellow;

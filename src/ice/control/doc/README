@@ -117,7 +117,7 @@ Now run tests and run the server::
 Admin UI for BlueBream
 ======================
 
-THere are virtual context, `++etc++control` for the `controls`.
+There are virtual context, `++etc++control` for the `controls`.
 It is not real persistent object.
 
 In "Tree" `controls` are contents' tree which show database
@@ -126,7 +126,7 @@ Click links (names or icons) to open "Details" ajax pseudo-window.
 See menu at bottom of this pseudo-window.
 
 This "Details" ajax psudo-window might be closed or minimized
-into "dock". It containes number of sub-views, depend on context
+into "dock". It contains number of sub-views, depend on context
 and depend on your custom registrations:
 
 "Contents" - for containers, allow to rename and remove contained
@@ -135,13 +135,12 @@ items. Uses pagination ("batching") when lenght of the listing is
 
 "Metadata" - form for edit Dublin core Metadata.
 
-"Introspector" - inspect persistent objects.
+"Introspector" - inspect persistent objects, looking apidoc.
 
 "REPL" - interactive Python shell to inspect and edit persistent
 objects, interact with this instance. Uses current context.
 
-"Configurator" - general way to manage ZODB. Default - only in
-contexts of `zope.component.interfaces.ISite`.
+"Configurator" - general way to manage ZODB.
 
 You might like to add your custom views to "Details". See below.
 

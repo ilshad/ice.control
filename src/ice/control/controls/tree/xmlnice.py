@@ -47,6 +47,7 @@ class XMLSite(XMLReadContainer):
                 for value in rc.values()]
         specs = filter(lambda x:x, specs)
         specs.sort(key = lambda x: x.sort_key())
+
         nodes = [x.to_xml() for x in specs]
 
         # add ++etc++site

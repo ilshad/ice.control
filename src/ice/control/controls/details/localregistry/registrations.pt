@@ -1,0 +1,47 @@
+<form tal:attributes="action request/URL" method="POST">
+  <div tal:condition="not:view/registrations">
+    <p>Nothing is registered for this site.</p>
+  </div>
+  <div tal:condition="view/registrations">
+    <p>
+      Registrations for this site:
+    </p>
+    <table>
+      <tr tal:repeat="registration view/registrations">
+        <td>
+          <input type="checkbox" class="noborder" name="ids:list"
+                 tal:attributes="value registration/id;
+                                 id registration/id;" />
+        </td>
+        <td tal:define="info registration/render">
+          <tal:block condition="info/url">
+            <!--a tal:attributes="href info/url" tal:content="info/cname" /-->
+	    <b class="detailed" tal:content="info/cname" />
+          </tal:block>
+          <tal:block condition="not: info/url">
+            <tal:block content="info/cname">
+              foo/bar
+            </tal:block>
+            (moved or deleted)
+          </tal:block>
+          <br />
+          <tal:block content="info/info">
+            zope.app.fooIFoo utility named bob
+          </tal:block>
+          <tal:block condition="info/comment">
+            <br />
+            <tal:block content="info/comment">
+              comment: needed a bob
+            </tal:block>
+          </tal:block>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="submit" value="Unregister" name="deactivate" />
+        </td>
+      </tr>
+    </table>
+  </div>
+</form>
