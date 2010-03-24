@@ -84,14 +84,15 @@ There are number of options to use ice.control. To use entire
 functionality of the package, add follow lines into configure.zcml::
 
   <include package="ice.control.zcml" />
+  <include package="ice.control.repl" />
   <include package="ice.control" />
   <browser:defaultSkin name="control" />
 
 it means you like to use `control system`, default control modules
 for this system (`controls`), simple skin, make this skin default,
-make alternate layout template for controls, and use hepler module
-to garantee that you have included all the needed registrations for
-the other packages.
+make alternate layout template for controls, use repl to interact
+and debug the applications  and use hepler module to garantee that
+you have included all the needed registrations for the other packages.
 
 NOTE: if you are newcomer in BlueBream and used bluebream_simple
 paster template, remove `welcome` module, remove all the lines from
