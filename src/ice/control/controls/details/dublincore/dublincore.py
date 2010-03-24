@@ -20,9 +20,13 @@ from zope.lifecycleevent import ObjectModifiedEvent, Attributes
 class EditDublinCore:
 
     def edit(self):
+        try:
+            dc = IZopeDublinCore(self.context)
+        except TypeError:
+            return None
+
         request = self.request
         formatter = self.request.locale.dates.getFormatter('dateTime', 'medium')
-        dc = IZopeDublinCore(self.context)
         message=''
 
         if 'dctitle' in request:

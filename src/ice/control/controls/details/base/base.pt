@@ -1,3 +1,4 @@
+<span class="description">[ base information ]</span>
 <h1 tal:content="view/getTitle" />
 <ul>
   <li tal:repeat="r view/getRegistrations">

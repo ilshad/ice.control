@@ -1,7 +1,7 @@
 # -*- mode: org -*-
 
 * Admin UI
-** Default Details view - I not know what must be here
+** DONE Default Details view - I not know what must be here
 ** TODO REPL: Interactive python shell in JavaScript
 Interact to Python runtime and persistent objects.
 Available in develop mode.
@@ -18,8 +18,8 @@ So, search results can show few items.
 ** DONE z3c.configurator integration, plug-in
 ** DONE Edit Dublin Core Metadata
 ** DONE Introspector
-** TODO Local registry - inspect and heal
-** TODO Lop long listing in tree and add action "continue..."
+** DONE Local registry - inspect and heal
+** TODO Lop too long branch in contents tree and add action "continue..."
 * REPL on port
 ** TODO able to run alternate shell with repl on some port
 It seems is should be based on the same module , like
@@ -27,6 +27,7 @@ JavaScript interactive shell.
 * Emacs
 ** TODO Convenient analog of SLIME to use with REPL on port
 * Application Management
-** TODO "Add Site" functionality
-ice.control.site
+** TODO "Add" functionality
+Folder, applications... ?
+pluggable, of course
 

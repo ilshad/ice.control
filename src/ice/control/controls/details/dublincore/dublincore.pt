@@ -3,7 +3,7 @@
 <form action="request/URL" method="post"
       tal:attributes="action request/URL"
       tal:define="data view/edit">
-  <table>
+  <table tal:condition="data">
     <tr tal:condition="data/message">
       <td id="status-message" colspan="2"
 	  tal:content="data/message" />
@@ -36,4 +36,7 @@
       <td><input type="submit" name="save" value="Save" /></td>
     </tr>
   </table>
+  <span tal:condition="not: data" id="status-message">
+    Sorry, this object is not aware about to Dublin Core metadata
+  </span>
 </form>
