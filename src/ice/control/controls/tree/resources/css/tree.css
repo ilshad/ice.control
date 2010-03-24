@@ -44,6 +44,7 @@
 #treeContainer div.details-wrap {
     width: 600px;
     height: 400px;
+    overflow: auto;
     maring: 0;
     padding: 3px;
     border-top: 1px solid #eee;
@@ -93,7 +94,19 @@
 #treeContainer div.details-wrap #contents div.batch a.current:hover {
     border: 1px solid #fff;
 }
-
+#treeContainer div.details-wrap #introspector div.indent {
+    color: #90C353;
+    padding: 10px;
+}
+#treeContainer div.details-wrap #introspector code {
+    color: #D38C29;
+}
+#treeContainer div.details-wrap #introspector a {
+    color: #B368C1;
+}
+#treeContainer div.details-wrap #introspector a:hover {
+    color: #EFA2FF;
+}
 #treeContainer div.details-head {
     maring: 0;
     padding: 0;

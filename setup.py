@@ -25,6 +25,7 @@ setup(name='ice.control',
 
                         'zope.app.testing',
                         'zope.app.zcmlfiles',
+                        'zope.app.apidoc',
 
                         'zc.resourcelibrary',
 

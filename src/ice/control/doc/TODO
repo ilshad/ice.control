@@ -18,6 +18,7 @@ So, search results can show few items.
 ** DONE z3c.configurator integration, plug-in
 ** DONE Edit Dublin Core Metadata
 ** TODO Introspector
+** TODO Local registry - inspect and heal
 * REPL on port
 ** TODO able to run alternate shell with repl on some port
 It seems is should be based on the same module , like

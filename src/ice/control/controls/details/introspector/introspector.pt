@@ -1,3 +1,212 @@
-<h1>Introspector</h1>
-
-<span tal:content="python: context.__class__" />
+<div id="introspector">
+  <h1>
+    Object Introspector:
+    <a tal:attributes="href view/klassView/@@absolute_url"
+       tal:content="view/klassView/context/getPath" />
+    (
+    <span tal:replace="context/zope:name"
+          tal:condition="context/zope:name"/>
+    <i tal:condition="not: context/zope:name">&lt;no name&gt;</i>
+    )
+  </h1>
+  
+  <em tal:define="parent view/parent" tal:condition="parent">
+    Parent:
+    <a tal:attributes="href string: ${parent/@@absolute_url}/@@introspector.html">
+      <span tal:replace="parent/zope:name" tal:condition="parent/zope:name" />
+      <span tal:condition="not: parent/zope:name">&lt;No Name&gt;</span>
+    </a>
+  </em>
+  
+  <h2>Directly Provided Interfaces</h2>
+  
+  <div class="indent" tal:define="ifaces view/getDirectlyProvidedInterfaces">
+    <ul class="attr-list" tal:condition="ifaces">
+      <li tal:repeat="iface ifaces">
+	<a tal:attributes="href string:${view/getBaseURL}/Interface/$iface/index.html"
+           tal:content="iface" />
+      </li>
+    </ul>
+    <div tal:condition="not:ifaces">
+      No interfaces are directly provided.
+    </div>
+  </div>
+  
+  <h2>Provided Interfaces</h2>
+  
+  <div class="indent" tal:define="ifaces view/getProvidedInterfaces">
+    <ul class="attr-list" tal:condition="ifaces">
+      <li tal:repeat="iface ifaces">
+	<a tal:attributes="href string:${view/getBaseURL}/Interface/${iface/url}/index.html"
+           tal:content="iface/path" />
+      </li>
+    </ul>
+  </div>
+  
+  <h2>Bases</h2>
+  
+  <div class="indent" tal:define="bases view/getBases">
+    <ul class="attr-list" tal:condition="bases">
+      <li tal:repeat="base bases">
+	<a tal:attributes="href string:${base/url}/index.html"
+           tal:content="base/path"
+           tal:condition="base/url" />
+	<div tal:condition="not: base/url">
+          <span tal:replace="base/path" />
+	</div>
+      </li>
+    </ul>
+    <p tal:condition="not: bases">
+      <em>There are no base classes.</em>
+    </p>
+  </div>
+  
+  <h2>Attributes/Properties</h2>
+  
+  <div class="indent" tal:define="attributes view/getAttributes">
+    <ul class="attr-list" tal:condition="attributes">
+      <li tal:repeat="attr attributes">
+	<b><code tal:content="attr/name">attr</code></b>
+	<tal:omit-tag condition="not: attr/type_link">
+          (type: <code tal:content="attr/type" />)
+	</tal:omit-tag>
+	<tal:omit-tag condition="attr/type_link">
+          (<span>type:</span>
+          <a tal:attributes="href string:${view/getBaseURL}/Code/${attr/type_link}/index.html">
+            <code tal:content="attr/type" /></a>)
+	</tal:omit-tag>
+	<br/>
+	<i>Value:</i>
+	<a tal:attributes="href string:${context/@@absolute_url}/++attribute++${attr/name}/@@introspector.html"
+           tal:condition="attr/value_linkable">
+          <code tal:content="attr/value">u''</code>
+	</a>
+	<code tal:condition="not: attr/value_linkable"
+              tal:content="attr/value">u''</code>
+	<br />
+	<span class="small" tal:condition="attr/interface">
+          <i >Interface:</i>
+          <a tal:attributes="href string:${view/getBaseURL}/Interface/${attr/interface}/index.html"
+             tal:content="attr/interface">Iface</a><br />
+	</span>
+	<span class="small" tal:condition="python: attr['read_perm'] and attr['write_perm']">
+          <i>Permissions:</i>
+          <span tal:replace="attr/read_perm">zope.View</span>
+          <span>(read)</span>,
+          <span tal:replace="attr/write_perm">zope.View</span>
+          <span>(write)</span>
+	</span>
+      </li>
+    </ul>
+    <p tal:condition="not: attributes">
+      <em>There are no attributes in this class.</em>
+    </p>
+  </div>
+  
+  <h2>Methods</h2>
+  
+  <div class="indent" tal:define="methods view/getMethods">
+    <ul class="attr-list" tal:condition="methods">
+      <li tal:repeat="method view/getMethods">
+	<b><code tal:content="string:${method/name}${method/signature}" /></b><br>
+	  <div class="inline documentation" tal:content="structure method/doc">
+            method desc
+	  </div>
+	  <span class="small" tal:condition="method/interface">
+            <i>Interface:</i>
+            <a tal:attributes="href string:${view/getBaseURL}/Interface/${method/interface}/index.html"
+               tal:content="method/interface">Iface
+	    </a><br/>
+	  </span>
+	  <span class="small" tal:condition="python: method['read_perm'] and method['write_perm']">
+            <i>Permissions:</i>
+            <span tal:replace="method/read_perm">zope.View</span>
+            <span>(read)</span>,
+            <span tal:replace="method/write_perm">zope.View</span>
+            <span>(write)</span>
+	  </span>
+      </li>
+    </ul>
+    <p tal:condition="not: methods">
+      <em>There are no methods in this class.</em>
+    </p>
+  </div>
+  
+  <div tal:condition="view/isMapping">
+    <h2>Mapping Items</h2>
+    <div class="indent" tal:define="items view/getMappingItems">
+      <p tal:condition="not:items">
+	<em>There are no items.</em>
+      </p>
+      <ul class="attr-list" tal:condition="items">
+	<li tal:repeat="item items">
+          <b><code tal:content="item/key_string" /></b>
+          <br />
+          <a tal:attributes="href string:++items++${item/key}/@@introspector.html">
+            <code tal:content="item/value" />
+          </a>
+          <tal:omit-tag condition="not: item/value_type_link">
+            (type: <code tal:content="item/value_type" />)
+          </tal:omit-tag>
+          <tal:omit-tag condition="item/value_type_link">
+            (<span>type:</span>
+            <a tal:attributes="href string:${view/getBaseURL}/Code/${item/value_type_link}/index.html">
+              <code tal:content="item/value_type" /></a>)
+          </tal:omit-tag>
+	</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div tal:condition="view/isSequence">
+    <h2>Sequence Items</h2>
+    <div class="indent" tal:define="items view/getSequenceItems">
+      <p tal:condition="not:items">
+	<em>There are no items.</em>
+      </p>
+      <ol class="attr-list" start="0" tal:condition="items">
+	<li tal:repeat="item items">
+          <a tal:attributes="href string:++items++${item/index}/@@introspector.html">
+            <code tal:content="item/value" />
+          </a>
+          <tal:omit-tag condition="not: item/value_type_link">
+            (type: <code tal:content="item/value_type" />)
+          </tal:omit-tag>
+          <tal:omit-tag condition="item/value_type_link">
+            (<span>type:</span>
+            <a tal:attributes="href string:${view/getBaseURL}/Code/${item/value_type_link}/index.html">
+              <code tal:content="item/value_type" /></a>)
+          </tal:omit-tag>
+	</li>
+      </ol>
+    </div>
+  </div>
+  
+  <div tal:condition="view/isAnnotatable">
+    <h2>Annotations</h2>
+    <div class="indent" tal:define="annotations view/getAnnotationsInfo">
+      <p tal:condition="not:annotations">
+	<em i18n:translate="">
+          There were no annotations or they were not inspectable.
+	</em>
+      </p>
+      <ul class="attr-list" tal:condition="annotations">
+	<li tal:repeat="ann annotations">
+          <b><code tal:content="ann/key_string" /></b>
+          <br />
+          <a tal:attributes="href string:++annotations++${ann/key}/@@introspector.html">
+            <code tal:content="ann/value" />
+          </a>
+          <tal:omit-tag condition="not: ann/value_type_link">
+            (type: <code tal:content="ann/value_type" />)
+          </tal:omit-tag>
+          <tal:omit-tag condition="ann/value_type_link">
+            (<span>type:</span>
+            <a tal:attributes="href string:${view/getBaseURL}/Code/${ann/value_type_link}/index.html">
+              <code tal:content="ann/value_type" /></a>)
+          </tal:omit-tag>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
