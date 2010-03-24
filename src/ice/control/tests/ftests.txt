@@ -49,15 +49,52 @@ System control panel
   >>> browser.addHeader('Authorization','Basic mgr:mgrpw')
   >>> browser.handleErrors = False
 
-  >>> browser.open(root_url)
-  >>> browser.getLink(text='System control').click()
+Generations
+-----------
 
-  >>> browser.url == control_url + '/tree.html'
+  >>> browser.open(control_url + '/tree.html')
+
+  >>> browser.getLink('Generations').click()
+  >>> browser.url == control_url + '/generations.html'
+  True
+
+  >>> 'Generations' in browser.contents
+  True
+
+  >>> 'Application' in browser.contents
+  True
+
+  >>> 'Minimum Generation' in browser.contents
+  True
+
+  >>> 'Maximum Generation' in browser.contents
+  True
+
+  >>> 'Current Database Generation' in browser.contents
+  True
+
+  >>> 'Evolve?' in browser.contents
+  True
+
+  >>> 'ice.control' in browser.contents
+  True
+
+  >>> browser.getLink(text='ice.control').click()
+  >>> browser.url == control_url + '/generations_managerdetails.html?id=ice.control'
+  True
+
+  >>> 'This is test generation' in browser.contents
   True
 
 
 Contents tree
 -------------
+
+  >>> browser.open(root_url)
+  >>> browser.getLink(text='System control').click()
+
+  >>> browser.url == control_url + '/tree.html'
+  True
 
 Resources loaded::
 
@@ -210,39 +247,71 @@ Ajax view::
   </document>
 
 
-Generations
------------
+Details
+-------
 
-  >>> browser.open(control_url + '/tree.html')
+Base details view
++++++++++++++++++
 
-  >>> browser.getLink('Generations').click()
-  >>> browser.url == control_url + '/generations.html'
+  >>> browser.open(root_url + "/@@getControlDetailsDefaultInfo");
+  >>> '[ base information ]' in browser.contents
   True
 
-  >>> 'Generations' in browser.contents
-  True
 
-  >>> 'Application' in browser.contents
-  True
+Contents
+++++++++
 
-  >>> 'Minimum Generation' in browser.contents
-  True
+  >>> browser.open(root_url + "/@@getControlDetailsContents");
 
-  >>> 'Maximum Generation' in browser.contents
-  True
+  >>> browser.getForm(action="http://localhost/@@getControlDetailsContents")
+  <zope.testbrowser.browser.Form object at ...>
 
-  >>> 'Current Database Generation' in browser.contents
-  True
+  >>> browser.getControl(name="search.widgets.searchterm")
+  <Control name='search.widgets.searchterm' type='text'>
 
-  >>> 'Evolve?' in browser.contents
-  True
+  >>> browser.getControl(name="contents-checkBoxColumn-0-selectedItems")
+  <ListControl name='contents-checkBoxColumn-0-selectedItems' type='checkbox'>
 
-  >>> 'ice.control' in browser.contents
-  True
+  >>> browser.getControl(name="contents.buttons.delete")
+  <SubmitControl name='contents.buttons.delete' type='submit'>
 
-  >>> browser.getLink(text='ice.control').click()
-  >>> browser.url == control_url + '/generations_managerdetails.html?id=ice.control'
-  True
+  >>> browser.getControl(name="contents.buttons.rename")
+  <SubmitControl name='contents.buttons.rename' type='submit'>
 
-  >>> 'This is test generation' in browser.contents
-  True
+
+Dublin Core metadata
+++++++++++++++++++++
+
+  >>> browser.open(root_url + '/@@getControlDetailsDublinCore');
+
+  >>> browser.getForm(action="http://localhost/@@getControlDetailsDublinCore");
+  <zope.testbrowser.browser.Form object at ...>
+
+  >>> browser.getControl(name="dctitle");
+  <Control name='dctitle' type='text'>
+
+  >>> browser.getControl(name="dcdescription");
+  <Control name='dcdescription' type='textarea'>  
+
+  >>> browser.getControl(name="save");
+  <SubmitControl name='save' type='submit'>
+
+
+Introspector
+++++++++++++
+
+#  >>> browser.open(root_url + '/@@getControlDetailsIntrospector');
+#  >>> browser.contents
+
+Configuration plugin
+++++++++++++++++++++
+
+#  >>> browser.open(root_url + '/@@getControlDetailsConfigurators');
+#  >>> browser.contents
+
+
+Registrations
++++++++++++++
+
+#  >>> browser.open(root_url + '/++etc++site/@@getControlDetailsLocalRegistrations');
+#  >>> browser.contents
