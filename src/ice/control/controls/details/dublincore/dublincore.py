@@ -10,6 +10,8 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
+#  Project homepage: <http://launchpad.net/ice.control>
+#
 ##############################################################################
 
 from datetime import datetime

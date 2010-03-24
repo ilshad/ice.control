@@ -9,7 +9,7 @@ setup(name='ice.control',
       version='0.1.0',
       author='Ilshad R. Khabibullin',
       author_email='astoon.net at gmail.com',
-      url='http://astoon.zwiki.org/ice.control',
+      url='http://launchpad.net/ice.control',
       description='System Administration and Site Management for BlueBream',
       long_description = (read('src/ice/control/doc/README')) +\
           '\n\n' + read('src/ice/control/doc/CHANGES'),
