@@ -23,29 +23,27 @@ import zope.interface
 class IDispatcher(zope.interface.Interface):
     """Store and dispatch sessions.
 
-    For new session, I create and store ISession object, create
-    new credential: id and code, bind session to id, calculate
-    SHAA-encoding for code, store it for id, send id and code
-    to you.
+    For new session, I create and store ISession object, create new
+    credential: id and password, bind session to id, calculate SSHA
+    encoding for password, store it for id, send id and password to
+    you.
 
     When you try to get your session, I ask you for the id and
-    code. Thus I am wrapper around of REPL sessions and I
-    provide my own security level on frontier of getting the
-    REPL sessions.
+    password. Thus I am wrapper around of REPL sessions and I provide
+    my own security level on frontier of getting the REPL sessions.
     """
 
-    def set_session():
-        """Create new session, bind it to new credential
-        and return credential, tuple id and code.
+    def set_session(context):
+        """Create new session with given context, bind it to new
+        credential and return credential, tuple id and password.
         """
 
-    def get_session(*credential):
-        """Get session. If the session is not exist for given
-        id or code is wrong - return None. Else return ISession
-        object.
+    def get_session(id, password):
+        """Get session. If the session is not exist for given id or
+        password is wrong - return None. Else return ISession object.
         """
     
-    def del_session(*credential):
+    def del_session(id, password):
         """"Delete session.
         """
 
@@ -57,7 +55,7 @@ class ISession(zope.interface.Interface):
         """Setup environment.
         """
 
-    def authenticate(credentials):
+    def authenticate(id, password):
         """Authenticate within this session, for zope security system.
         """
 

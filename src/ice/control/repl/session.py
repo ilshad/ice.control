@@ -31,7 +31,7 @@ class Session:
         self._shell = code.InteractiveConsole()
         self._shell.runcode("import transaction")
 
-    def authenticate(self, credentials):
+    def authenticate(self, id, password):
         pass
 
     def run(self, code):
