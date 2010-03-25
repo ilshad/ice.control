@@ -20,6 +20,7 @@
 
 import zope.interface
 from interfaces import IDispatcher
+from session import Session
 
 class Dispatcher:
     zope.interface.implements(IDispatcher)

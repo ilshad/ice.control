@@ -23,25 +23,25 @@ import zope.interface
 class IDispatcher(zope.interface.Interface):
     """Store and dispatch sessions.
 
-    When new session created, the dispatcher binds it to new
-    credential: ID and CODE, creates and stores ISession object,
-    bind it to ID, calculate MD5 hash for CODE, stores this hash
-    for ID, send ID and CODE to client.
+    For new session, I create and store ISession object, create
+    new credential: id and code, bind session to id, calculate
+    SHAA-encoding for code, store it for id, send id and code
+    to you.
 
-    When client tries to get session, dispatcher asks for ID and
-    CODE. Thus dispatcher is wrapper around of REPL sessions and
-    it provides its own security level on frontier before client
-    gets the session.
+    When you try to get your session, I ask you for the id and
+    code. Thus I am wrapper around of REPL sessions and I
+    provide my own security level on frontier of getting the
+    REPL sessions.
     """
 
     def set_session():
         """Create new session, bind it to new credential
-        and return credential.
+        and return credential, tuple id and code.
         """
 
     def get_session(*credential):
         """Get session. If the session is not exist for given
-        ID or CODe is wrong - return None. Else erturn ISession
+        id or code is wrong - return None. Else return ISession
         object.
         """
     
@@ -58,7 +58,7 @@ class ISession(zope.interface.Interface):
         """
 
     def authenticate(credentials):
-        """Authenticate within this session, in zope security sistem.
+        """Authenticate within this session, for zope security system.
         """
 
     def run(code):
@@ -82,5 +82,5 @@ class ISession(zope.interface.Interface):
         """
 
 class IPlugin(zope.interface.Interface):
-    """REPL plugin.
+    """REPL plug-in.
     """
