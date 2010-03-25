@@ -1,0 +1,26 @@
+==============
+BlueBream REPL
+==============
+
+:doctest:
+:functional-zcml-layer: ftesting.zcml
+
+  >>> root = getRootFolder()
+
+  >>> from zope.interface.verify import verifyObject
+  >>> from ice.control.repl.interfaces import ISession, IPlugin
+  >>> from ice.control.repl.session import Session
+
+  >>> session = Session()
+
+  >>> verifyObject(ISession, session)
+  True
+
+  >>> session.setup()
+  >>> session.set_context(root)
+
+  >>> session.get_context()
+  <zope.site.folder.Folder object at ...>
+
+  >>> session.get_plugins()
+  {}
