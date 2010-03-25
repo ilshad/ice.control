@@ -18,34 +18,17 @@
 #
 ##############################################################################
 
-import code
 import zope.interface
-import zope.component
-from interfaces import ISession, IPlugin
+from interfaces import IDispatcher
 
-class Session:
-    zope.interface.implements(ISession)
-
-    def setup(self):
-        self._context = None
-        self._shell = code.InteractiveConsole()
-        self._shell.runcode("import transaction")
-
-    def authenticate(self, credentials):
+class Dispatcher:
+    zope.interface.implements(IDispatcher)
+    
+    def set_session(self):
         pass
 
-    def run(self, code):
-        return self._shell.runcode(code)
-
-    def commit(self):
-        self._shell("transaction.commit()")
-
-    def set_context(self, context):
-        self._context = context
-
-    def get_context(self):
-        return self._context
-
-    def get_plugins(self):
-        return dict((k,v) for k,v in zope.component.getUtilitiesFor(
-                IPlugin, self.get_context()))
+    def get_session(self, *credential):
+        pass
+    
+    def del_session(self, *credential):
+        pass

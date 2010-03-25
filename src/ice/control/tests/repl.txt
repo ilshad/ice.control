@@ -8,13 +8,18 @@ BlueBream REPL
   >>> root = getRootFolder()
 
   >>> from zope.interface.verify import verifyObject
-  >>> from ice.control.repl.interfaces import ISession, IPlugin
+  >>> from ice.control.repl.interfaces import IDispatcher, ISession, IPlugin
+  >>> from ice.control.repl.dispatcher import Dispatcher
   >>> from ice.control.repl.session import Session
+
+Create session explicity::
 
   >>> session = Session()
 
   >>> verifyObject(ISession, session)
   True
+
+Methods of session::
 
   >>> session.setup()
   >>> session.set_context(root)
@@ -24,3 +29,10 @@ BlueBream REPL
 
   >>> session.get_plugins()
   {}
+
+Create dispatcher::
+
+  >>> dispatcher = Dispatcher()
+
+  >>> verifyObject(IDispatcher, dispatcher)
+  True
