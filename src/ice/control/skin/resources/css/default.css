@@ -187,14 +187,14 @@ input[type=checkbox] {
 
 /**
 *
-* Spinner
+* Indicator
 *
 **/
 
 #spinner {
     display: none;
-    background: transparent url(../img/spinner.gif) no-repeat scroll center top;
-    height: 20px;
+    background: transparent url(../img/indicator.gif) no-repeat scroll center top;
+    height: 16px;
     width: 220px;
     position: fixed;
     background-position: center center;
