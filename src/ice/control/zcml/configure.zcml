@@ -25,6 +25,7 @@
   <include package="zope.applicationcontrol" />
   <include package="zope.size" />
   <include package="zope.location" />
+  <include package="zope.session" />
 
   <include package="zope.app.appsetup" />
   <include package="zope.app.security" />

@@ -48,12 +48,9 @@ class IDispatcher(zope.interface.Interface):
         """
 
 class ISession(zope.interface.Interface):
-    """Advanced read-eval-print loop for BlueBream.
+    """Advanced read-eval-print loop for BlueBream. Wrapper around
+    interactive interpreter. Environment: context.
     """
-
-    def setup():
-        """Setup environment.
-        """
 
     def run(code):
         """Run code.
@@ -61,14 +58,6 @@ class ISession(zope.interface.Interface):
 
     def commit():
         """Commit transaction.
-        """
-
-    def set_context(context):
-        """Set current context.
-        """
-
-    def get_context():
-        """Get current context.
         """
 
     def get_plugins():

@@ -18,5 +18,43 @@
 #
 ##############################################################################
 
+from zope.component import getUtility
+from zope.session.interfaces import ISession
+from zope.traversing.browser.absoluteurl import absoluteURL
+from ice.control.repl.interfaces import IDispatcher
+
+PREFIX = 'ice.control.repl.'
+
 class REPL:
-    pass
+
+    def session_data(self):
+        session = ISession(self.request)
+        absolute_url = absoluteURL(self.context, self.request)
+        return session[PREFIX + absolute_url]
+
+    def get_repl(self):
+        dispatcher = getUtility(IDispatcher)
+        data = self.session_data()
+
+        try:
+            credentials = data['id'], data['password']
+        except KeyError:
+            credentials = dispatcher.set_session(self.context)
+            data['id'], data['password'] = credentials
+
+        return dispatcher.get_session(*credentials)
+
+    def plugins_names(self):
+        return self.repl().get_plugins().keys()
+
+    def clear(self):
+        dispatcher = getUtility(IDispatcher)
+        data = self.session_data()
+        try:
+            dispatcher.del_session(data['id'], data['password'])
+        except KeyError:
+            pass
+
+    def interact(self):
+        code = self.request.get('code')
+        repl = self.get_repl()

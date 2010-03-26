@@ -11,4 +11,22 @@
     <allow interface=".interfaces.IDispatcher" />
   </class>
 
+  <utility
+     factory=".plug.FirstSamplePlugin"
+     provides=".interfaces.IPlugin"
+     name="first"
+     />
+
+  <utility
+     factory=".plug.SecondSamplePlugin"
+     provides=".interfaces.IPlugin"
+     name="second"
+     />
+
+  <utility
+     factory=".plug.ThirdSamplePlugin"
+     provides=".interfaces.IPlugin"
+     name="third"
+     />
+
 </configure>

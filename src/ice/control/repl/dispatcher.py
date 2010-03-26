@@ -63,10 +63,7 @@ class Dispatcher:
         pwd = self._generate_password()
         pm = getUtility(IPasswordManager, name=self._pwd_manager)
         self._credentials[id] = pm.encodePassword(pwd)
-        session = Session()
-        session.setup()
-        session.set_context(context)
-        self._sessions[id] = session
+        self._sessions[id] = Session(context)
         return id, pwd
 
     def get_session(self, id, password):

@@ -14,7 +14,6 @@ BlueBream REPL
 Get dispatcher::
 
   >>> dispatcher = zope.component.getUtility(IDispatcher)
-
   >>> verifyObject(IDispatcher, dispatcher)
   True
 
@@ -28,16 +27,6 @@ Get session using credentials::
   >>> verifyObject(ISession, session)
   True
 
-Installed plugins::
-
-  >>> session.get_plugins()
-  {}
-
-Context::
-
-  >>> session.get_context() is root
-  True
-
 Eval simple code::
 
   >>> x = """
@@ -46,11 +35,19 @@ Eval simple code::
   ... """
   ...
 
-  >>> session.run(x)
-  >>> session.run("s = x1(7, 9)")
-
-  >>> session.run("print s")
-  16
-
-  >>> session.run("s") is None
+  >>> session.run(x) is ''
   True
+
+  >>> session.run("s = x1(7, 9)") is ''
+  True
+
+  >>> session.run("print s") is ''
+  16
+  True
+
+  >>> session.run("s")
+  ''
+
+  >>> session.run("print context")
+  <zope.site.folder.Folder object at ...>
+  ''

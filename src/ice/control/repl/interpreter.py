@@ -17,8 +17,23 @@
 #  Project homepage: <http://launchpad.net/ice.control>
 #
 ##############################################################################
-"""Sample useful plugins for BlueBream REPL.
-"""
 
-from zope.interface import implements
-from interfaes import IPlugin
+import code
+import pprint
+
+class Interpreter(code.InteractiveInterpreter):
+
+    def __init__(self, locals):
+        self.output = []
+        code.InteractiveInterpreter.__init__(self, locals)
+
+    def write(self, data):
+        data = pprint.pformat(data)
+        if not data.endswith("\n"):
+            data += "\n"
+        self.output.append(data)
+
+    def get_output(self):
+        output = "".join(self.output)
+        self.output = []
+        return output

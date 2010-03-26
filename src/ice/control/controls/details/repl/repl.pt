@@ -1,3 +1,6 @@
-<script type="text/javascript" src="http://127.0.0.1:8080/@@/ice.control.tree.js/repl.js"></script>
+<script	src="http://127.0.0.1:8080/@@/ice.control.tree.js/repl.js"
+	type="text/javascript"></script>
+
 REPL
 
+<div class="repl">&nbsp;</div>
