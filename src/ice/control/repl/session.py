@@ -34,9 +34,6 @@ class Session:
     def setup(self):
         self._shell.runcode("import transaction")
 
-    def authenticate(self, id, password):
-        pass
-
     def run(self, code):
         return self._shell.runcode(code)
 
@@ -56,4 +53,3 @@ class Session:
     def apply_plugin(self, name, **kwargs):
         plugin = self.get_plugins().get(name)
         self._shell.runcode(plugin(**kwargs))
-

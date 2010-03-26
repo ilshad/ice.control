@@ -44,7 +44,7 @@ class IDispatcher(zope.interface.Interface):
         """
     
     def del_session(id, password):
-        """"Delete session.
+        """Delete session.
         """
 
 class ISession(zope.interface.Interface):
@@ -53,10 +53,6 @@ class ISession(zope.interface.Interface):
 
     def setup():
         """Setup environment.
-        """
-
-    def authenticate(id, password):
-        """Authenticate within this session, for zope security system.
         """
 
     def run(code):
@@ -86,7 +82,3 @@ class ISession(zope.interface.Interface):
 class IPlugin(zope.interface.Interface):
     """REPL plug-in.
     """
-
-    def __call__(**kwargs):
-        """Call plug-in. Return code string to eval in REPL.
-        """

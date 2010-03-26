@@ -7,13 +7,13 @@ BlueBream REPL
 
   >>> root = getRootFolder()
 
+  >>> import zope.component
   >>> from zope.interface.verify import verifyObject
   >>> from ice.control.repl.interfaces import IDispatcher, ISession, IPlugin
-  >>> from ice.control.repl.dispatcher import Dispatcher
 
-Create dispatcher::
+Get dispatcher::
 
-  >>> dispatcher = Dispatcher()
+  >>> dispatcher = zope.component.getUtility(IDispatcher)
 
   >>> verifyObject(IDispatcher, dispatcher)
   True
