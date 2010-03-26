@@ -17,43 +17,8 @@
 #  Project homepage: <http://launchpad.net/ice.control>
 #
 ##############################################################################
+"""Sample useful plugins for BlueBream REPL.
+"""
 
-import code
 from zope.interface import implements
-from zope.component import getUtilitiesFor
-from interfaces import ISession, IPlugin
-
-class Session:
-    implements(ISession)
-
-    _context = None
-
-    def __init__(self):
-        self._shell = code.InteractiveConsole()
-
-    def setup(self):
-        self._shell.runcode("import transaction")
-
-    def authenticate(self, id, password):
-        pass
-
-    def run(self, code):
-        return self._shell.runcode(code)
-
-    def commit(self):
-        self._shell.runcode("transaction.commit()")
-
-    def set_context(self, context):
-        self._context = context
-
-    def get_context(self):
-        return self._context
-
-    def get_plugins(self):
-        return dict((k,v) for k,v in getUtilitiesFor(
-                IPlugin, self.get_context()))
-
-    def apply_plugin(self, name, **kwargs):
-        plugin = self.get_plugins().get(name)
-        self._shell.runcode(plugin(**kwargs))
-
+from interfaes import IPlugin

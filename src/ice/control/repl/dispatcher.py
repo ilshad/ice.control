@@ -36,7 +36,7 @@ class Dispatcher:
 
     def _authenticate(self, id, pwd):
         try:
-            rm = getUtility(IPasswordManager, name=self._pwd_manager)
+            pm = getUtility(IPasswordManager, name=self._pwd_manager)
             return pm.checkPassword(self._credentials[id], pwd)
         except KeyError:
             return None
@@ -52,7 +52,7 @@ class Dispatcher:
             self._nextid = None
 
     def _generate_password(self):
-        now = datetime.datetime.now().ctime()
+        now = "".join(datetime.datetime.now().ctime().split())
         chars = []
         for i in range(30):
             chars.extend(random.sample(now ,1))
@@ -66,7 +66,8 @@ class Dispatcher:
         session = Session()
         session.setup()
         session.set_context(context)
-        self._sessions[id] = Session()
+        self._sessions[id] = session
+        return id, pwd
 
     def get_session(self, id, password):
         return self._authenticate(id, password) and self._sessions[id] 

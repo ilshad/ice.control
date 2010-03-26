@@ -4,6 +4,7 @@
    i18n_domain="ice.control">
 
   <include package="ice.control.zcml" />
+  <include package="ice.control.repl" />
   <include package="ice.control" />
 
   <securityPolicy component="zope.securitypolicy.zopepolicy.ZopeSecurityPolicy" />

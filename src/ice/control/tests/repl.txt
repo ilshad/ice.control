@@ -10,29 +10,47 @@ BlueBream REPL
   >>> from zope.interface.verify import verifyObject
   >>> from ice.control.repl.interfaces import IDispatcher, ISession, IPlugin
   >>> from ice.control.repl.dispatcher import Dispatcher
-  >>> from ice.control.repl.session import Session
-
-Create session explicity::
-
-  >>> session = Session()
-
-  >>> verifyObject(ISession, session)
-  True
-
-Methods of session::
-
-  >>> session.setup()
-  >>> session.set_context(root)
-
-  >>> session.get_context()
-  <zope.site.folder.Folder object at ...>
-
-  >>> session.get_plugins()
-  {}
 
 Create dispatcher::
 
   >>> dispatcher = Dispatcher()
 
   >>> verifyObject(IDispatcher, dispatcher)
+  True
+
+Create session::
+
+  >>> credentials = dispatcher.set_session(root)
+
+Get session using credentials::
+
+  >>> session = dispatcher.get_session(*credentials)
+  >>> verifyObject(ISession, session)
+  True
+
+Installed plugins::
+
+  >>> session.get_plugins()
+  {}
+
+Context::
+
+  >>> session.get_context() is root
+  True
+
+Eval simple code::
+
+  >>> x = """
+  ... def x1(a,b):
+  ...     return a+b
+  ... """
+  ...
+
+  >>> session.run(x)
+  >>> session.run("s = x1(7, 9)")
+
+  >>> session.run("print s")
+  16
+
+  >>> session.run("s") is None
   True

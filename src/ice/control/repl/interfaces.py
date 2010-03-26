@@ -24,7 +24,7 @@ class IDispatcher(zope.interface.Interface):
     """Store and dispatch sessions.
 
     For new session, I create and store ISession object, create new
-    credential: id and password, bind session to id, calculate SSHA
+    credentials: id and password, bind session to id, calculate SSHA
     encoding for password, store it for id, send id and password to
     you.
 
@@ -35,7 +35,7 @@ class IDispatcher(zope.interface.Interface):
 
     def set_session(context):
         """Create new session with given context, bind it to new
-        credential and return credential, tuple id and password.
+        credentials and return credentials, tuple id and password.
         """
 
     def get_session(id, password):
@@ -79,6 +79,14 @@ class ISession(zope.interface.Interface):
         """Get plugins.
         """
 
+    def apply_plugin(name, **kwargs):
+        """Get plugin by name and apply to REPL. Use arguments, if need.
+        """
+
 class IPlugin(zope.interface.Interface):
     """REPL plug-in.
     """
+
+    def __call__(**kwargs):
+        """Call plug-in. Return code string to eval in REPL.
+        """
