@@ -18,34 +18,51 @@
 #
 ##############################################################################
 
-import zope.interface
-import zope.component
+import random
+import datetime
+from zope.interface import implements
+from zope.component import getUtility
 from zope.password.interfaces import IPasswordManager
-from zope.cachedescriptors.property import Lazy
 from interfaces import IDispatcher
 from session import Session
 
 class Dispatcher:
-    zope.interface.implements(IDispatcher)
+    implements(IDispatcher)
     
-    def __init__(self):
-        self._sessions = {}
-        self._credentials = {}
-
-    @Lazy
-    def _pm(self):
-        return zope.component.getUtility(IPasswordManager, name='SSHA')
+    _nextid = None
+    _sessions = {}
+    _credentials = {}
+    _pwd_manager = 'SSHA'
 
     def _authenticate(self, id, pwd):
         try:
-            return self._pm.checkPassword(self._credentials[id], pwd)
+            rm = getUtility(IPasswordManager, name=self._pwd_manager)
+            return pm.checkPassword(self._credentials[id], pwd)
         except KeyError:
             return None
 
+    def _generate_id(self):
+        while True:
+            if self._nextid is None:
+                self._nextid = random.randrange(0, 2**31)
+            id = self._nextid
+            self._nextid += 1
+            if id not in self._credentials.keys():
+                return id
+            self._nextid = None
+
+    def _generate_password(self):
+        now = datetime.datetime.now().ctime()
+        chars = []
+        for i in range(30):
+            chars.extend(random.sample(now ,1))
+        return "".join(chars)
+
     def set_session(self, context):
-        pwd = None
-        id = None
-        self._credentials[id] = self._pm.encodePassword(pwd)
+        id = self._generate_id()
+        pwd = self._generate_password()
+        pm = getUtility(IPasswordManager, name=self._pwd_manager)
+        self._credentials[id] = pm.encodePassword(pwd)
         session = Session()
         session.setup()
         session.set_context(context)

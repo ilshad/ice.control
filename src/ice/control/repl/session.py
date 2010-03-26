@@ -19,12 +19,12 @@
 ##############################################################################
 
 import code
-import zope.interface
-import zope.component
+from zope.interface import implements
+from zope.component import getUtilitiesFor
 from interfaces import ISession, IPlugin
 
 class Session:
-    zope.interface.implements(ISession)
+    implements(ISession)
 
     def setup(self):
         self._context = None
@@ -47,5 +47,5 @@ class Session:
         return self._context
 
     def get_plugins(self):
-        return dict((k,v) for k,v in zope.component.getUtilitiesFor(
+        return dict((k,v) for k,v in getUtilitiesFor(
                 IPlugin, self.get_context()))
