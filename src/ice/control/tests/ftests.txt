@@ -315,3 +315,11 @@ Registrations
 
 #  >>> browser.open(root_url + '/++etc++site/@@getControlDetailsLocalRegistrations');
 #  >>> browser.contents
+
+
+BleuBream REPL console in JavaScript
+++++++++++++++++++++++++++++++++++++
+
+  >>> browser.open(root_url + '/@@getControlDetailsREPL')
+
+#  >>> browser.contents

@@ -39,7 +39,7 @@ class Dispatcher:
             pm = getUtility(IPasswordManager, name=self._pwd_manager)
             return pm.checkPassword(self._credentials[id], pwd)
         except KeyError:
-            return None
+            return False
 
     def _generate_id(self):
         while True:
@@ -70,8 +70,10 @@ class Dispatcher:
         return id, pwd
 
     def get_session(self, id, password):
-        return self._authenticate(id, password) and self._sessions[id] 
-    
+        if self._authenticate(id, password):
+            return self._sessions[id] 
+        return None
+
     def del_session(self, id, password):
         if self._authenticate(id, password):
             del self._sessions[id]

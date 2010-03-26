@@ -1,0 +1,15 @@
+<configure
+   xmlns="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <page
+     for="*"
+     name="getControlDetailsREPL"
+     class=".repl.REPL"
+     template="repl.pt"
+     permission="zope.ManageServices"
+     menu="control_details"
+     title="REPL"
+     />
+
+</configure>
