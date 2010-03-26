@@ -18,6 +18,7 @@
 #
 ##############################################################################
 
+import os
 from zope.interface import implements
 from zope.component import getUtilitiesFor
 from interfaces import ISession, IPlugin
@@ -31,19 +32,19 @@ class Session:
             {"__name__": "__console__",
              "__doc__": None,
              "context": context})
+        code = file(os.path.join(os.path.dirname(__file__), "bootstrap.py")).read()
+        self.run(code)
 
-        self.interpreter.runcode("import transaction")
-
-    def run(self, code):
-        self.interpreter.runcode(code)
+    def run(self, source):
+        self.interpreter.runsource(source)
         return self.interpreter.get_output()
 
     def commit(self):
-        self.interpreter.runcode("transaction.commit()")
+        self.run("transaction.commit()")
 
     def get_plugins(self):
         return dict((k,v) for k,v in getUtilitiesFor(IPlugin, self.get_context()))
 
     def apply_plugin(self, name, **kwargs):
         plugin = self.get_plugins().get(name)
-        self.interpreter.runcode(plugin(**kwargs))
+        self.run(plugin(**kwargs))

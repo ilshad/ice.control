@@ -18,14 +18,11 @@
 #
 ##############################################################################
 
-import code
-import pprint
+import code, pprint, sys, StringIO
 
 class Interpreter(code.InteractiveInterpreter):
 
-    def __init__(self, locals):
-        self.output = []
-        code.InteractiveInterpreter.__init__(self, locals)
+    output = []
 
     def write(self, data):
         data = pprint.pformat(data)
@@ -34,6 +31,24 @@ class Interpreter(code.InteractiveInterpreter):
         self.output.append(data)
 
     def get_output(self):
-        output = "".join(self.output)
+        r = "".join(self.output)
         self.output = []
-        return output
+        return r
+
+    def runcode(self, code):
+        stdout = sys.stdout
+        trap = StringIO.StringIO()
+        sys.stdout = trap
+        try:
+            exec code in self.locals
+            self.write(trap.getvalue())
+        except SystemExit:
+            sys.stdout = stdout
+            trap.close()
+            del trap
+            raise
+        except:
+            self.showtraceback()
+        sys.stdout = stdout
+        trap.close()
+        del trap

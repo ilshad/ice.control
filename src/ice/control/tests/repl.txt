@@ -35,19 +35,8 @@ Eval simple code::
   ... """
   ...
 
-  >>> session.run(x) is ''
-  True
+  >>> session.run(x)
+  "''\n"
 
-  >>> session.run("s = x1(7, 9)") is ''
-  True
+#  >>> s = session.run("x1(3,4)")
 
-  >>> session.run("print s") is ''
-  16
-  True
-
-  >>> session.run("s")
-  ''
-
-  >>> session.run("print context")
-  <zope.site.folder.Folder object at ...>
-  ''

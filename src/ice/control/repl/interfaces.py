@@ -52,7 +52,7 @@ class ISession(zope.interface.Interface):
     interactive interpreter. Environment: context.
     """
 
-    def run(code):
+    def run(source):
         """Run code.
         """
 
