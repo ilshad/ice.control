@@ -41,6 +41,8 @@
   <include package="zope.app.renderer" />
   <include package="zope.app.preference" />
   <include package="zope.app.apidoc" />
+  <include package="zope.app.schema" />
+  <include package="zope.app.component.browser" />
 
   <include package="zc.resourcelibrary" />
 
