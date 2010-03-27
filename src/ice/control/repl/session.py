@@ -49,7 +49,7 @@ class Session:
         return self.run("transaction.commit()")
 
     def get_plugins(self):
-        return dict((k,v) for k,v in getUtilitiesFor(IPlugin, self.get_context()))
+        return dict((k,v) for k,v in getUtilitiesFor(IPlugin))
 
     def apply_plugin(self, name, **kwargs):
         pass
