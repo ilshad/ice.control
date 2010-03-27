@@ -54,6 +54,9 @@ class ISession(zope.interface.Interface):
 
     def run(source):
         """Run code.
+        Return tuple: boolean and output. Boolean is True if the
+        source argument contains incomplete python input, and
+        False in other cases.
         """
 
     def commit():
