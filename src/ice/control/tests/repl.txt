@@ -35,12 +35,10 @@ Eval simple code::
   ... """
 
   >>> session.run(x)
-  "''\n"
+  (False, "''\n")
 
   >>> session.run("x1(3,4)")
-  "'7\\n'\n"
+  (False, "'7\\n'\n")
 
   >>> session.commit()
-  "''\n"
-
-
+  (False, "''\n")

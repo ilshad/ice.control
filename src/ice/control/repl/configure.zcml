@@ -12,19 +12,19 @@
   </class>
 
   <utility
-     factory=".plug.FirstSamplePlugin"
+     factory=".FirstSamplePlugin"
      provides=".interfaces.IPlugin"
      name="first"
      />
 
   <utility
-     factory=".plug.SecondSamplePlugin"
+     factory=".SecondSamplePlugin"
      provides=".interfaces.IPlugin"
      name="second"
      />
 
   <utility
-     factory=".plug.ThirdSamplePlugin"
+     factory=".ThirdSamplePlugin"
      provides=".interfaces.IPlugin"
      name="third"
      />

@@ -38,12 +38,12 @@ class Session:
         self.run(code)
 
     def run(self, source):
-        if self.interpreter.runsource(self.input_buffer + source):
-            # input is incomplete
+        result = self.interpreter.runsource(self.input_buffer + source)
+        if result:
             self.input_buffer += source
         else:
             self.input_buffer = ''
-        return self.interpreter.get_output()
+        return result, self.interpreter.get_output()
 
     def commit(self):
         return self.run("transaction.commit()")
@@ -52,5 +52,4 @@ class Session:
         return dict((k,v) for k,v in getUtilitiesFor(IPlugin, self.get_context()))
 
     def apply_plugin(self, name, **kwargs):
-        plugin = self.get_plugins().get(name)
-        self.run(plugin(**kwargs))
+        pass
