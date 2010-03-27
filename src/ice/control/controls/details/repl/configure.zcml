@@ -11,4 +11,12 @@
      title="REPL"
      />
 
+  <page
+     for="*"
+     name="getControlDetailsREPLInteract"
+     class=".repl.REPL"
+     attribute="interact"
+     permission="zope.ManageServices"
+     />
+
 </configure>

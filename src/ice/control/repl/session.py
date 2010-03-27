@@ -27,6 +27,8 @@ from interpreter import Interpreter
 class Session:
     implements(ISession)
 
+    input_buffer = ''
+
     def __init__(self, context):
         self.interpreter = Interpreter(
             {"__name__": "__console__",
@@ -36,11 +38,15 @@ class Session:
         self.run(code)
 
     def run(self, source):
-        self.interpreter.runsource(source)
+        if self.interpreter.runsource(self.input_buffer + source):
+            # input is incomplete
+            self.input_buffer += source
+        else:
+            self.input_buffer = ''
         return self.interpreter.get_output()
 
     def commit(self):
-        self.run("transaction.commit()")
+        return self.run("transaction.commit()")
 
     def get_plugins(self):
         return dict((k,v) for k,v in getUtilitiesFor(IPlugin, self.get_context()))

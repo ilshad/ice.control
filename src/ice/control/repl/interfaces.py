@@ -48,8 +48,8 @@ class IDispatcher(zope.interface.Interface):
         """
 
 class ISession(zope.interface.Interface):
-    """Advanced read-eval-print loop for BlueBream. Wrapper around
-    interactive interpreter. Environment: context.
+    """Advanced read-eval-print loop for BlueBream.
+    Environment: context.
     """
 
     def run(source):

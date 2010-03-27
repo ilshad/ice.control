@@ -321,5 +321,9 @@ BleuBream REPL console in JavaScript
 ++++++++++++++++++++++++++++++++++++
 
   >>> browser.open(root_url + '/@@getControlDetailsREPL')
+  >>> browser.headers['status']
+  '200 Ok'
 
-#  >>> browser.contents
+  >>> browser.open(root_url + '/@@getControlDetailsREPLInteract')
+  >>> browser.headers['status']
+  '200 Ok'

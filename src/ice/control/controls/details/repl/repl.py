@@ -35,13 +35,11 @@ class REPL:
     def get_repl(self):
         dispatcher = getUtility(IDispatcher)
         data = self.session_data()
-
         try:
             credentials = data['id'], data['password']
         except KeyError:
             credentials = dispatcher.set_session(self.context)
             data['id'], data['password'] = credentials
-
         return dispatcher.get_session(*credentials)
 
     def plugins_names(self):
@@ -56,5 +54,9 @@ class REPL:
             pass
 
     def interact(self):
-        code = self.request.get('code')
-        repl = self.get_repl()
+        self.request.response.setHeader('Content-Type', 'text/xml')
+        source = self.request.get('source')
+        if source:
+            repl = self.get_repl()
+            return repl.run(source)
+        return u''

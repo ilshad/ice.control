@@ -33,10 +33,14 @@ Eval simple code::
   ... def x1(a,b):
   ...     return a+b
   ... """
-  ...
 
   >>> session.run(x)
   "''\n"
 
-#  >>> s = session.run("x1(3,4)")
+  >>> session.run("x1(3,4)")
+  "'7\\n'\n"
+
+  >>> session.commit()
+  "''\n"
+
 
