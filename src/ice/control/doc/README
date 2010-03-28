@@ -81,7 +81,7 @@ Include zcml files
 
 There are number of options to use ice.control. If you like to use
 entire functionality of the package, add these lines into your
-configure.zcml file::
+configure.zcml file, before of <include file="securitypolicy.zcml" />::
 
   <include package="ice.control.zcml" />
   <include package="ice.control.repl" />
@@ -98,10 +98,6 @@ It means:
   [ice.control.repl, ice.control.controls.details.repl],
 - use hepler module to garantee that you have included all the needed
 registrations for the other packages [ice.control.zcml]
-
-NOTE: if you created project using Paster template (see above) then
-add these zcml directoves into configure.zcml before directive
-<include file="securitypolicy.zcml" />.
 
 Summary, it is not necessary to include entire ice.control
 package. Functionaliy of ice.control (i.e. `controls`, ice.control.browser
