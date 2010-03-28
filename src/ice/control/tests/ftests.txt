@@ -369,7 +369,7 @@ Post valid data.
 2::
 
   >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',	
-  ...              'source=import zope.interface')
+  ...              'source=import+zope.interface')
 
   >>> browser.headers['status']
   '200 Ok'
@@ -403,3 +403,191 @@ Post valid data.
   ]]></output>
   <result>0</result>
   </doc>
+
+
+4::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=import+foo')
+
+  >>> browser.headers['status']
+  '200 Ok'
+
+  >>> browser.headers['content-type']
+  'text/xml;charset=utf-8'
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA['Traceback (most recent call last):\n'
+  '  File "<input>", line 1, in <module>\n'
+  'ImportError: No module named foo\n'
+  ]]></output>
+  <result>0</result>
+  </doc>
+
+IndentationError: unexpected indent::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=++++print+7')
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA['  File "<input>", line 1\n'
+  '    print 7\n'
+  '   ^\n'
+  'IndentationError: unexpected indent\n'
+  ]]></output>
+  <result>0</result>
+  </doc>
+
+
+Incomplete Python input. Let's execute follow source code, line by line:
+
+def foo(x):
+   """Comment"""
+   print x
+   if x > 10:
+       print "> 10"
+   # return x + 100
+   return x + 100
+
+<result>1</result> - incomplete interpreter input
+<result>0</result> - complete
+
+
+1::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=def+foo(x):')
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA[]]></output>
+  <result>1</result>
+  </doc>
+
+2::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=++++"""Comment"""')
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA[]]></output>
+  <result>1</result>
+  </doc>
+
+3::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=++++print+x')
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA[]]></output>
+  <result>1</result>
+  </doc>
+
+4::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=++++if+x+>+10%3A')
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA[]]></output>
+  <result>1</result>
+  </doc>
+
+5::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=++++++++print+">+10"')
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA[]]></output>
+  <result>1</result>
+  </doc>
+
+6::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=++++%23+return+x+%2B+100')
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA[]]></output>
+  <result>1</result>
+  </doc>
+
+7::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=++++return+x+%2B+100')
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA[]]></output>
+  <result>1</result>
+  </doc>
+
+
+At this momment, the input is accumulated in buffer. Let's inspect input
+buffer in REPL session::
+
+  >>> from ice.control.repl.interfaces import IDispatcher
+  >>> dispatcher = zope.component.getUtility(IDispatcher)
+  >>> session = dispatcher._sessions.values()[0]
+  >>> print session.input_buffer
+  def foo(x):
+      """Comment"""
+      print x
+      if x > 10:
+          print "> 10"
+      # return x + 100
+      return x + 100
+
+
+8 (complete input)::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=')
+
+  >>> session.input_buffer is ''
+  True
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA[''
+  ]]></output>
+  <result>0</result>
+  </doc>
+
+Let's exec that function::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',
+  ...              'source=foo(1)')
+
+  >>> session.input_buffer is ''
+  True
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA['1\n101\n'
+  ]]></output>
+  <result>0</result>
+  </doc>
+
+It's OK.

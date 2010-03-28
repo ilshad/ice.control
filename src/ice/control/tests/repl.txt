@@ -5,6 +5,9 @@ BlueBream REPL
 :doctest:
 :functional-zcml-layer: ftesting.zcml
 
+Here are some regression tests, temporary. Most of tests for REPL is in
+ftests.txt file.
+
   >>> root = getRootFolder()
 
   >>> import zope.component

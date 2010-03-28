@@ -56,11 +56,8 @@ class REPL:
     def interact(self):
         self.request.response.setHeader('Content-Type', 'text/xml')
         source = self.request.get('source')
-        if source:
-            repl = self.get_repl()
-            result, output = repl.run(source)
-        else:
-            result, output = False, ''
+        repl = self.get_repl()
+        result, output = repl.run(source)
         response_xml = u'<?xml version="1.0" ?>\n'
         response_xml += u'<doc>\n'
         response_xml += u'<output><![CDATA[%s]]></output>\n' % output

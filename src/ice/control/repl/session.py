@@ -38,9 +38,10 @@ class Session:
         self.run(code)
 
     def run(self, source):
-        result = self.interpreter.runsource(self.input_buffer + source)
-        if result:
-            self.input_buffer += source
+        self.input_buffer += source
+        result = self.interpreter.runsource(self.input_buffer)
+        if result: # code is incomplete
+            self.input_buffer += '\n'
         else:
             self.input_buffer = ''
         return result, self.interpreter.get_output()
