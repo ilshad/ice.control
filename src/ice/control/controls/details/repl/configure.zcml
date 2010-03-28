@@ -6,6 +6,7 @@
      for="*"
      name="getControlDetailsREPL"
      template="repl.pt"
+     class=".repl.REPL"
      permission="zope.ManageServices"
      menu="control_details"
      title="REPL"

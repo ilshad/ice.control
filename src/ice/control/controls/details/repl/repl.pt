@@ -1,4 +1,4 @@
-<script	src="http://127.0.0.1:8080/@@/ice.control.tree.js/repl.js"
+<script	tal:attributes="src string:${view/getSiteURL}/@@/ice.control.tree.js/repl.js"
 	type="text/javascript"></script>
 
 REPL

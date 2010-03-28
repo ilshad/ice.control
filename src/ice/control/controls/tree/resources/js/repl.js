@@ -5,6 +5,3 @@
 * Ajax based BlueBream prompt.
 *
 **/
-
-alert("Hello world");
-
