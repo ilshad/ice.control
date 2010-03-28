@@ -317,13 +317,89 @@ Registrations
 #  >>> browser.contents
 
 
-BleuBream REPL console in JavaScript
+BlueBream REPL console in JavaScript
 ++++++++++++++++++++++++++++++++++++
 
   >>> browser.open(root_url + '/@@getControlDetailsREPL')
   >>> browser.headers['status']
   '200 Ok'
 
-  >>> browser.open(root_url + '/@@getControlDetailsREPLInteract')
+Post to console not valid data::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract', 'source=foo')
   >>> browser.headers['status']
   '200 Ok'
+
+  >>> browser.headers['content-type']
+  'text/xml;charset=utf-8'
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA['Traceback (most recent call last):\n'
+  '  File "<input>", line 1, in <module>\n'
+  "NameError: name 'foo' is not defined\n"
+  ]]></output>
+  <result>0</result>
+  </doc>
+
+Post valid data.
+
+1::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',	
+  ...              'source=zope.interface.Interface')
+
+  >>> browser.headers['status']
+  '200 Ok'
+
+  >>> browser.headers['content-type']
+  'text/xml;charset=utf-8'
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA['Traceback (most recent call last):\n'
+  '  File "<input>", line 1, in <module>\n'
+  "NameError: name 'zope' is not defined\n"
+  ]]></output>
+  <result>0</result>
+  </doc>
+
+2::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',	
+  ...              'source=import zope.interface')
+
+  >>> browser.headers['status']
+  '200 Ok'
+
+  >>> browser.headers['content-type']
+  'text/xml;charset=utf-8'
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA[''
+  ]]></output>
+  <result>0</result>
+  </doc>
+
+3::
+
+  >>> browser.post(root_url + '/@@getControlDetailsREPLInteract',	
+  ...              'source=zope.interface.Interface')
+
+  >>> browser.headers['status']
+  '200 Ok'
+
+  >>> browser.headers['content-type']
+  'text/xml;charset=utf-8'
+
+  >>> print browser.contents
+  <?xml version="1.0" ?>
+  <doc>
+  <output><![CDATA['<InterfaceClass zope.interface.Interface>\n'
+  ]]></output>
+  <result>0</result>
+  </doc>

@@ -61,7 +61,9 @@ class REPL:
             result, output = repl.run(source)
         else:
             result, output = False, ''
-        response_xml = u'<?xml version="1.0" ?><doc>\n'
+        response_xml = u'<?xml version="1.0" ?>\n'
+        response_xml += u'<doc>\n'
         response_xml += u'<output><![CDATA[%s]]></output>\n' % output
         response_xml += u'<result>%s</result>\n' % int(result)
-        response_xml += u'</doc>'
+        response_xml += u'</doc>\n'
+        return response_xml
