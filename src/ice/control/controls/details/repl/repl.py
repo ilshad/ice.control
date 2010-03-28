@@ -38,11 +38,12 @@ class REPL:
     def get_repl(self):
         dispatcher = getUtility(IDispatcher)
         data = self.session_data()
-        try:
-            credentials = data['id'], data['password']
-        except KeyError:
-            credentials = dispatcher.set_session(self.context)
-            data['id'], data['password'] = credentials
+        credentials = data.get('id'), data.get('password')
+        session = dispatcher.get_session(*credentials)
+        if session:
+            return session
+        credentials = dispatcher.set_session(self.context)
+        data['id'], data['password'] = credentials
         return dispatcher.get_session(*credentials)
 
     def plugins_names(self):

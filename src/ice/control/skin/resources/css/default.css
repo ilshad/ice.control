@@ -132,17 +132,17 @@ table#wrapper {
 
 input[type=text], input[type=password], textarea, select {
     border: 1px solid #333;
-    padding:1px 2px;
-    cursor:pointer;
+    padding: 1px 2px;
+    cursor: pointer;
     background: #fff url(../img/input_background.gif) repeat-x top left;
     color: #333;
     font-weight: bold;
 }
 input[type=text]:focus, input[type=password]:focus, textarea:focus, select {
-    border-top:1px solid #777;
-    border-left:1px solid #777;
-    border-bottom:1px solid #bfbfbf;
-    border-right:1px solid #bfbfbf;
+    border-top: 1px solid #777;
+    border-left: 1px solid #777;
+    border-bottom: 1px solid #bfbfbf;
+    border-right: 1px solid #bfbfbf;
 }
 textarea {
     width: 99%;
@@ -150,9 +150,9 @@ textarea {
 }
 input[type=submit], input[type=reset], button {
     border: 1px solid #bfbfbf;
-    padding:1px 10px;
-    cursor:pointer;
-    margin:3px 0;
+    padding: 1px 10px;
+    cursor: pointer;
+    margin: 3px 0;
     background: #fff url(../img/input_background.gif) repeat-x center left;
     color: #333;
     font-weight: bold;

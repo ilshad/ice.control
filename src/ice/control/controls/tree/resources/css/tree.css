@@ -190,3 +190,12 @@
 #treeDetailsDock div.dock:hover {
     background-color: #7C5580;
 }
+
+/* REPL */
+#treeContainer div.details form.repl input.repl-input {
+    border: 1px solid #000000;
+    margin-left: 5px;
+}
+#treeContainer div.details form.repl input.repl-input:focus {
+
+}

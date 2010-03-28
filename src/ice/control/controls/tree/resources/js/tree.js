@@ -328,7 +328,8 @@ TreeNode.prototype.refresh = function () {
 TreeNode.prototype.createElement = function (type, attr_name, attr_val, inner) {
     var node = document.createElement(type);
     node.setAttribute(attr_name, attr_val);
-    if (inner) $(node).html(inner);
+    if (inner)
+	$(node).html(inner);
     return node;
 }
 
@@ -344,10 +345,10 @@ function loadtree (root_url, base_url) {
     })
 }
 
-/* Loading... */
-$(function() {
+// Loading...
+$(function () {
     $("#spinner").ajaxStart(
-	function() {$(this).show()}
+	function () {$(this).show()}
     ).ajaxStop(
-	function() {$(this).hide()});
+	function () {$(this).hide()});
 });
