@@ -147,3 +147,34 @@ You might like to add your custom views to "Details". See below.
 There are another `controls`, not only contents tree. See and
 learn UI. You might like to add your custom `controls` also, see
 below.
+
+
+
+REPL - summary
+==============
+
+Ajax based python shell and server for Emacs. Session is defined
+for user and context. So, each context has its own session. In other
+words, you can open, close, minimize number of 'Details' pseudo-windows,
+and each will contain its own REPL session.
+
+
+
+Ajax based REPL
++++++++++++++++
+
+Predefined variables:
+
+- `context` is current context in ZODB tree
+
+Key bindings:
+
+- `up` - up to history
+- `down` - down to history
+
+
+
+REPL server for Emacs
++++++++++++++++++++++
+
+not implemented yet

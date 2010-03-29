@@ -14,27 +14,31 @@ var REPLCurrent = 0;
 function loadHistory () {
     var context_url = $('form.repl div.hidden').text();
 
-//    $.ajax({type: "POST",
-//	    url: context_url + LOAD_HISTORY,
-//	    dataType: "xml"})
-//	    success: function (xml) {
-//		console.log(context_url);
-//		REPLHistory = [];
-//		$('line', xml).each(function (i) {
-//		    REPLHistory.push(this);
-//		});
-//	    }});
+    $.ajax({type: "POST",
+	    url: context_url + LOAD_HISTORY,
+	    dataType: "xml",
+	    success: function (xml) {
+		REPLHistory = [];
+		var doc = $('doc', xml);
+		$('line', $(doc)).each(function (i) {
+		    var txt = $(this).text();
+		    if (txt != "undefined" & txt != "undefine")
+			REPLHistory.push($(this).text());
+		});
+	    }});
 }
 
-/*function fromHistory (top) {
-    if (top) current += 1;
-    else REPLCurrent -= 1;	
-    if (REPLCurrent < 0)
-	REPLCurrent = len(REPLHistory) + REPLCurrent;
-    if (REPLCurrent > len(REPLHistory))
-	REPLCurrent = REPLCurrent - len(REPLHistory);
+function fromHistory (ch) {
+    REPLCurrent += ch;
+
+    if (REPLCurrent == -1)
+	REPLCurrent = REPLHistory.length - 1;
+
+    if (REPLCurrent == REPLHistory.length)
+	REPLCurrent = 0;
+
     return REPLHistory[REPLCurrent];
-}*/
+}
 
 function inputREPLKeydown (event) {
 
@@ -57,9 +61,7 @@ function inputREPLKeydown (event) {
 	case 13:
 	var data = $(form).serialize();
 	var display = $('.repl-output', form);
-	
 	showLine(event.target.value, display);
-	
 	$.ajax({type: "POST",
 		url: form.action,
 		dataType: "xml",
@@ -70,7 +72,7 @@ function inputREPLKeydown (event) {
 			showLine($(this).text(), display)
 		    });
 		}});
-	
+	loadHistory();
 	event.target.value = '';
 	break;
 
@@ -83,8 +85,20 @@ function inputREPLKeydown (event) {
 
 	/* up to history */
 	case 38:
-/*	console.log(fromHistory(true));*/
-	event.target.value = '222'; 
+	var new_value = fromHistory(1);
+	if (new_value)
+	    event.target.value = new_value;
+	else
+	    event.target.value = '';
+	break;
+
+	/* down to history */
+	case 40:
+	var new_value = fromHistory(-1);
+	if (new_value)
+	    event.target.value = new_value;
+	else
+	    event.target.value = '';
 	break;
     }
     return rn;

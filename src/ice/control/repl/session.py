@@ -29,7 +29,7 @@ class Session:
 
     input_buffer = ''
     history = []
-    h_max = 50
+    h_max = 10
 
     def __init__(self, context):
         self.interpreter = Interpreter(
@@ -37,13 +37,22 @@ class Session:
              "__doc__": None,
              "context": context})
 
-#        code = file(os.path.join(os.path.dirname(__file__), "bootstrap.py")).read()
-#        self.run(code)
+        code = file(os.path.join(os.path.dirname(__file__), "bootstrap.py")).read()
+        self.run(code)
+        self.history = ['']
+
+    def update_history(self, source):
+        try:
+            self.history.remove(source)
+        except ValueError: pass
+
+        if source:
+            self.history.append(source)
+        if len(self.history) > self.h_max:
+            self.history = self.history[:self.h_max]
 
     def run(self, source):
-        self.history.append(source)
-        if len(self.history) > self.h_max:
-            self.history = self.history[1:]
+        self.update_history(source)
         self.input_buffer += source
         result = self.interpreter.runsource(self.input_buffer)
         if result: # code is incomplete

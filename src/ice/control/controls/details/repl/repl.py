@@ -68,7 +68,7 @@ class REPL:
         repl = self.get_repl()
         result, output = repl.run(source)
 
-        output_xml = ['<line><![CDATA[%s]]></line>\n' %
+        output_xml = [u'<line><![CDATA[%s]]></line>\n' %
                       prepare_output(x) for x in output]
 
         response_xml = u'<?xml version="1.0" ?>\n'
@@ -79,9 +79,10 @@ class REPL:
         return response_xml
 
     def get_history(self):
+        self.request.response.setHeader('Content-Type', 'text/xml')
         response_xml = u'<?xml version="1.0" ?>\n'
-        response_xml += u'<input>\n'
+        response_xml += u'<doc>\n'
         for x in self.get_repl().get_history():
             response_xml += u'<line>%s</line>\n' % x
-        response_xml += u'</input>\n'
+        response_xml += u'</doc>\n'
         return response_xml
