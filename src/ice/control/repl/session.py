@@ -28,16 +28,22 @@ class Session:
     implements(ISession)
 
     input_buffer = ''
+    history = []
+    h_max = 50
 
     def __init__(self, context):
         self.interpreter = Interpreter(
             {"__name__": "__console__",
              "__doc__": None,
              "context": context})
-        code = file(os.path.join(os.path.dirname(__file__), "bootstrap.py")).read()
-        self.run(code)
+
+#        code = file(os.path.join(os.path.dirname(__file__), "bootstrap.py")).read()
+#        self.run(code)
 
     def run(self, source):
+        self.history.append(source)
+        if len(self.history) > self.h_max:
+            self.history = self.history[1:]
         self.input_buffer += source
         result = self.interpreter.runsource(self.input_buffer)
         if result: # code is incomplete
@@ -54,3 +60,6 @@ class Session:
 
     def apply_plugin(self, name, **kwargs):
         pass
+
+    def get_history(self):
+        return self.history

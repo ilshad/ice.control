@@ -20,4 +20,12 @@
      permission="zope.ManageServices"
      />
 
+  <page
+     for="*"
+     name="getControlDetailsREPLHistory"
+     class=".repl.REPL"
+     attribute="get_history"
+     permission="zope.ManageServices"
+     />
+
 </configure>
