@@ -6,7 +6,8 @@
 
   &gt;&gt;&gt;
 
-  <input type="text" name="source" class="repl-input" size="50"
+  <input type="text" name="source" class="repl-input"
+	 size="50" autocomplete="off"
 	 onkeyup="return inputREPLKeydown(event);"
 	 onkeydown="return inputREPLKeyup(event);" />
 
