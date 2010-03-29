@@ -11,13 +11,18 @@ function inputREPLKeydown (event) {
 
 	var form = $(event.target).parent('form.repl')[0];
 	var data = $(form).serialize();
+	var display = $('div.repl-output', form);
 
 	$.ajax({type: "POST",
 		url: form.action,
 		dataType: "xml",
 		data: data,
 		success: function (xml) {
-		    alert("Success!");
+		    var result = $('result', xml).text();
+		    var output = $('output', xml).text();
+		    var out = $('<div class="output">' + output + '</div>');
+
+		    display.append(out);
 		}});
     }
 }

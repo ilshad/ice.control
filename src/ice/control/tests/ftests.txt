@@ -336,10 +336,10 @@ Post to console not valid data::
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA['Traceback (most recent call last):\n'
-  '  File "<input>", line 1, in <module>\n'
-  "NameError: name 'foo' is not defined\n"
-  ]]></output>
+  <output><line><![CDATA[Traceback (most recent call last):]]></line>
+  <line><![CDATA[  File "<input>", line 1, in <module>]]></line>
+  <line><![CDATA[NameError: name 'foo' is not defined]]></line>
+  </output>
   <result>0</result>
   </doc>
 
@@ -359,10 +359,10 @@ Post valid data.
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA['Traceback (most recent call last):\n'
-  '  File "<input>", line 1, in <module>\n'
-  "NameError: name 'zope' is not defined\n"
-  ]]></output>
+  <output><line><![CDATA[Traceback (most recent call last):]]></line>
+  <line><![CDATA[  File "<input>", line 1, in <module>]]></line>
+  <line><![CDATA[NameError: name 'zope' is not defined]]></line>
+  </output>
   <result>0</result>
   </doc>
 
@@ -380,8 +380,8 @@ Post valid data.
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA[''
-  ]]></output>
+  <output><line><![CDATA[]]></line>
+  </output>
   <result>0</result>
   </doc>
 
@@ -399,8 +399,8 @@ Post valid data.
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA['<InterfaceClass zope.interface.Interface>\n'
-  ]]></output>
+  <output><line><![CDATA[<InterfaceClass zope.interface.Interface>]]></line>
+  </output>
   <result>0</result>
   </doc>
 
@@ -419,10 +419,10 @@ Post valid data.
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA['Traceback (most recent call last):\n'
-  '  File "<input>", line 1, in <module>\n'
-  'ImportError: No module named foo\n'
-  ]]></output>
+  <output><line><![CDATA[Traceback (most recent call last):]]></line>
+  <line><![CDATA[  File "<input>", line 1, in <module>]]></line>
+  <line><![CDATA[ImportError: No module named foo]]></line>
+  </output>
   <result>0</result>
   </doc>
 
@@ -434,11 +434,11 @@ IndentationError: unexpected indent::
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA['  File "<input>", line 1\n'
-  '    print 7\n'
-  '   ^\n'
-  'IndentationError: unexpected indent\n'
-  ]]></output>
+  <output><line><![CDATA[  File "<input>", line 1]]></line>
+  <line><![CDATA[    print 7]]></line>
+  <line><![CDATA[   ^]]></line>
+  <line><![CDATA[IndentationError: unexpected indent]]></line>
+  </output>
   <result>0</result>
   </doc>
 
@@ -465,7 +465,7 @@ def foo(x):
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA[]]></output>
+  <output></output>
   <result>1</result>
   </doc>
 
@@ -477,7 +477,7 @@ def foo(x):
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA[]]></output>
+  <output></output>
   <result>1</result>
   </doc>
 
@@ -489,7 +489,7 @@ def foo(x):
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA[]]></output>
+  <output></output>
   <result>1</result>
   </doc>
 
@@ -501,7 +501,7 @@ def foo(x):
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA[]]></output>
+  <output></output>
   <result>1</result>
   </doc>
 
@@ -513,7 +513,7 @@ def foo(x):
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA[]]></output>
+  <output></output>
   <result>1</result>
   </doc>
 
@@ -525,7 +525,7 @@ def foo(x):
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA[]]></output>
+  <output></output>
   <result>1</result>
   </doc>
 
@@ -537,7 +537,7 @@ def foo(x):
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA[]]></output>
+  <output></output>
   <result>1</result>
   </doc>
 
@@ -569,8 +569,8 @@ buffer in REPL session::
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA[''
-  ]]></output>
+  <output><line><![CDATA[]]></line>
+  </output>
   <result>0</result>
   </doc>
 
@@ -585,8 +585,9 @@ Let's exec that function::
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><![CDATA['1\n101\n'
-  ]]></output>
+  <output><line><![CDATA[1
+  101]]></line>
+  </output>
   <result>0</result>
   </doc>
 

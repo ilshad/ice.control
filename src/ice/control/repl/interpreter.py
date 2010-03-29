@@ -18,20 +18,17 @@
 #
 ##############################################################################
 
-import code, pprint, sys, StringIO
+import code, sys, StringIO
 
 class Interpreter(code.InteractiveInterpreter):
 
     output = []
 
     def write(self, data):
-        data = pprint.pformat(data)
-        if not data.endswith("\n"):
-            data += "\n"
-        self.output.append(data)
+        self.output.append(data.rstrip())
 
     def get_output(self):
-        r = "".join(self.output)
+        r = self.output[:]
         self.output = []
         return r
 

@@ -4,6 +4,8 @@
 <form method="post" tal:attributes="action string:${context/@@absolute_url}/@@getControlDetailsREPLInteract"
       class="repl" onsubmit="javascript: return false;" >
 
+  <div class="repl-output">&nbsp;</div>
+
   &gt;&gt;&gt;
 
   <input type="text" name="source" class="repl-input"
