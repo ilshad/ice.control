@@ -337,7 +337,7 @@ Post to console not valid data::
   <?xml version="1.0" ?>
   <doc>
   <output><line><![CDATA[Traceback (most recent call last):]]></line>
-  <line><![CDATA[  File "<input>", line 1, in <module>]]></line>
+  <line><![CDATA[  File "&lt;input&gt;", line 1, in &lt;module&gt;]]></line>
   <line><![CDATA[NameError: name 'foo' is not defined]]></line>
   </output>
   <result>0</result>
@@ -360,7 +360,7 @@ Post valid data.
   <?xml version="1.0" ?>
   <doc>
   <output><line><![CDATA[Traceback (most recent call last):]]></line>
-  <line><![CDATA[  File "<input>", line 1, in <module>]]></line>
+  <line><![CDATA[  File "&lt;input&gt;", line 1, in &lt;module&gt;]]></line>
   <line><![CDATA[NameError: name 'zope' is not defined]]></line>
   </output>
   <result>0</result>
@@ -399,7 +399,7 @@ Post valid data.
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><line><![CDATA[<InterfaceClass zope.interface.Interface>]]></line>
+  <output><line><![CDATA[&lt;InterfaceClass zope.interface.Interface&gt;]]></line>
   </output>
   <result>0</result>
   </doc>
@@ -420,7 +420,7 @@ Post valid data.
   <?xml version="1.0" ?>
   <doc>
   <output><line><![CDATA[Traceback (most recent call last):]]></line>
-  <line><![CDATA[  File "<input>", line 1, in <module>]]></line>
+  <line><![CDATA[  File "&lt;input&gt;", line 1, in &lt;module&gt;]]></line>
   <line><![CDATA[ImportError: No module named foo]]></line>
   </output>
   <result>0</result>
@@ -434,7 +434,7 @@ IndentationError: unexpected indent::
   >>> print browser.contents
   <?xml version="1.0" ?>
   <doc>
-  <output><line><![CDATA[  File "<input>", line 1]]></line>
+  <output><line><![CDATA[  File "&lt;input&gt;", line 1]]></line>
   <line><![CDATA[    print 7]]></line>
   <line><![CDATA[   ^]]></line>
   <line><![CDATA[IndentationError: unexpected indent]]></line>

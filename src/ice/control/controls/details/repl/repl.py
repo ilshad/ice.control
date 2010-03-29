@@ -25,6 +25,11 @@ from ice.control.repl.interfaces import IDispatcher
 
 PREFIX = 'ice.control.repl.'
 
+def prepare_output(source):
+    source = source.replace('<', '&lt;')
+    source = source.replace('>', '&gt;')
+    return source
+
 class REPL:
 
     def getSiteURL(self):
@@ -63,7 +68,7 @@ class REPL:
         repl = self.get_repl()
         result, output = repl.run(source)
 
-        output_xml = ['<line><![CDATA[%s]]></line>\n' % x for x in output]
+        output_xml = ['<line><![CDATA[%s]]></line>\n' % prepare_output(x) for x in output]
 
         response_xml = u'<?xml version="1.0" ?>\n'
         response_xml += u'<doc>\n'
