@@ -6,7 +6,7 @@
 *
 **/
 
-var LOAD_HISTORY =         '/@@getControlDetailsREPLHistory';
+var LOAD_HISTORY =         '@@getControlDetailsREPLHistory';
 var DOM_NODE_REPL =        'repl-wrapper';
 
 var gREPLContainer;
@@ -30,22 +30,21 @@ REPL.prototype.loadForm = function () {
     var output = $('<div class="repl-output">&nbsp;</div>');
    
     form.append(output);
-    form.append($('<span class="prompt">&gt;&gt;&gt;</span>'));
+    form.append($('<span class="prompt-input">&gt;&gt;&gt;</span>'));
 
     var input = $('<input type="text" name="source" class="repl-input" />');
-    input.attr('size', '70');
+    input.attr('size', '68');
     input.attr('autocomplete', 'off');
     var repl = this;
 
     input.bind("keydown", function (event) {
 	return repl.inputREPLKeydown(event.originalEvent)
     });
-
     form.append(input);
     $(this.parent).append(form);
 
-    this.formNode = form;
-    this.outputNode = output;
+    this.formNode = form[0];
+    this.outputNode = output[0];
     input.focus();
 }
 
@@ -78,37 +77,60 @@ REPL.prototype.fromHistory = function (ch) {
     return this.hist[this.current];
 }
 
-REPL.prototype.showLine = function (output) {
-    $('<div class="output"><span class="prompt">&gt;&gt;&gt;</span><pre>'
-      + output + '</pre>').appendTo(this.outputNode);
+REPL.prototype.showLine = function (output, prompt) {
+    switch (prompt) {
+	case 'complete':
+	var pr = '<span class="prompt" rel="complete">&gt;&gt;&gt;</span>';
+	break;
+
+	case 'incomplete':
+	var last = $('span.prompt', this.outputNode.lastChild);
+	if (last.length > 0) {
+	    if (last.attr('rel') == 'complete')
+		var pr = '<span class="prompt">&gt;&gt;&gt;</span>';
+	    else
+		var pr = '<span class="prompt">...</span>';
+	} else {
+	    var pr = '<span class="prompt">&gt;&gt;&gt;</span>';
+	}
+	break;
+
+	default:
+	var pr = '';
+    }
+
+    $('<div class="output">' + pr + '<pre>' + output + '</pre></div>'
+     ).appendTo(this.outputNode);
+
     this.outputNode.scrollTop = this.outputNode.scrollHeight;
 }
 
 REPL.prototype.inputREPLKeydown = function (event) {
-    var retrn = true;
+    var result = true;
     var action_url = this.action_url;
 
     //console.log(event);
 
     switch (event.keyCode) {
-
 	/**
 	 *
 	 * enter - send the line
 	 *
 	 **/
 	case 13:
+	var value = event.target.value;
 	var data = $(this.formNode).serialize();
 	var repl = this;
-	this.showLine(event.target.value, this.outputNode);
 	$.ajax({type: "POST",
 		url: action_url,
 		dataType: "xml",
 		data: data,
 		success: function (xml) {
-		    var result = $('result', xml).text();
+		    var result = $('result', xml).text() == '0' ?
+			'complete' : 'incomplete';
+		    repl.showLine(value, result);
 		    $('output > line', xml).each(function (i) {
-			repl.showLine($(this).text(), repl.outputNode)
+			repl.showLine($(this).text(), null)
 		    });
 		}});
 	this.loadHistory();
@@ -124,7 +146,7 @@ REPL.prototype.inputREPLKeydown = function (event) {
 	case 9:
 	event.target.value += '    ';
 	$(event.target).focus();
-	retrn = false;
+	result = false;
 	break;
 
 
@@ -151,7 +173,7 @@ REPL.prototype.inputREPLKeydown = function (event) {
 	else event.target.value = '';
 	break;
     }
-    return retrn;
+    return result;
 }
 
 // onload document

@@ -208,9 +208,14 @@
     display: inline;
     font-family: mono;
 }
-#treeContainer div.details form.repl .prompt {
+#treeContainer div.details form.repl .prompt,
+#treeContainer div.details form.repl .prompt-input {
     width: 30px;
+    margin-right: 10px;
     font-weight: normal;
     font-family: mono;
-    margin-right: 5px;
+    color: #999999;
+}
+#treeContainer div.details form.repl .prompt-input {
+    color: yellow; /*#B400FF;*/
 }
