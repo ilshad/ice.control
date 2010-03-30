@@ -216,6 +216,10 @@
     font-family: mono;
     color: #999999;
 }
+#treeContainer div.details form.repl .prompt {
+    margin-right: 10px;
+}
 #treeContainer div.details form.repl .prompt-input {
+    margin-right: 8px;
     color: yellow; /*#B400FF;*/
 }

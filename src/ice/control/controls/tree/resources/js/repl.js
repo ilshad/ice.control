@@ -17,7 +17,7 @@ function REPL (context_url, action_url, parent) {
     this.action_url =   action_url;
     this.parent =       parent;
     this.hist =         new Array();
-    this.current =      0;
+    this.current =      1;
     this.formNode =     null;
     this.outputNode =   null;
 }
@@ -38,7 +38,7 @@ REPL.prototype.loadForm = function () {
     var repl = this;
 
     input.bind("keydown", function (event) {
-	return repl.inputREPLKeydown(event.originalEvent)
+	return repl.process(event.originalEvent)
     });
     form.append(input);
     $(this.parent).append(form);
@@ -59,8 +59,6 @@ REPL.prototype.loadHistory = function () {
 		$('line', $(doc)).each(function (i) {
 		    var txt = $(this).text();
 		    repl.hist.push($(this).text());
-//		    if (txt != "undefined" & txt != "undefine")
-//			repl.history.push($(this).text());
 		});
 	    }});
 }
@@ -99,19 +97,23 @@ REPL.prototype.showLine = function (output, prompt) {
 	var pr = '';
     }
 
-    $('<div class="output">' + pr + '<pre>' + output + '</pre></div>'
-     ).appendTo(this.outputNode);
+    var line = $('<div class="output">' + pr + '</div>');
+    var pre = $('<pre>' + output + '</pre>');
 
-    this.outputNode.scrollTop = this.outputNode.scrollHeight;
+    $(line).append(pre).appendTo(this.outputNode);
+    this.highlight(pre);
+    this.outputNode.scrollTop = this.outputNode.scrollHeight + 10;
 }
 
-REPL.prototype.inputREPLKeydown = function (event) {
+REPL.prototype.process = function (event) {
     var result = true;
     var action_url = this.action_url;
 
     //console.log(event);
 
     switch (event.keyCode) {
+
+
 	/**
 	 *
 	 * enter - send the line
@@ -174,6 +176,10 @@ REPL.prototype.inputREPLKeydown = function (event) {
 	break;
     }
     return result;
+}
+
+REPL.prototype.highlight = function (code) {
+    //
 }
 
 // onload document
