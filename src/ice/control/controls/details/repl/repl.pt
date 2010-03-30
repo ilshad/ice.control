@@ -1,16 +1,6 @@
-<script	tal:attributes="src string:${view/getSiteURL}/@@/ice.control.tree.js/repl.js"
-	type="text/javascript"></script>
-
-<form method="post"  class="repl" onsubmit="javascript: return false;"
-      tal:attributes="action string:${context/@@absolute_url}/@@getControlDetailsREPLInteract">
-  <div class="hidden" style="display:none" tal:content="context/@@absolute_url" />
-
-  <div class="repl-output">&nbsp;</div>
-
-  <span class="prompt">&gt;&gt;&gt;</span>
-
-  <input type="text" name="source"
-	 class="repl-input" size="70" autocomplete="off"
-	 onkeydown="return inputREPLKeydown(event);" />
-
-</form>
+<div id="repl-wrapper"></div>
+<script type="text/javascript"
+	tal:define="context_url string:${context/@@absolute_url};
+		    action_url string:${context_url}/@@getControlDetailsREPLInteract"
+	tal:content="structure string:loadform('${context_url}/', '${action_url}/');">
+</script>

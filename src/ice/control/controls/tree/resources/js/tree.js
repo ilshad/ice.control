@@ -44,11 +44,11 @@ var gNodesList;
 // Majesty Omphalos
 function TreeNode (path, parent) {
     this.path =         path;
+    this.parentNode =   parent;
+    this.childNodes =   new Array();
     this.name =         null;
     this.title =        null;
-    this.parentNode =   parent;
     this.domNode =      null;
-    this.childNodes =   new Array();
     this.isExpanded =   null;
     this.dock =         null;
 }

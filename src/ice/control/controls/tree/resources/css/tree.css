@@ -195,6 +195,7 @@
 #treeContainer div.details form.repl input.repl-input {
     border: 1px solid #000000;
     margin-left: 0;
+    padding-left: 0;
     font-weight: normal;
     font-family: mono;
     background: #000 !important;
@@ -211,4 +212,5 @@
     width: 30px;
     font-weight: normal;
     font-family: mono;
+    margin-right: 5px;
 }

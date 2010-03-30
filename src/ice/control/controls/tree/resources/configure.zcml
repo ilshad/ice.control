@@ -9,7 +9,8 @@
 
   <zope:resourceLibrary name="ice.control.tree.js">
     <zope:directory source="js" include="jquery-1.4.2.min.js
-					 tree.js" />
+					 tree.js
+					 repl.js" />
   </zope:resourceLibrary>
 
   <!-- expand / collapse tree branch -->

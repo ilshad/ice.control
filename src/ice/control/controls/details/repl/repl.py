@@ -18,7 +18,7 @@
 #
 ##############################################################################
 
-from zope.component import getUtility, hooks
+from zope.component import getUtility
 from zope.session.interfaces import ISession
 from zope.traversing.browser.absoluteurl import absoluteURL
 from ice.control.repl.interfaces import IDispatcher
@@ -31,9 +31,6 @@ def prepare_output(source):
     return source
 
 class REPL:
-
-    def getSiteURL(self):
-        return absoluteURL(hooks.getSite(), self.request)
 
     def session_data(self):
         session = ISession(self.request)

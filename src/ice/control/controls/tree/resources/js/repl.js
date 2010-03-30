@@ -6,105 +6,158 @@
 *
 **/
 
-var LOAD_HISTORY = '/@@getControlDetailsREPLHistory';
+var LOAD_HISTORY =         '/@@getControlDetailsREPLHistory';
+var DOM_NODE_REPL =        'repl-wrapper';
 
-var REPLHistory = [];
-var REPLCurrent = 0;
+var gREPLContainer;
+var gREPL;
 
-function loadHistory () {
-    var context_url = $('form.repl div.hidden').text();
+function REPL (context_url, action_url, parent) {
+    this.context_url =  context_url;
+    this.action_url =   action_url;
+    this.parent =       parent;
+    this.hist =         new Array();
+    this.current =      0;
+    this.formNode =     null;
+    this.outputNode =   null;
+}
 
+REPL.prototype.loadForm = function () {
+    var form = $('<form method="post" class="repl"></form>');
+    form.submit(function () { return false });
+    form.attr('action', this.action_url);
+
+    var output = $('<div class="repl-output">&nbsp;</div>');
+   
+    form.append(output);
+    form.append($('<span class="prompt">&gt;&gt;&gt;</span>'));
+
+    var input = $('<input type="text" name="source" class="repl-input" />');
+    input.attr('size', '70');
+    input.attr('autocomplete', 'off');
+    var repl = this;
+
+    input.bind("keydown", function (event) {
+	return repl.inputREPLKeydown(event.originalEvent)
+    });
+
+    form.append(input);
+    $(this.parent).append(form);
+
+    this.formNode = form;
+    this.outputNode = output;
+    input.focus();
+}
+
+REPL.prototype.loadHistory = function () {
+    var repl = this;    
     $.ajax({type: "POST",
-	    url: context_url + LOAD_HISTORY,
+	    url: repl.context_url + LOAD_HISTORY,
 	    dataType: "xml",
 	    success: function (xml) {
-		REPLHistory = [];
+		repl.hist = [];
 		var doc = $('doc', xml);
 		$('line', $(doc)).each(function (i) {
 		    var txt = $(this).text();
-		    if (txt != "undefined" & txt != "undefine")
-			REPLHistory.push($(this).text());
+		    repl.hist.push($(this).text());
+//		    if (txt != "undefined" & txt != "undefine")
+//			repl.history.push($(this).text());
 		});
 	    }});
 }
 
-function fromHistory (ch) {
-    REPLCurrent += ch;
+REPL.prototype.fromHistory = function (ch) {
+    this.current += ch;
 
-    if (REPLCurrent == -1)
-	REPLCurrent = REPLHistory.length - 1;
+    if (this.current == -1)
+	this.current = this.hist.length - 1;
 
-    if (REPLCurrent == REPLHistory.length)
-	REPLCurrent = 0;
+    if (this.current == this.hist.length)
+	this.current = 0;
 
-    return REPLHistory[REPLCurrent];
+    return this.hist[this.current];
 }
 
-function inputREPLKeydown (event) {
+REPL.prototype.showLine = function (output) {
+    $('<div class="output"><span class="prompt">&gt;&gt;&gt;</span><pre>'
+      + output + '</pre>').appendTo(this.outputNode);
+    this.outputNode.scrollTop = this.outputNode.scrollHeight;
+}
 
-    var form = $(event.target).parent('form.repl')[0];
-    var context_url = $('div.hidden', form).text();
-
-    function showLine (output, place) {
-	$('<div class="output"><span class="prompt">&gt;&gt;&gt;</span><pre> '
-	  + output + '</pre>').appendTo(place);
-	place.scrollTop = place.scrollHeight;
-    }
-
-    var rn = true;
+REPL.prototype.inputREPLKeydown = function (event) {
+    var retrn = true;
+    var action_url = this.action_url;
 
     //console.log(event);
 
     switch (event.keyCode) {
 
-	/* enter - send the line */
+	/**
+	 *
+	 * enter - send the line
+	 *
+	 **/
 	case 13:
-	var data = $(form).serialize();
-	var display = $('.repl-output', form);
-	showLine(event.target.value, display);
+	var data = $(this.formNode).serialize();
+	var repl = this;
+	this.showLine(event.target.value, this.outputNode);
 	$.ajax({type: "POST",
-		url: form.action,
+		url: action_url,
 		dataType: "xml",
 		data: data,
 		success: function (xml) {
 		    var result = $('result', xml).text();
 		    $('output > line', xml).each(function (i) {
-			showLine($(this).text(), display)
+			repl.showLine($(this).text(), repl.outputNode)
 		    });
 		}});
-	loadHistory();
+	this.loadHistory();
 	event.target.value = '';
 	break;
 
-	/* tab indent */
+
+	/**
+	 *
+	 * tab indent
+	 *
+	 **/
 	case 9:
 	event.target.value += '    ';
 	$(event.target).focus();
-	rn = false;
+	retrn = false;
 	break;
 
-	/* up to history */
+
+	/**
+	 *
+	 * up to history
+	 *
+	 **/
 	case 38:
-	var new_value = fromHistory(1);
-	if (new_value)
-	    event.target.value = new_value;
-	else
-	    event.target.value = '';
+	var new_value = this.fromHistory(1);
+	if (new_value) event.target.value = new_value;
+	else event.target.value = '';
 	break;
 
-	/* down to history */
+
+	/**
+	 *
+	 * down to history
+	 *
+	 **/
 	case 40:
-	var new_value = fromHistory(-1);
-	if (new_value)
-	    event.target.value = new_value;
-	else
-	    event.target.value = '';
+	var new_value = this.fromHistory(-1);
+	if (new_value) event.target.value = new_value;
+	else event.target.value = '';
 	break;
     }
-    return rn;
+    return retrn;
 }
 
-$(function () {
-    $('form.repl input.repl-input').focus();
-    loadHistory();
-});
+// onload document
+function loadform (context_url, action_url) {
+    gREPLContainer = document.getElementById(DOM_NODE_REPL);
+    gREPL = new REPL(context_url, action_url, gREPLContainer);
+    gREPL.loadForm();
+    gREPL.loadHistory();
+}
