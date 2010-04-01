@@ -12,7 +12,7 @@ ftests.txt file.
 
   >>> import zope.component
   >>> from zope.interface.verify import verifyObject
-  >>> from ice.control.repl.interfaces import IDispatcher, ISession, IPlugin
+  >>> from ice.control.repl.interfaces import IDispatcher, ISession
 
 Get dispatcher::
 
@@ -42,6 +42,3 @@ Eval simple code::
 
   >>> session.run("x1(3,4)")
   (False, ['7'])
-
-  >>> session.commit()
-  (False, [''])

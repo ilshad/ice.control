@@ -48,9 +48,6 @@ class REPL:
         data['id'], data['password'] = credentials
         return dispatcher.get_session(*credentials)
 
-    def plugins_names(self):
-        return self.repl().get_plugins().keys()
-
     def clear(self):
         dispatcher = getUtility(IDispatcher)
         data = self.session_data()

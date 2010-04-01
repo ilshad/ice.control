@@ -21,8 +21,8 @@
 import os
 from zope.interface import implements
 from zope.component import getUtilitiesFor
-from interfaces import ISession, IPlugin
 from interpreter import Interpreter
+from interfaces import ISession
 
 class Session:
     implements(ISession)
@@ -61,15 +61,6 @@ class Session:
         else:
             self.input_buffer = ''
         return result, self.interpreter.get_output()
-
-    def commit(self):
-        return self.run("transaction.commit()")
-
-    def get_plugins(self):
-        return dict((k,v) for k,v in getUtilitiesFor(IPlugin))
-
-    def apply_plugin(self, name, **kwargs):
-        pass
 
     def get_history(self):
         return self.history

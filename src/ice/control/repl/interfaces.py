@@ -59,22 +59,6 @@ class ISession(zope.interface.Interface):
         False in other cases.
         """
 
-    def commit():
-        """Commit transaction.
-        """
-
-    def get_plugins():
-        """Get plugins.
-        """
-
-    def apply_plugin(name, **kwargs):
-        """Get plugin by name and apply to REPL. Use arguments, if need.
-        """
-
     def get_history():
         """Get console input history in list.
         """
-
-class IPlugin(zope.interface.Interface):
-    """REPL plug-in.
-    """
