@@ -2,7 +2,7 @@
 
 * Admin UI
 ** DONE Default Details view - I not know what must be here
-** TODO REPL: Interactive python shell in JavaScript
+** DONE REPL: Interactive python shell in JavaScript
 Interact to Python runtime and persistent objects.
 Available in develop mode.
 In "Details" pseudo-window. So, it has its own context.
