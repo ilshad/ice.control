@@ -167,6 +167,8 @@ Predefined variables:
 
 - `context` is current context in ZODB tree
 
+Prefefined imports - see module `ice.control.repl.bootstrap`
+
 Key bindings:
 
 - `up` - up to history

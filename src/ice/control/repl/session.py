@@ -37,8 +37,9 @@ class Session:
              "__doc__": None,
              "context": context})
 
-        code = file(os.path.join(os.path.dirname(__file__), "bootstrap.py")).read()
-        self.run(code)
+        bootstrap = file(os.path.join(os.path.dirname(__file__), "bootstrap.py"))
+        for line in bootstrap.readlines():
+            self.run(line)
         self.history = ['']
 
     def update_history(self, source):
