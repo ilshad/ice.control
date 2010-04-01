@@ -12,6 +12,7 @@ var DOM_NODE_REPL =        'repl-wrapper';
 var gREPLContainer;
 var gREPL;
 
+// Majesty Omphalos
 function REPL (context_url, action_url, parent) {
     this.context_url =  context_url;
     this.action_url =   action_url;
@@ -20,6 +21,7 @@ function REPL (context_url, action_url, parent) {
     this.current =      1;
     this.formNode =     null;
     this.outputNode =   null;
+    this.promptInput =  null;
 }
 
 REPL.prototype.loadForm = function () {
@@ -28,9 +30,10 @@ REPL.prototype.loadForm = function () {
     form.attr('action', this.action_url);
 
     var output = $('<div class="repl-output">&nbsp;</div>');
-   
+    var prompt_input = $('<span class="prompt-input">&gt;&gt;&gt;</span>');
+
     form.append(output);
-    form.append($('<span class="prompt-input">&gt;&gt;&gt;</span>'));
+    form.append(prompt_input);
 
     var input = $('<input type="text" name="source" class="repl-input" />');
     input.attr('size', '68');
@@ -45,6 +48,7 @@ REPL.prototype.loadForm = function () {
 
     this.formNode = form[0];
     this.outputNode = output[0];
+    this.promptInput = prompt_input[0];
     input.focus();
 }
 
@@ -79,10 +83,12 @@ REPL.prototype.showLine = function (output, prompt) {
     switch (prompt) {
 	case 'complete':
 	var pr = '<span class="prompt" rel="complete">&gt;&gt;&gt;</span>';
+	$(this.promptInput).html('&gt;&gt;&gt;');
 	break;
 
 	case 'incomplete':
 	var last = $('span.prompt', this.outputNode.lastChild);
+	$(this.promptInput).html('...');
 	if (last.length > 0) {
 	    if (last.attr('rel') == 'complete')
 		var pr = '<span class="prompt">&gt;&gt;&gt;</span>';
@@ -179,7 +185,7 @@ REPL.prototype.process = function (event) {
 }
 
 REPL.prototype.highlight = function (code) {
-    //
+    console.log(code.text());
 }
 
 // onload document
