@@ -14,10 +14,10 @@ var gREPL;
 
 var KEYWORDS = ['and', 'elif', 'is', 'global', 'as', 'in', 'if', 'from',
 		'raise', 'for','except','finally', 'print', 'import',
-		'pass', 'return', 'exec', 'else', 'break', 'not',
-		'with', 'class', 'assert', 'yield', 'try', 'while',
-		'continue', 'del', 'or', 'def', 'lambda', 'None',
-		'True', 'False', 'ValueError', 'KeyError']
+		'pass', 'return', 'exec', 'else', 'break', 'not', 'with',
+		'class', 'assert', 'yield', 'try', 'while', 'continue',
+		'del', 'or', 'def', 'lambda', 'None', 'True', 'False',
+		'ValueError', 'KeyError', 'IndexError']
 
 // Majesty Omphalos
 function REPL (context_url, action_url, parent) {
@@ -25,7 +25,7 @@ function REPL (context_url, action_url, parent) {
     this.action_url =   action_url;
     this.parent =       parent;
     this.hist =         new Array();
-    this.current =      1;
+    this.current =      0;
     this.formNode =     null;
     this.outputNode =   null;
     this.promptInput =  null;
@@ -65,7 +65,8 @@ REPL.prototype.loadHistory = function () {
 	    url: repl.context_url + LOAD_HISTORY,
 	    dataType: "xml",
 	    success: function (xml) {
-		repl.hist = [];
+		repl.hist = [''];
+		repl.current = 0;
 		var doc = $('doc', xml);
 		$('line', $(doc)).each(function (i) {
  		    var txt = $(this).text();
@@ -78,10 +79,10 @@ REPL.prototype.fromHistory = function (ch) {
     this.current += ch;
 
     if (this.current == -1)
-	this.current = this.hist.length - 1;
+	this.current = 0;
 
     if (this.current == this.hist.length)
-	this.current = 0;
+	this.current = this.hist.length - 1;
 
     return this.hist[this.current];
 }
@@ -192,7 +193,7 @@ REPL.prototype.process = function (event) {
 
 // simple syntax highlighter
 REPL.prototype.highlight = function (code) {
-    var result = ''+ code;
+    var result = '' + code;
 
     for (var kw in KEYWORDS) {
 

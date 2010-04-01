@@ -47,7 +47,7 @@ class Session:
         except ValueError: pass
 
         if source:
-            self.history.append(source)
+            self.history.insert(0, source)
         if len(self.history) > self.h_max:
             self.history = self.history[:self.h_max]
 
