@@ -12,6 +12,13 @@ var DOM_NODE_REPL =        'repl-wrapper';
 var gREPLContainer;
 var gREPL;
 
+var KEYWORDS = ['and', 'elif', 'is', 'global', 'as', 'in', 'if', 'from',
+		'raise', 'for','except','finally', 'print', 'import',
+		'pass', 'return', 'exec', 'else', 'break', 'not',
+		'with', 'class', 'assert', 'yield', 'try', 'while',
+		'continue', 'del', 'or', 'def', 'lambda', 'None',
+		'True', 'False', 'ValueError', 'KeyError']
+
 // Majesty Omphalos
 function REPL (context_url, action_url, parent) {
     this.context_url =  context_url;
@@ -61,7 +68,7 @@ REPL.prototype.loadHistory = function () {
 		repl.hist = [];
 		var doc = $('doc', xml);
 		$('line', $(doc)).each(function (i) {
-		    var txt = $(this).text();
+ 		    var txt = $(this).text();
 		    repl.hist.push($(this).text());
 		});
 	    }});
@@ -104,10 +111,9 @@ REPL.prototype.showLine = function (output, prompt) {
     }
 
     var line = $('<div class="output">' + pr + '</div>');
-    var pre = $('<pre>' + output + '</pre>');
+    var pre = $('<pre>' + this.highlight(output) + '</pre>');
 
     $(line).append(pre).appendTo(this.outputNode);
-    this.highlight(pre);
     this.outputNode.scrollTop = this.outputNode.scrollHeight + 10;
 }
 
@@ -184,8 +190,26 @@ REPL.prototype.process = function (event) {
     return result;
 }
 
+// simple syntax highlighter
 REPL.prototype.highlight = function (code) {
-    console.log(code.text());
+    var result = ''+ code;
+
+    for (var kw in KEYWORDS) {
+
+	eval("result = result.replace(/^" + KEYWORDS[kw] +
+	     " /, '<span class=keyword>" + KEYWORDS[kw] + "</span> ');");
+
+	eval("result = result.replace(/^" + KEYWORDS[kw] +
+	     ":/, '<span class=keyword>" + KEYWORDS[kw] + "</span>:');");
+
+	result = result.replace(' ' + KEYWORDS[kw] + ' ',
+	     ' <span class="keyword">' + KEYWORDS[kw] + '</span> ');
+
+	result = result.replace(' ' + KEYWORDS[kw] + ':',
+	     ' <span class="keyword">' + KEYWORDS[kw] + '</span>:');
+    }
+
+    return result;
 }
 
 // onload document

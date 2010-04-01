@@ -223,3 +223,8 @@
     margin-right: 8px;
     color: yellow; /*#B400FF;*/
 }
+
+/* syntax highlight */
+#treeContainer div.details form.repl .output pre .keyword {
+    color: #BA9E65; /*#D38C29;*/
+}
