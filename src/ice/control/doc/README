@@ -6,74 +6,52 @@ ice.control - System Administration and Site Management for BlueBream
    :local:
 
 
+Package overview
+================
+
+ice.control is package for management BlueBream applications. It is
+intended to be used by:
+
+- application developers: `developer kit` and `starter kit`.
+- system administrators: `site management`.
+
+Also, it can be used by site manager (`manage site`) but only if
+application developer likes this and he defines management forms as
+`controls` or `details` views.
+
+This package provides:
+
+- treeview ajax-based ZODB browser
+- tables for rename and remove objects
+- object introspector
+- ajax based python shell (REPL) to interact with application instance
+- configuration view to manage ZODB objects
+- edit metadata and other `details` ajax based views
+- pluggable mechanism for these views
+- optional simple skin
+- optional module with all needed zcml registrations
+
+Each facility is optional. Include needed modules using zcml, or
+include root configuration file to use entire functionality of the
+package.
+
+
 Getting started
 ===============
 
 If you have not yet a BlueBream project, just create it. For example,
 using paster template.
 
-Add `ice.control` package into dependencies of your project. There
-are 2 ways: using release package from PyPI server or using Git
-branch from GitHub repository.
-
-
-Install from PyPI server
-++++++++++++++++++++++++
-
-Install newest release package from PyPI server and resolve dependencies.
-For this, just add the package into setup.py::
+Add `ice.control` package into dependencies of your project. Install
+newest release package from PyPI server and resolve dependencies. For
+this, just add the package into setup.py::
 
    install_requires=[...
                     'ice.control'
                     ],
 
-
-Install from Git repository
-+++++++++++++++++++++++++++
-
-Download sources from GitHub repository using `mr.developer` buildout
-extention. You have much more control on the source code using this way.
-
-It requires number of steps first time, but simple to maintain in
-futher. First, add follow lines into buildout.cfg, section [buildout]::
-
-  [buildout]
-  ...
-
-  extensions = mr.developer
-  sources-dir = dev
-  sources = sources
-
-then run buildout to create `develop` script::
-
-  $ bin/buildout
-
-then add section [sources] into buildout.cfg::
-
-  [sources]
-  ice.control = git git://github.com/astoon/ice.control.git
-
-and run the script to download the branch::
-
-  $ bin/develop checkout ice.*
-
-You'll see now the package branch in /dev directory. Allow to run tests
-from ice.control package. For this, edit buildout.cfg again::
-
-  [test]
-  ...
-  eggs = sample
-         ice.control
-
-and add dependency for your project in setup.py::
-
-   install_requires=[...
-                    'ice.control'
-                    ],
-
-Finally, run buildout::
-
-  $ bin/buildout
+Or install from Git repository, see HACKME, section `Install from Git
+repository`.
 
 
 Include zcml files 
@@ -88,34 +66,14 @@ configure.zcml file, before of <include file="securitypolicy.zcml" />::
   <include package="ice.control" />
   <browser:defaultSkin name="control" />
 
-It means:
-- `control` system [ice.control.browser],
-- default control modules for this system (`controls`) [ice.control.controls.*],
-- z3c.pagelet based simple skin [ice.control.skin],
-- make this skin default,
-- use alternate layout template for controls [skin/default_layout.pt],
-- use repl to interact and debug the applications
-  [ice.control.repl, ice.control.controls.details.repl],
-- use hepler module to garantee that you have included all the needed
-registrations for the other packages [ice.control.zcml]
-
-Summary, it is not necessary to include entire ice.control
-package. Functionaliy of ice.control (i.e. `controls`, ice.control.browser
-and ice.control.controls) can be used from __any__ layout skin based
-on z3c.pagelet. Make sure you have special place for zc.resourcelibrary
-and place for sidebar in layout template. For this, see skin/configure.zcml,
-directive z3c:layout for context ice.control.browser.interfaces.IControl
-and learn it. I.e. you might use special layout template only for this
-context.
-
 Now run tests and run the server::
 
   $ bin/test
   $ bin/paster serve debug.ini
 
 
-Admin UI for BlueBream
-======================
+Admin UI for BlueBream - overview
+=================================
 
 There are virtual context, `++etc++control` for the `controls`.
 It is not real persistent object.
@@ -150,8 +108,8 @@ below.
 
 
 
-REPL - summary
-==============
+REPL overview
+=============
 
 Ajax based python shell and server for Emacs. Session is defined
 for user and context. So, each context has its own session. In other

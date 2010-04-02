@@ -1,0 +1,78 @@
+=======================
+ice.control development
+=======================
+
+.. contents::
+   :local:
+
+
+Modes&Praxises
+==============
+
+Fork author's branch on GitHub repository. Install it (see below) but
+use your own repository's URL.
+
+
+Install from Git repository
++++++++++++++++++++++++++++
+
+Download sources from GitHub repository using `mr.developer` buildout
+extention. You have much more control on the source code using this way.
+
+It requires number of steps first time, but simple to maintain in
+futher. First, add follow lines into buildout.cfg, section [buildout]::
+
+  [buildout]
+  ...
+
+  extensions = mr.developer
+  sources-dir = dev
+  sources = sources
+
+then run buildout to create `develop` script::
+
+  $ bin/buildout
+
+then add section [sources] into buildout.cfg::
+
+  [sources]
+  ice.control = git git://github.com/astoon/ice.control.git
+
+and run the script to download the branch::
+
+  $ bin/develop checkout ice.*
+
+You'll see now the package branch in /dev directory. Allow to run tests
+from ice.control package. For this, edit buildout.cfg again::
+
+  [test]
+  ...
+  eggs = sample
+         ice.control
+
+and add dependency for your project in setup.py::
+
+   install_requires=[...
+                    'ice.control'
+                    ],
+
+Finally, run buildout::
+
+  $ bin/buildout
+
+
+Issue Tracker
++++++++++++++
+
+If you work just with releases, not fork, use:
+
+https://bugs.launchpad.net/ice.control
+
+Otherwise, use GitHub issue tracker.
+
+
+
+Versions, release tags, branches
+++++++++++++++++++++++++++++++++
+
+**
