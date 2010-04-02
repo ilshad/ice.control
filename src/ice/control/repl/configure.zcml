@@ -12,4 +12,6 @@
     <allow interface=".interfaces.IDispatcher" />
   </class>
 
+  <include package=".browser" />
+
 </configure>

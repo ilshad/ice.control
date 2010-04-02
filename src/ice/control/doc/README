@@ -40,31 +40,22 @@ IMPORTANT NOTE: use Mozilla Firefox.
 Getting started
 ===============
 
-If you have not yet a BlueBream project, just create it. For example,
-using paster template.
-
-Add `ice.control` package into dependencies of your project. Install
-newest release package from PyPI server and resolve dependencies. For
-this, just add the package into setup.py::
-
-   install_requires=[...
-                    'ice.control'
-                    ],
-
-Or install from Git repository, see HACKME, section `Install from Git
-repository`.
+Add `ice.control` dependency into main package of your BlueBream
+application. If you like to install the package from Git repository,
+see HACKME, section ``Install from Git repository``.
 
 
 Include zcml files 
 ++++++++++++++++++
 
-There are number of options to use ice.control. If you like to use
-entire functionality of the package, add these lines into your
-configure.zcml file, before of <include file="securitypolicy.zcml" />::
+There are number of options to use ice.control. You have define this
+using include certain modules in zcml. If you like to use entire
+functionality of the package, add these lines into your configure.zcml
+file, before of <include file="securitypolicy.zcml" />::
 
   <include package="ice.control.zcml" />
-  <include package="ice.control.repl" />
   <include package="ice.control" />
+  <include package="ice.control.repl" />
   <browser:defaultSkin name="control" />
 
 Now run tests and run the server::
@@ -89,7 +80,7 @@ into "dock". It contains number of sub-views, depend on context
 and depend on your custom registrations:
 
 "Contents" - for containers, allow to rename and remove contained
-items. Uses pagination ("batching") when lenght of the listing is
+items. Uses pagination ("batching") when length of the listing is
 >10.
 
 "Metadata" - form for edit Dublin core Metadata.
