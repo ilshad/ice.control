@@ -25,6 +25,12 @@
      template="tree.pt"
      />
 
+  <browser:defaultView
+     for="ice.control.browser.interfaces.IControl"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     name="tree.html"
+     />
+
   <browser:page
      name="getControlTreeNode.xml"
      class=".ajax.Ajax"
