@@ -5,6 +5,7 @@
   <utility
      factory=".dispatcher.Dispatcher"
      provides=".interfaces.IDispatcher"
+     permission="zope.ManageServices"
      />
 
   <class class=".dispatcher.Dispatcher">

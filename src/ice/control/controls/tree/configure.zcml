@@ -13,7 +13,7 @@
      name="tree.html"
      class=".tree.Pagelet"
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
-     permission="zope.ManageContent"
+     permission="zope.ManageServices"
      provides="ice.control.browser.interfaces.IControlPagelet"
      title="Tree"
      weight="10"
@@ -29,14 +29,14 @@
      name="getControlTreeNode.xml"
      class=".ajax.Ajax"
      attribute="getControlTreeNode"
-     permission="zope.ManageContent"
+     permission="zope.ManageServices"
      />
 
   <browser:page
      name="getControlTreeChildren.xml"
      class=".ajax.Ajax"
      attribute="getControlTreeChildren"
-     permission="zope.ManageContent"
+     permission="zope.ManageServices"
      />
 
   <!--
@@ -52,7 +52,7 @@
      for="*"
      name="getControlDetailsMenu"
      template="menu.pt"
-     permission="zope.ManageContent"
+     permission="zope.ManageServices"
      />
 
   <include package=".resources" />

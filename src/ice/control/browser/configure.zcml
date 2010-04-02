@@ -6,7 +6,7 @@
 
   <class class=".control.Control">
     <require
-       permission="zope.ManageApplication"
+       permission="zope.ManageServices"
        interface=".interfaces.IControl"
        />
   </class>
@@ -15,6 +15,7 @@
      component=".control.control"
      provides="zope.traversing.interfaces.IEtcNamespace"
      name="control"
+     permission="zope.ManageServices"
      />
 
   <adapter
@@ -23,6 +24,7 @@
 	  z3c.layer.pagelet.IPageletBrowserLayer
 	  z3c.pagelet.interfaces.IPagelet"
      factory=".menu.Menu"
+     permission="zope.ManageServices"
      />
 
   <z3c:template

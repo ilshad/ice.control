@@ -19,14 +19,15 @@ So, search results can show few items.
 * DONE Local registry - inspect and heal
 * TODO Lop too long branch in contents tree and add action "continue..."
 * TODO right scrolling the REPl
-* TODO REPL on port :: able to run alternate shell with repl on some port
+* TODO REPL at port :: able to run alternate shell with repl on some port
 It seems is should be based on the same module , like
 JavaScript interactive shell.
 * TODO Emacs mode :: Convenient analog of SLIME to use with REPL on port
 * TODO "Add" functionality
 Folder, applications... ?
 pluggable, of course
-
+Need?
+We use configuration plugin for context `zope.site.interfaces.IRootFolder'
 * TODO security definitions, permissions
 * TODO set zcml conditions
 * TODO login.html page in this skin

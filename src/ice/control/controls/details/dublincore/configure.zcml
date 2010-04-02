@@ -7,7 +7,7 @@
      name="getControlDetailsDublinCore"
      class=".dublincore.EditDublinCore"
      template="dublincore.pt"
-     permission="zope.ManageContent"
+     permission="zope.ManageServices"
      menu="control_details"
      title="Metadata"
      />

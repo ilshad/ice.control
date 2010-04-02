@@ -6,7 +6,7 @@
      name="index.html"
      for="zope.site.interfaces.IRootFolder"
      class=".frontpage.Pagelet"
-     permission="zope.Public"
+     permission="zope.View"
      />
   
   <template

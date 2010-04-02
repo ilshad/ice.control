@@ -7,7 +7,7 @@
      for="zope.container.interfaces.IContainer"
      name="getControlDetailsContents"
      class=".contents.Contents"
-     permission="zope.ManageContent"
+     permission="zope.ManageServices"
      menu="control_details"
      title="Contents"
      />
@@ -23,6 +23,7 @@
           .contents.Contents
           z3c.contents.column.RenameColumn"
      provides="z3c.table.interfaces.IColumnHeader"
+     permission="zope.ManageServices"
      />
 
   <adapter
@@ -32,7 +33,8 @@
           .contents.Contents
           z3c.table.column.CreatedColumn"
      provides="z3c.table.interfaces.IColumnHeader"
-      />
+     permission="zope.ManageServices"
+     />
 
   <adapter
      factory="z3c.table.header.ColumnHeader"
@@ -41,6 +43,7 @@
           .contents.Contents
           z3c.table.column.ModifiedColumn"
      provides="z3c.table.interfaces.IColumnHeader"
+     permission="zope.ManageServices"
      />
 
   <!--
@@ -54,6 +57,7 @@
           zope.interface.Interface
           .contents.Contents"
      provides="z3c.table.interfaces.IColumn"
+     permission="zope.ManageServices"
      />
 
 </configure>

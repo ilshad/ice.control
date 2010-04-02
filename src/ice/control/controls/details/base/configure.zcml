@@ -7,7 +7,7 @@
      name="getControlDetailsDefaultInfo"
      class=".base.DetailsInfoBase"
      template="base.pt"
-     permission="zope.ManageContent"
+     permission="zope.ManageServices"
      menu="control_details"
      title="Base Info"
      />
