@@ -18,3 +18,6 @@ List of known bugs in current release (0.1.0)
    details menu will be clicked. So, when details pseudo-window
    are loaded, first view (base info) should be without forms or links.
    Need fix JS.
+
+** Need better Google Chrome web browser support. Right now UI
+   is not ideal in this browser. Use only Mozilla Firefox.

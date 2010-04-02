@@ -34,6 +34,8 @@ Each facility is optional. Include needed modules using zcml, or
 include root configuration file to use entire functionality of the
 package.
 
+IMPORTANT NOTE: use Mozilla Firefox.
+
 
 Getting started
 ===============
