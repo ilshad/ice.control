@@ -1,0 +1,11 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <configure
+     xmlns:zcml="http://namespaces.zope.org/zcml"
+     zcml:condition="have devmode">
+    <include package="zope.app.apidoc" file="meta.zcml"/>
+    <include package="zope.app.apidoc" />
+    <!--adapter factory="zope.authentication.logout.LogoutSupported" /-->
+  </configure>
+
+</configure>

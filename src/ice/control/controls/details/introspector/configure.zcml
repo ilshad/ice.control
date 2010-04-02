@@ -2,14 +2,19 @@
    xmlns="http://namespaces.zope.org/browser"
    i18n_domain="ice.control">
 
-  <page
-     for="*"
-     name="getControlDetailsIntrospector"
-     class="zope.app.apidoc.codemodule.browser.introspector.Introspector"
-     template="introspector.pt"
-     permission="zope.ManageServices"
-     menu="control_details"
-     title="Introspector"
-     />
+  <configure
+     xmlns:zcml="http://namespaces.zope.org/zcml"
+     zcml:condition="have devmode">
+    
+    <page
+       for="*"
+       name="getControlDetailsIntrospector"
+       class="zope.app.apidoc.codemodule.browser.introspector.Introspector"
+       template="introspector.pt"
+       permission="zope.ManageServices"
+       menu="control_details"
+       title="Introspector"
+       />
 
+  </configure>
 </configure>

@@ -28,6 +28,7 @@
      />
 
   <include package=".frontpage" />
+  <include package=".authentication" />
   <include package=".resources" />
 
 </configure>

@@ -16,17 +16,30 @@
 #
 #  Project homepage: <http://launchpad.net/ice.control>
 #
+#  This pagelet is modified browser view based on code of zope.*,
+#  Copyright (C) Zope Corporation and Contributors.
+#
 ##############################################################################
 
-from urllib import quote
+from zc.resourcelibrary import need
+from zope import interface, component
 from zope.authentication.interfaces import IUnauthenticatedPrincipal
-from zope.traversing.browser.absoluteurl import absoluteURL
-from zope.security import checkPermission
+from zope.authentication.interfaces import IAuthentication, ILogout
+from zope.app.pagetemplate import ViewPageTemplateFile
 
-class Pagelet:
-    
-    def update(self):
-        self.unauth = IUnauthenticatedPrincipal.providedBy(self.request.principal)
-        self.context_url = absoluteURL(self.context, self.request)
-        self.request_url = quote(self.request.getURL())
-        self.is_admin = checkPermission('zope.ManageServices', self.context)
+class Pagelet(object):
+    interface.implements(ILogout)
+
+    confirmation = ViewPageTemplateFile('logout.pt')
+    redirect = ViewPageTemplateFile('redirect.pt')
+
+    def render(self):
+        nextURL = self.request.get('nextURL')
+        if not IUnauthenticatedPrincipal(self.request.principal, False):
+            auth = component.getUtility(IAuthentication)
+            ILogout(auth).logout(self.request)
+            if nextURL:
+                return self.redirect()
+        if nextURL is None:
+            return self.confirmation()
+        return self.request.response.redirect(nextURL)

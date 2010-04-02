@@ -39,7 +39,6 @@
   <include package="zope.app.publisher.browser" />
   <include package="zope.app.renderer" />
   <include package="zope.app.preference" />
-  <include package="zope.app.apidoc" />
   <include package="zope.app.schema" />
   <include package="zope.app.component.browser" />
   <include package="zope.app.principalannotation" />
@@ -55,5 +54,7 @@
   <include package="z3c.table" />
   <include package="z3c.contents" />
   <include package="z3c.configurator" />
+
+  <include file="devmode.zcml"/>
 
 </configure>
