@@ -191,7 +191,7 @@ REPL.prototype.process = function (event) {
     return result;
 }
 
-// simple syntax highlighter
+// very stupid syntax highlighter
 REPL.prototype.highlight = function (code) {
     var result = '' + code;
 
@@ -220,4 +220,3 @@ function loadform (context_url, action_url) {
     gREPL.loadForm();
     gREPL.loadHistory();
 }
-

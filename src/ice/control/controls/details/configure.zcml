@@ -8,6 +8,5 @@
   <include package=".dublincore" />
   <include package=".introspector" />
   <include package=".localregistry" />
-  <!--include package=".repl" /-->
 
 </configure>
