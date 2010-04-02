@@ -1,5 +1,3 @@
-<tal:block replace="resource_library:ice.control.tree.css" />
-<tal:block replace="resource_library:ice.control.tree.js" />
 <div id="treeContainer">
   Loading ...
 </div>

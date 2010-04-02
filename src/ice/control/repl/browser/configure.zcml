@@ -1,6 +1,16 @@
 <configure
    xmlns="http://namespaces.zope.org/browser"
+   xmlns:zope="http://namespaces.zope.org/zope"
    i18n_domain="ice.control">
+
+  <zope:resourceLibrary name="ice.control.repl.css">
+    <zope:directory source="css" include="repl.css" />
+  </zope:resourceLibrary>
+
+  <zope:resourceLibrary name="ice.control.repl.js"
+			require="ice.control.tree.js">
+    <zope:directory source="js" include="repl.js" />
+  </zope:resourceLibrary>
 
   <page
      for="*"

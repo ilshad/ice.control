@@ -18,15 +18,11 @@
 #
 ##############################################################################
 
-from urllib import quote
-from zope.authentication.interfaces import IUnauthenticatedPrincipal
-from zope.traversing.browser.absoluteurl import absoluteURL
 from zope.security import checkPermission
+from zope.authentication.interfaces import IUnauthenticatedPrincipal
 
 class Pagelet:
     
     def update(self):
         self.unauth = IUnauthenticatedPrincipal.providedBy(self.request.principal)
-        self.context_url = absoluteURL(self.context, self.request)
-        self.request_url = quote(self.request.getURL())
         self.is_admin = checkPermission('zope.ManageServices', self.context)

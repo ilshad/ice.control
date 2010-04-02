@@ -1,0 +1,41 @@
+/**
+*
+* Copyright (C) 2010 Ilshad R. Khabibullin <astoon.net at gmail.com>
+*
+**/
+#treeContainer div.details form.repl input.repl-input {
+    border: 1px solid #000000;
+    margin-left: 0;
+    padding-left: 0;
+    font-weight: normal;
+    font-family: mono;
+    background: #000 !important;
+    color: yellow;
+}
+#treeContainer div.details form.repl input.repl-input:hover {
+    background: #22003B !important;
+}
+#treeContainer div.details form.repl div.repl-output .output pre {
+    display: inline;
+    font-family: mono;
+}
+#treeContainer div.details form.repl .prompt,
+#treeContainer div.details form.repl .prompt-input {
+    width: 30px;
+    margin-right: 10px;
+    font-weight: normal;
+    font-family: mono;
+    color: #999999;
+}
+#treeContainer div.details form.repl .prompt {
+    margin-right: 10px;
+}
+#treeContainer div.details form.repl .prompt-input {
+    margin-right: 8px;
+    color: yellow; /*#B400FF;*/
+}
+
+/* syntax highlight */
+#treeContainer div.details form.repl .output pre .keyword {
+    color: #BA9E65; /*#D38C29;*/
+}

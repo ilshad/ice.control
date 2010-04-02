@@ -1,11 +1,16 @@
 <h3 tal:condition="view/unauth">
-  <a tal:attributes="href string:${view/context_url}/login.html?nextURL=${view/request_url}">Login</a>
+  <a tal:define="encoded python:modules['urllib'].quote(request.getURL())"
+     tal:attributes="href string: login.html?nextURL=${encoded}">
+    Login
+  </a>
 </h3>
-
+  
 <!--h3 tal:condition="not: view/unauth">
-  <a tal:attributes="href string:${view/context_url}/logout.html?nextURL=${view/request_url}">Logout</a>
+  <a tal:define="encoded python:modules['urllib'].quote(request.getURL())"
+     tal:attributes="href string: logout.html?nextURL=${encoded}">
+    Logout</a>
 </h3-->
 
 <h3 tal:condition="view/is_admin">
-  <a tal:attributes="href string:${view/context_url}/++etc++control/tree.html">System control</a>
+  <a tal:attributes="href string: ++etc++control/tree.html">System control</a>
 </h3>

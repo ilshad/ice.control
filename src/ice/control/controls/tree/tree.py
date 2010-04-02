@@ -18,4 +18,16 @@
 #
 ##############################################################################
 
-class Pagelet: pass
+from zc.resourcelibrary import need
+from zope.component import queryUtility
+from ice.control.repl.interfaces import IDispatcher
+
+class Pagelet:
+
+    def update(self):
+        need("ice.control.tree.css")
+        need("ice.control.tree.js")
+
+        if queryUtility(IDispatcher) is not None:
+            need("ice.control.repl.css")
+            need("ice.control.repl.js")
