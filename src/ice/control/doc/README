@@ -9,10 +9,9 @@ ice.control - System Administration and Site Management for BlueBream
 Package overview
 ================
 
-ice.control is package for management BlueBream applications. It is
-intended to be used by:
+ice.control is package for:
 
-- application developers: `developer kit` and `starter kit`.
+- BlueBream application developers: `developer kit` and `starter kit`.
 - system administrators: `site management`.
 
 Also, it can be used by site manager (`manage site`) but only if
@@ -24,7 +23,7 @@ This package provides:
 - treeview ajax-based ZODB browser
 - tables for rename and remove objects
 - object introspector
-- ajax based python shell (REPL) to interact with application instance
+- ajax based python shell (REPL) to debug and interact the application
 - configuration view to manage ZODB objects
 - edit metadata and other `details` ajax based views
 - pluggable mechanism for these views
