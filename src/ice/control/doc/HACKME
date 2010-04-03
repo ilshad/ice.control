@@ -10,14 +10,14 @@ Modes&Praxises
 ==============
 
 Fork author's branch on GitHub repository. Install it (see below) but
-use your own repository's URL.
+use your own repository's private URL.
 
 
 Install from Git repository
 +++++++++++++++++++++++++++
 
 Download sources from GitHub repository using `mr.developer` buildout
-extention. You have much more control on the source code using this way.
+extension. You have much more control on the source code using this way.
 
 It requires number of steps first time, but simple to maintain in
 futher. First, add follow lines into buildout.cfg, section [buildout]::
@@ -61,15 +61,17 @@ Finally, run buildout::
   $ bin/buildout
 
 
-Issue Tracker
-+++++++++++++
-
-If you work just with releases, not fork, use:
+Issues, Blueprints
+++++++++++++++++++
 
 https://bugs.launchpad.net/ice.control
+https://blueprints.launchpad.net/ice.control
+https://answers.launchpad.net/ice.control
 
-Otherwise, use GitHub issue tracker.
+http://github.com/astoon/ice.control/issues
 
+Goole Wave ID: googlewave.com!w+r7PkMjhxA
+(https://wave.google.com/wave/?#restored:wave:googlewave.com!w%252Br7PkMjhxA)
 
 
 Versions, release tags, branches

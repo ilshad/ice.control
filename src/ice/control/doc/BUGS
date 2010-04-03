@@ -1,9 +1,6 @@
-Bug reports to: https://bugs.launchpad.net/ice.control.
+Bug reports: https://bugs.launchpad.net/ice.control.
 
-Please write tests for bugs and/or for patches.
-
-Or use GitHub social coding system, fork author's branch and make proposal
-to merge.
+Or use GitHub social coding system, fork and make proposal to merge.
 
 
 List of known bugs in current release (0.1.0)
@@ -14,9 +11,11 @@ List of known bugs in current release (0.1.0)
    Need fix JS.
 
 ** JavaScript not handles click-event on details view until
-   details menu will be clicked. So, when details pseudo-window
-   are loaded, first view (base info) should be without forms or links.
+   details menu clicked. So, when load details pseudo-window, first
+   view (`Base Info`) should not contaain any links or forms.
    Need fix JS.
 
 ** Need better Google Chrome web browser support. Right now UI
    is not ideal in this browser. Use only Mozilla Firefox.
+
+** Auto scrolling for REPL not works.
