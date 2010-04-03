@@ -30,12 +30,12 @@ def setHeaders(response):
 
 class Ajax:
 
-    def getNode(self):
-        setHeaders(self.request.response)
-        return getMultiAdapter((self.context, self.request), IXML)
-
     def getControlTreeNode(self):
-        return self.getNode().node_xmldoc()
+        setHeaders(self.request.response)
+        node = getMultiAdapter((self.context, self.request), IXML)
+        return node.node_xmldoc()
 
     def getControlTreeChildren(self):
-        return self.getNode().children_xmldoc()
+        setHeaders(self.request.response)
+        node = getMultiAdapter((self.context, self.request), IXML)
+        return node.children_xmldoc()
