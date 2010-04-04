@@ -49,14 +49,14 @@ Include zcml files
 ++++++++++++++++++
 
 There are number of options to use ice.control. You have define this
-using include certain modules in zcml. If you like to use entire
+including certain modules in zcml. If you like to use entire
 functionality of the package, add these lines into your configure.zcml
-file, before of <include file="securitypolicy.zcml" />::
+file, before of `include file="securitypolicy.zcml"`::
 
-  <include package="ice.control.zcml" />
-  <include package="ice.control" />
-  <include package="ice.control.repl" />
-  <browser:defaultSkin name="control" />
+  `include package="ice.control.zcml"`
+  `include package="ice.control"`
+  `include package="ice.control.repl"`
+  `browser:defaultSkin name="control"`
 
 Now run tests and run the server::
 

@@ -12,6 +12,8 @@ setup(name='ice.control',
       url='http://launchpad.net/ice.control',
       description='System Administration and Site Management for BlueBream',
       long_description = (read('src/ice/control/doc/README')) +\
+          '\n\n' + read('src/ice/control/doc/HACKME'),
+          '\n\n' + read('src/ice/control/doc/BUGS'),
           '\n\n' + read('src/ice/control/doc/CHANGES'),
       license='GPL v.3',
       classifiers=[],
