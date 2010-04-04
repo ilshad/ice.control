@@ -71,30 +71,30 @@ There are virtual context, `++etc++control` for the `controls`.
 It is not real persistent object. Controls can be used within any
 z3c.pagelet-based views on this context.
 
-In "Tree" `control` are contents' tree which show database
+- In "Tree" `control` are contents' tree which show database
 structure. Open / close tree branches by clicking on triangles.
 Click links (names or icons) to open "Details" ajax pseudo-window.
 See menu at bottom of this pseudo-window.
 
-This "Details" ajax psudo-window might be closed or minimized
+- This "Details" ajax psudo-window might be closed or minimized
 into "dock". It contains number of sub-views, depend on context
 and depend on your custom registrations:
 
-"Contents" - for containers: rename and remove contained items.
+- "Contents" - for containers: rename and remove contained items.
 There are pagination ("batching") if length of the list is >10.
 
-"Metadata" - form for edit Dublin core Metadata.
+- "Metadata" - form for edit Dublin core Metadata.
 
-"Introspector" - inspect persistent objects, looking apidoc.
+- "Introspector" - inspect persistent objects, looking apidoc.
 
-"REPL" - interactive Python shell to inspect and edit persistent
+- "REPL" - interactive Python shell to inspect and edit persistent
 objects, interact with this instance.
 
-"Configurator" - general way to manage ZODB.
+- "Configurator" - general way to manage ZODB.
 
-You might like to add your custom views to "Details". See below.
+- You might like to add your custom views to "Details". See below.
 
-There are another `controls`, not only contents tree. See and
+- There are another `controls`, not only contents tree. See and
 learn UI. You might like to add your custom `controls` also, see
 below.
 
