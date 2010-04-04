@@ -1,4 +1,3 @@
-=======================
 ice.control development
 =======================
 
@@ -7,14 +6,14 @@ ice.control development
 
 
 Modes&Praxises
-==============
+++++++++++++++
 
 Fork author's branch on GitHub repository. Install it (see below) but
 use your own repository's private URL.
 
 
 Install from Git repository
-+++++++++++++++++++++++++++
+---------------------------
 
 Download sources from GitHub repository using `mr.developer` buildout
 extension. You have much more control on the source code using this way.
@@ -62,7 +61,7 @@ Finally, run buildout::
 
 
 Issues, Blueprints
-++++++++++++++++++
+------------------
 
 https://bugs.launchpad.net/ice.control
 https://blueprints.launchpad.net/ice.control
@@ -75,6 +74,6 @@ Goole Wave ID: googlewave.com!w+r7PkMjhxA
 
 
 Versions, release tags, branches
-++++++++++++++++++++++++++++++++
+--------------------------------
 
 **
