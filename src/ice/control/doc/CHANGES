@@ -1,12 +1,14 @@
 Releases
 ========
 
-0.1.2 (unreleased)
+0.1.2 (2010-02-12)
 ------------------
 
-Fixed apidoc window features.
+100% tests or something like.
 Added zcml condition for details: metadata.
-Full tests.
+Apidoc window features: fixed.
+Fixed bug: anchor's behavior in introspector.
+Increased supported version of bluebream: 1.0a5
 
 
 0.1.1 (2010-04-07)

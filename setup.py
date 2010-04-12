@@ -5,7 +5,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name='ice.control',
-      version='0.1.1',
+      version='0.1.2',
       author='Ilshad R. Khabibullin',
       author_email='astoon.net at gmail.com',
       url='http://launchpad.net/ice.control',
