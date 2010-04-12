@@ -6,10 +6,6 @@ Or use GitHub social coding system, fork and make proposal to merge.
 List of known bugs in current release (0.1.0)
 =============================================
 
-** Introspector: click link to attributes or children is OK.
-   Click link to parent is fail. I.e. up to traverse path.
-   Need fix JS.
-
 ** JavaScript not handles click-event on details view until
    details menu clicked. So, when load details pseudo-window, first
    view (`Base Info`) should not contaain any links or forms.

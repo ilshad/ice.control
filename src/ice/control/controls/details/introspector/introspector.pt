@@ -12,7 +12,7 @@
   
   <em tal:define="parent view/parent" tal:condition="parent">
     Parent:
-    <a tal:attributes="href string: ${parent/@@absolute_url}/@@introspector.html">
+    <a tal:attributes="href string:${parent/@@absolute_url}/@@introspector.html">
       <span tal:replace="parent/zope:name" tal:condition="parent/zope:name" />
       <span tal:condition="not: parent/zope:name">&lt;No Name&gt;</span>
     </a>
@@ -142,7 +142,7 @@
 	<li tal:repeat="item items">
           <b><code tal:content="item/key_string" /></b>
           <br />
-          <a tal:attributes="href string:++items++${item/key}/@@introspector.html">
+          <a tal:attributes="href string:${context/@@absolute_url}/++items++${item/key}/@@introspector.html">
             <code tal:content="item/value" />
           </a>
           <tal:omit-tag condition="not: item/value_type_link">
