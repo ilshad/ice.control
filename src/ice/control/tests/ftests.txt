@@ -311,15 +311,29 @@ Introspector
 Configuration plugin
 ++++++++++++++++++++
 
-#  >>> browser.open(root_url + '/@@getControlDetailsConfigurators')
-#  >>> browser.contents
+  >>> browser.open(root_url + '/@@getControlDetailsConfigurators')
+  >>> browser.getControl(name="form.actions.update")
+  <SubmitControl name='form.actions.update' type='submit'>
 
 
 Registrations
 +++++++++++++
 
-#  >>> browser.open(root_url + '/++etc++site/@@getControlDetailsLocalRegistrations')
-#  >>> browser.contents
+  >>> browser.open(root_url + '/++etc++site/@@getControlDetailsLocalRegistrations')
+  >>> browser.getControl(name="deactivate")
+  <SubmitControl name='deactivate' type='submit'>
+
+  >>> 'CookieClientIdManager' in browser.contents
+  True
+
+  >>> 'RootErrorReportingUtility' in browser.contents
+  True
+
+  >>> 'PrincipalAnnotation' in browser.contents
+  True
+
+  >>> 'PersistentSessionDataContainer' in browser.contents
+  True
 
 
 BlueBream REPL console in JavaScript
