@@ -1,7 +1,10 @@
 <configure
    xmlns="http://namespaces.zope.org/zope"
    xmlns:browser="http://namespaces.zope.org/browser"
+   xmlns:meta="http://namespaces.zope.org/meta"
    i18n_domain="ice.control">
+
+  <meta:provides feature="devmode" />
 
   <include package="ice.control.zcml" />
   <include package="ice.control" />

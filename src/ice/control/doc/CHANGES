@@ -1,6 +1,13 @@
 Releases
 ========
 
+0.1.2 (unreleased)
+------------------
+
+Fixed apidoc window features.
+Added zcml condition for details: metadata.
+
+
 0.1.1 (2010-04-07)
 ------------------
 

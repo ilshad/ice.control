@@ -281,38 +281,44 @@ Contents
 Dublin Core metadata
 ++++++++++++++++++++
 
-  >>> browser.open(root_url + '/@@getControlDetailsDublinCore');
+  >>> browser.open(root_url + '/@@getControlDetailsDublinCore')
 
-  >>> browser.getForm(action="http://localhost/@@getControlDetailsDublinCore");
+  >>> browser.getForm(action="http://localhost/@@getControlDetailsDublinCore")
   <zope.testbrowser.browser.Form object at ...>
 
   >>> browser.getControl(name="dctitle");
   <Control name='dctitle' type='text'>
 
-  >>> browser.getControl(name="dcdescription");
+  >>> browser.getControl(name="dcdescription")
   <Control name='dcdescription' type='textarea'>  
 
-  >>> browser.getControl(name="save");
+  >>> browser.getControl(name="save")
   <SubmitControl name='save' type='submit'>
 
 
 Introspector
 ++++++++++++
 
-#  >>> browser.open(root_url + '/@@getControlDetailsIntrospector');
-#  >>> browser.contents
+  >>> browser.open(root_url + '/@@getControlDetailsIntrospector')
+
+  >>> browser.getLink(text="zope.site.folder.Folder").url
+  'http://localhost/++apidoc++/Code/zope/site/folder/Folder/index.html'
+
+  >>> browser.getLink(text="zope.site.interfaces.IRootFolder").url
+  'http://localhost/++apidoc++/Interface/zope.site.interfaces.IRootFolder/index.html'
+
 
 Configuration plugin
 ++++++++++++++++++++
 
-#  >>> browser.open(root_url + '/@@getControlDetailsConfigurators');
+#  >>> browser.open(root_url + '/@@getControlDetailsConfigurators')
 #  >>> browser.contents
 
 
 Registrations
 +++++++++++++
 
-#  >>> browser.open(root_url + '/++etc++site/@@getControlDetailsLocalRegistrations');
+#  >>> browser.open(root_url + '/++etc++site/@@getControlDetailsLocalRegistrations')
 #  >>> browser.contents
 
 
