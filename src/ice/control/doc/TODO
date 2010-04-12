@@ -31,3 +31,4 @@ We use configuration plugin for context `zope.site.interfaces.IRootFolder'
 * TODO nice security definitions, permissions
 * TODO set zcml conditions
 * DONE login.html page in this skin
+* TODO 100% test coverage

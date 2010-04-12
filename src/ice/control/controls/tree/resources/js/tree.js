@@ -220,7 +220,7 @@ function loadControlDetails (url, data, node, callback) {
 
 		// open ++apidoc++ links in new window
 		if (href.indexOf("++apidoc++") >= 0) {
-		    window.open(href, "...", "...");
+		    window.open(href, "", "scrollbars");
 		    return false;
 		}
 
