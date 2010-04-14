@@ -32,3 +32,4 @@ We use configuration plugin for context `zope.site.interfaces.IRootFolder'
 * DONE set zcml conditions
 * DONE login.html page in this skin
 * DONE 100% test coverage
+* TODO selenium or other tests for JS

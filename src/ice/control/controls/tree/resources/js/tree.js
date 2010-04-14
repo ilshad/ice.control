@@ -200,7 +200,8 @@ TreeNode.prototype.parseAndBuildChildren = function (dom, xml) {
 // click on Details Menu
 function loadControlDetails (url, data, node, callback) {
     var detailsWrap = node.parentNode.parentNode.childNodes[1];
-    $(detailsWrap).load(url, {}, function () {
+
+    $(detailsWrap).load(url, data || "", function () {
 	// submit Form
 	$('input:submit', detailsWrap).click(function () {
 	    var form = $(this).parents('form')[0];
