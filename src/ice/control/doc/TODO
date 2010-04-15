@@ -28,8 +28,10 @@ Folder, applications... ?
 pluggable, of course
 Need?
 We use configuration plugin for context `zope.site.interfaces.IRootFolder'
+or custom details views
 * TODO nice security definitions, permissions
 * DONE set zcml conditions
 * DONE login.html page in this skin
 * DONE 100% test coverage
 * TODO selenium or other tests for JS
+* DONE Error Reporting Local Utility - details views
