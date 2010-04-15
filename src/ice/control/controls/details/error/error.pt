@@ -1,0 +1,31 @@
+<h1>Exception Log (most recent first)</h1>
+<p class="description">
+  This page lists the exceptions that have occurred in this site recently.
+</p>
+<div tal:define="entries context/getLogEntries"> 
+  <em tal:condition="not:entries">No exceptions logged.</em>
+  <table tal:condition="entries">
+    <tr>
+      <th align="left">Time</th>
+      <th align="left">User</th>
+      <th align="left">Exception</th>
+    </tr>
+    <tr tal:repeat="entry entries">
+      <td valign="top" nowrap="nowrap">
+        <span tal:content="entry/time" class="detailed" />
+      </td>
+      <td>
+        <span tal:content="entry/username" />
+      </td>
+      <td valign="top">
+        <a href="showEntry" 
+           tal:attributes="href string:getControlDetailsErrorEntry?id=${entry/id}">
+          <span tal:content="entry/type" />:
+          <span tal:define="value entry/value"
+                tal:content="python:
+			     len(value) < 70 and value or value[:70] + '...'" />
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>

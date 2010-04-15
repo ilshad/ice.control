@@ -1,0 +1,29 @@
+<configure
+   xmlns="http://namespaces.zope.org/browser"
+   i18n_domain="ice.control">
+
+  <pages
+     for="zope.error.interfaces.IErrorReportingUtility"
+     permission="zope.ManageServices"
+     class=".error.EditErrorLog">
+    <page
+       name="getControlDetailsErrorReport"
+       template="error.pt"
+       menu="control_details" title="Errors"
+       />
+    <page
+       name="getControlDetailsErrorEntry"
+       template="errorentry.pt"
+       />
+    <page
+       name="getControlDetailsConfigure"
+       template="error_config.pt"
+       menu="control_details" title="Configure"
+       />
+    <page
+       name="getControlDetailsEdit"
+       attribute="updateProperties"
+       />
+  </pages>
+
+</configure>

@@ -6,6 +6,7 @@
   <include package=".configurator" />
   <include package=".contents" />
   <include package=".dublincore" />
+  <include package=".error" />
   <include package=".introspector" />
   <include package=".localregistry" />
 

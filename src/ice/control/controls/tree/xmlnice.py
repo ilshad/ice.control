@@ -40,6 +40,12 @@ class XMLReadContainer(XMLBase):
 class XMLSite(XMLReadContainer):
     adapts(ISite, IBrowserRequest)
 
+    def size(self):
+        return len(self.context) + 1
+
+    def length(self):
+        return len(self.context) + 1
+
     def children_xmldoc(self):
         try:
             rc = IReadContainer(self.context)

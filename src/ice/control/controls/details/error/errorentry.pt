@@ -1,0 +1,69 @@
+<tal:block define="entry python:context.getLogEntryById(request.get('id'))">
+
+  <h1>Header</h1>
+  <h3 class="description">Exception traceback</h3>
+
+  <em tal:condition="not:entry">
+    The specified log entry was not found.  It may have expired.
+  </em>
+
+  <div tal:condition="entry">
+
+    <div class="row">
+      <div class="label detailed">Time</div>
+      <div class="field" tal:content="entry/time" />
+    </div>
+
+    <div class="row">
+      <div class="label detailed">User</div>
+      <div class="field" tal:content="entry/username" />
+    </div>
+
+    <div class="row">
+      <div class="label detailed">Request URL</div>
+      <div class="field" tal:content="entry/url" />
+    </div>
+
+    <div class="row">
+      <div class="label detailed">Exception Type</div>
+      <div class="field" tal:content="entry/type" />
+    </div>
+
+    <div class="row">
+      <div class="label detailed">Exception Value</div>
+      <div class="field" tal:content="entry/value" />
+    </div>
+
+    <div class="row">
+      <div class="label detailed">Traceback</div>
+      <div class="field">&nbsp;</div>
+    </div>
+
+    <br/>
+
+    <div tal:condition="entry/tb_html" tal:content="structure entry/tb_html">
+      Traceback (HTML)
+    </div>
+
+    <pre tal:condition="not:entry/tb_html" tal:content="entry/tb_text">
+      Traceback (text)
+    </pre>
+
+    <div tal:condition="entry/req_html">
+      <h3>REQUEST</h3>
+      <div tal:replace="structure entry/req_html" />
+    </div>
+
+  </div>
+
+  <form method="post"
+	tal:attributes="action
+			string:${context/@@absolute_url}/getControlDetailsErrorReport">
+    <div class="row">
+      <div class="controls">
+        <input type="submit" name="submit" value="Return to log" />
+      </div>
+    </div>
+  </form>
+
+</tal:block>
