@@ -11,11 +11,13 @@
   <zrt-resource
      name="default.css"
      file="css/default.css"
+     layer="..interfaces.ILayer"
      />
 
   <zrt-resource
      name="control.css"
      file="css/control.css"
+     layer="..interfaces.ILayer"
      />
 
 </configure>
