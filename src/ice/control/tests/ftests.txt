@@ -86,6 +86,31 @@ Generations
   True
 
 
+Pack ZODB
+---------
+
+  >>> browser.open(control_url + '/tree.html')
+
+  >>> browser.getLink(text='Pack').click()
+
+  >>> browser.url == control_url + '/pack.html'
+  True
+
+  >>> 'Utility Name' in browser.contents
+  True
+
+  >>> 'Database Name' in browser.contents
+  True
+
+  >>> 'Size' in browser.contents
+  True
+
+  >>> browser.getControl(name='dbs:list').value = False
+  >>> browser.getControl(name='PACK').click()
+
+It's demo storage, actually.
+
+
 Contents tree
 -------------
 

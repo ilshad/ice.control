@@ -1,0 +1,36 @@
+<div id="message">
+  <div class="row" tal:repeat="status view/update">
+    <div class="field" tal:content="status" />
+  </div>
+</div>
+<form action="." method="post" tal:attributes="action request/URL">
+  <table border="1">
+    <tr>
+      <th>Pack</th>
+      <th>Utility Name</th>
+      <th>Database Name</th>
+      <th>Size</th>
+    </tr>
+    <tr tal:repeat="db view/databases">
+      <td><input type="checkbox" name="dbs:list"
+		 tal:attributes="value db/utilName"/></td>
+      <td><span tal:replace="db/utilName"/></td>  
+      <td><span tal:replace="db/dbName"/></td>
+      <td><span tal:replace="db/size"/></td>
+    </tr>
+  </table>
+
+  <div class="margin"></div>
+
+  <table>
+    <tr>
+      <td>Keep up to</td>
+      <td><input type="text" size="4" name="days" value="0"
+		 tal:attributes="value request/days|string:0" /></td>
+      <td>days</td>
+      <td><input type="submit" name="PACK" value="Pack" /></td>
+    </tr>
+  </table>
+
+</form>
+

@@ -110,6 +110,18 @@ h4 {
 table#wrapper {
     width:100%;
 }
+fieldset {
+    border: 1px solid #999;
+    padding: 5px;
+    margin: 5px;
+}
+legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+.margin {
+    height: 10px;
+}
 
 /**
 *

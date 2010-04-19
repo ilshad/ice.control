@@ -1,0 +1,21 @@
+<configure
+   xmlns="http://namespaces.zope.org/z3c"
+   i18n_domain="ice.control">
+
+  <pagelet
+     for="ice.control.browser.interfaces.IControl"
+     name="pack.html"
+     class="zope.app.applicationcontrol.browser.zodbcontrol.ZODBControlView"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     permission="zope.ManageApplication"
+     provides="ice.control.browser.interfaces.IControlPagelet"
+     title="Pack"
+     weight="30"
+     />
+
+  <template
+     for="zope.app.applicationcontrol.browser.zodbcontrol.ZODBControlView"
+     template="zodbpack.pt"
+     />
+
+</configure>
