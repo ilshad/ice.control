@@ -14,7 +14,7 @@ Boilerplates::
   >>> from zope.interface.verify import verifyObject
 
   >>> root_url = 'http://localhost'
-  >>> control_url = root_url + '/++etc++control'
+  >>> control_url = root_url + '/++control++'
   >>> browser = Browser()
 
 
@@ -40,7 +40,7 @@ Skin resources
 System control panel
 --------------------
 
-  >>> browser.open(root_url + "/++etc++control/tree.html")
+  >>> browser.open(control_url + "/tree.html")
   Traceback (most recent call last):
   ...
   HTTPError: HTTP Error 401: Unauthorized
