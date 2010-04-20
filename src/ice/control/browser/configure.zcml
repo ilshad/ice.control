@@ -4,19 +4,19 @@
    xmlns:z3c="http://namespaces.zope.org/z3c"
    i18n_domain="ice.control">
 
-  <class class=".control.Control">
-    <require
-       permission="zope.ManageServices"
-       interface=".interfaces.IControl"
-       />
-  </class>
-
-  <utility
-     component=".control.control"
-     provides="zope.traversing.interfaces.IEtcNamespace"
+  <!-- namespace [ ++control++ ] -->
+  <view
      name="control"
-     permission="zope.ManageServices"
+     for="*"
+     type="zope.interface.Interface"
+     provides="zope.traversing.interfaces.ITraversable"
+     factory=".namespace.ControlNamespace"
+     permission="zope.View"
      />
+
+  <class class=".control.Control">
+    <allow interface=".interfaces.IControl" />
+  </class>
 
   <adapter
      name="menu"

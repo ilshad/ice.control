@@ -25,6 +25,9 @@ from z3c.pagelet.interfaces import IPagelet
 class IControl(Interface):
     """Location for system control"""
 
+    def get_content():
+        """Get nearest content context"""
+
 class IControlPagelet(IPagelet):
     """I am response for control views.
     Your pagelets should provide me."""

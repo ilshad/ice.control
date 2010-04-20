@@ -26,6 +26,7 @@ from zope.interface.common.mapping import IEnumerableMapping
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.container.interfaces import IReadContainer
 from zope.location.interfaces import ILocationInfo
+from zope.security.interfaces import Unauthorized
 from zope.size.interfaces import ISized
 from interfaces import IXML, ICONS, XMLDOC, XMLNODE
 
@@ -99,6 +100,7 @@ class XMLBase(object):
         return XMLNODE % (self.name(), self.path() + u"/", self.title(),
                           self.icon_url(), self.size(), self.length(),
                           self.is_container() and u'true' or u'false')
+            
 
     def node_xmldoc(self):
         return XMLDOC % self.to_xml()

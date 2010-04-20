@@ -12,5 +12,5 @@
 </h3-->
 
 <h3 tal:condition="view/is_admin">
-  <a tal:attributes="href string: ++etc++control/tree.html">System control</a>
+  <a tal:attributes="href string: ++control++/tree.html">System control</a>
 </h3>

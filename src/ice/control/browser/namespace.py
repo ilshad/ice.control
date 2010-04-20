@@ -18,18 +18,14 @@
 #
 ##############################################################################
 
-from zc.resourcelibrary import need
-from zope.component import queryUtility
-from ice.control.repl.interfaces import IDispatcher
+from zope.location import LocationProxy, locate
+from zope.traversing.namespace import SimpleHandler
+from control import Control
 
-class Pagelet:
+class ControlNamespace(SimpleHandler):
 
-    def update(self):
-        need("ice.control.tree.css")
-        need("ice.control.tree.js")
-
-        if queryUtility(IDispatcher) is not None:
-            need("ice.control.repl.css")
-            need("ice.control.repl.js")
-
-        self.content = self.context.get_content()
+    def traverse(self, name, ignored):
+        location = (self.context, '++control++')
+        ob = Control()
+        locate(ob, *location)
+        return LocationProxy(ob, *location)
