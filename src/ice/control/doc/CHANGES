@@ -1,10 +1,13 @@
 Releases
 ========
 
-0.2.1 (unreleased)
+0.3.0 (unreleased)
 ------------------
 
 Explicit layer definition in skin's views.
+Added ZODB Pack control.
+Added Ctrl+E keybinding in REPL ("go to line end")
+Auto scrolling in REPL.
 
 
 0.2.0 (2010-04-15)

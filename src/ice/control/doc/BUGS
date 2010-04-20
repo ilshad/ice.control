@@ -1,9 +1,12 @@
+.. -*- mode: rst -*-
+
 Bug reports: https://bugs.launchpad.net/ice.control.
 
-Or use GitHub social coding system, fork and make proposal to merge.
+Or fork Git repository, fix bug and: a) send patch to <astoon.net@gmail.com>,
+or b) pull into your public repository at GitHub and send "pull request".
 
 
-List of known bugs in current release (0.1.0)
+List of known bugs in current release (0.3.0)
 =============================================
 
 ** JavaScript not handles click-event on details view until
@@ -13,5 +16,3 @@ List of known bugs in current release (0.1.0)
 
 ** Need better Google Chrome web browser support. Right now UI
    is not ideal in this browser. Use only Mozilla Firefox.
-
-** Auto scrolling for REPL not works.

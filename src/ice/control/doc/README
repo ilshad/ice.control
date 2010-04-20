@@ -1,3 +1,5 @@
+.. -*- mode: rst -*-
+
 =====================================================================
 ice.control - System Administration and Site Management for BlueBream
 =====================================================================
@@ -5,28 +7,24 @@ ice.control - System Administration and Site Management for BlueBream
 .. contents::
    :local:
 
-
-Package overview
-================
-
 ice.control is package for:
 
 - BlueBream application developers: `developer kit` and `starter kit`.
 - system administrators: `site management`.
 
-Also, it can be used by site manager (`manage site`) but only if
-application developer likes this and he defines management forms as
-`controls` view or `details` ajax-views.
+Package overview
+================
 
-This package provides:
+This package does provide:
 
 - treeview ZODB browser
 - tables for rename and remove objects
-- object introspector
-- ajax based python shell (REPL) to debug and interact the
-  application in selected context
-- configuration view to manage ZODB objects, edit metadata, other
-  `details` ajax based views and ability to add new views
+- introspector
+- ajax based python shell with REPL to interact the application in
+  selected ZODB context
+- configurator plugin forms to manage ZODB, edit metadata, other
+  ajax based views and ability to add new views
+- other controls like generations and ZODB pack
 - optional simple skin (as part of `starter kit`)
 - optional module with all needed zcml registrations
 
@@ -64,15 +62,15 @@ Now run tests and run the server::
   $ bin/paster serve debug.ini
 
 
-Admin UI for BlueBream - overview
-=================================
+Admin UI for BlueBream
+======================
 
-There are virtual context, `++etc++control` for the `controls`.
+There is virtual context, `++etc++control` for the `controls`.
 It is not real persistent object. Controls can be used within any
 z3c.pagelet-based views on this context.
 
-- In "Tree" `control` are contents' tree which show database
-  structure. Open / close tree branches by clicking on triangles.
+- "Tree" `control` contains tree which show ZODB structure.
+  Open / close tree branches by clicking on triangles.
   Click links (names or icons) to open "Details" ajax pseudo-window.
   See menu at bottom of this pseudo-window.
 
@@ -101,28 +99,33 @@ z3c.pagelet-based views on this context.
   below.
 
 
-REPL overview
-=============
+REPL
+====
 
-Ajax based python shell and server for Emacs. Session is defined
-for user and context. So, each context has its own session. In other
-words, you can open, close, minimize number of 'Details' pseudo-windows,
-and each will contain its own REPL session.
+Ajax based python shell and server for SLIME-like program within Emacs.
+Session is defined for user and context. So, each context has its own
+session.
 
 Ajax based REPL
 +++++++++++++++
 
+You might open, close, minimize number of 'Details' pseudo-windows
+in the same time, and each plseudo-window will contain its own REPL
+session.
+
 Predefined variables and methods:
 
-- `context` is current context in ZODB tree
-- `getObject` from zope.security.proxy
-- `transaction` import
+- `context` variable is current context in ZODB tree
+- `getObject` method from zope.security.proxy
+- `transaction` module imported
 
 Key bindings:
 
 - `up` - up to history
 - `down` - down to history
 - `Tab` - tab indent
+- `Ctrl+E` - go to line end
+
 
 REPL server for Emacs
 +++++++++++++++++++++

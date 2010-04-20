@@ -115,7 +115,9 @@ REPL.prototype.showLine = function (output, prompt) {
     var pre = $('<pre>' + this.highlight(output) + '</pre>');
 
     $(line).append(pre).appendTo(this.outputNode);
-    this.outputNode.scrollTop = this.outputNode.scrollHeight + 10;
+
+    // auto scroll
+    this.parent.parentNode.scrollTop = this.parent.parentNode.scrollHeight - this.parent.parentNode.offsetHeight;
 }
 
 REPL.prototype.process = function (event) {
@@ -124,69 +126,88 @@ REPL.prototype.process = function (event) {
 
     //console.log(event);
 
-    switch (event.keyCode) {
-
+    if (event.ctrlKey) {
+	switch (event.keyCode) {
 
 	/**
-	 *
-	 * enter - send the line
-	 *
-	 **/
+	*
+	* Ctrl+E - go to line end
+	*
+	**/
+	case 69:
+	    if (event.target.selectionStart)
+	    {
+		var end = event.target.value.length;
+		event.target.setSelectionRange(end, end);
+		event.target.focus();
+	    }
+  	    break;
+	}
+    } else {
+	switch (event.keyCode) {
+
+	    
+	/**
+	*
+	* enter - send the line
+	*
+	**/
 	case 13:
-	var value = event.target.value;
-	var data = $(this.formNode).serialize();
-	var repl = this;
-	$.ajax({type: "POST",
-		url: action_url,
-		dataType: "xml",
-		data: data,
-		success: function (xml) {
-		    var result = $('result', xml).text() == '0' ?
-			'complete' : 'incomplete';
-		    repl.showLine(value, result);
-		    $('output > line', xml).each(function (i) {
-			repl.showLine($(this).text(), null)
-		    });
-		}});
-	this.loadHistory();
-	event.target.value = '';
-	break;
-
-
+	    var value = event.target.value;
+	    var data = $(this.formNode).serialize();
+	    var repl = this;
+	    $.ajax({type: "POST",
+		    url: action_url,
+		    dataType: "xml",
+		    data: data,
+		    success: function (xml) {
+			var result = $('result', xml).text() == '0' ?
+			    'complete' : 'incomplete';
+			repl.showLine(value, result);
+			$('output > line', xml).each(function (i) {
+			    repl.showLine($(this).text(), null)
+			});
+		    }});
+	    this.loadHistory();
+	    event.target.value = '';
+	    break;
+	    
+	    
 	/**
-	 *
-	 * tab indent
-	 *
-	 **/
+	*
+	* tab indent
+	*
+	**/
 	case 9:
-	event.target.value += '    ';
-	$(event.target).focus();
-	result = false;
-	break;
-
-
+	    event.target.value += '    ';
+	    $(event.target).focus();
+	    result = false;
+	    break;
+	    
+	    
 	/**
-	 *
-	 * up to history
-	 *
-	 **/
+	*
+	* up to history
+	*
+	**/
 	case 38:
-	var new_value = this.fromHistory(1);
-	if (new_value) event.target.value = new_value;
-	else event.target.value = '';
-	break;
-
-
+	    var new_value = this.fromHistory(1);
+	    if (new_value) event.target.value = new_value;
+	    else event.target.value = '';
+	    break;
+	    
+	    
 	/**
-	 *
-	 * down to history
-	 *
-	 **/
+	*
+	* down to history
+	*
+	**/
 	case 40:
-	var new_value = this.fromHistory(-1);
-	if (new_value) event.target.value = new_value;
-	else event.target.value = '';
-	break;
+	    var new_value = this.fromHistory(-1);
+	    if (new_value) event.target.value = new_value;
+	    else event.target.value = '';
+	    break;
+	}
     }
     return result;
 }
