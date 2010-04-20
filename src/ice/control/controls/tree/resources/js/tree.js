@@ -15,6 +15,7 @@ var DETAILS_DEFAULT =      '@@getControlDetailsDefaultInfo';
 var EXPANDED_ICON =        '++resource++mi.png';
 var COLLAPSED_ICON =       '++resource++pl.png';
 var SIMPLE_ICON =          '++resource++simple.png';
+var UNAUTHORIZED_ICON =    '++resource++unauthorized.png';
 
 var TREE_CONTAINER =       'treeContainer';
 var DETAILS_DOCK =         'treeDetailsDock';
@@ -35,6 +36,8 @@ var DETAILS_MINIMIZE =     'details-minimize';
 var DETAILS_MENU =         'details-menu';
 var DOCK =                 'dock';
 var URL =                  'url';
+
+var ACCESS_DENIED =        '** ACCESS DENIED **';
 
 var gBaseURL;
 var gContainer;
@@ -134,6 +137,10 @@ TreeNode.prototype.loadChildren = function (dom, callback) {
 }
 
 TreeNode.prototype.parseAndBuildNode = function (xml) {
+    node_path = xml.attr('path');
+
+    if (node_path == ACCESS_DENIED) return;
+
     this.name = xml.attr('name') || 'root';
     this.title = xml.attr('title');
 
@@ -159,22 +166,31 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
     dom_node.appendChild(dom_node_self);
     dom_node.setAttribute('style', 'display: block');
 
-    if (parseInt(xml.attr('length')) > 0) {
-	expander.appendChild(
-	    this.createElement('img', 'src', gBaseURL + COLLAPSED_ICON));
-	this.isExpanded = false;
-    } else {
-	expander.appendChild(
-	    this.createElement('img', 'src', gBaseURL + SIMPLE_ICON));
-    }
-    
-    // Click it
     var node = this;
-    expander.onclick = function () {
-	if (node.isExpanded == null) {return false}
-	if (node.isExpanded == true) {node.collapse(); return false}
-	if (node.isExpanded == false) {node.expand(); return false}
+
+    if (xml.attr('length') == ACCESS_DENIED) {
+	    expander.appendChild(
+		this.createElement(
+		    'img', 'src', gBaseURL + UNAUTHORIZED_ICON));
+    } else {
+	if (parseInt(xml.attr('length')) > 0) {
+	    expander.appendChild(
+		this.createElement('img', 'src', gBaseURL + COLLAPSED_ICON));
+	    this.isExpanded = false;
+	} else {
+	    expander.appendChild(
+		this.createElement('img', 'src', gBaseURL + SIMPLE_ICON));
+	}
+
+	// Click it, expand
+	expander.onclick = function () {
+	    if (node.isExpanded == null) {return false}
+	    if (node.isExpanded == true) {node.collapse(); return false}
+	    if (node.isExpanded == false) {node.expand(); return false}
+	}
     }
+
+    // Click it, open Details
     anchor.onclick = function () {
 	if (node.dock != null) {
 	    $(node.dock).click();
@@ -182,9 +198,9 @@ TreeNode.prototype.parseAndBuildNode = function (xml) {
 	    node.openDetails();
 	}
     }
-
+    
     // Identify me explicity
-    dom_node.setAttribute('path', xml.attr('path'));
+    dom_node.setAttribute('path', node_path);
 }
 
 TreeNode.prototype.parseAndBuildChildren = function (dom, xml) {
@@ -201,7 +217,13 @@ TreeNode.prototype.parseAndBuildChildren = function (dom, xml) {
 function loadControlDetails (url, data, node, callback) {
     var detailsWrap = node.parentNode.parentNode.childNodes[1];
 
-    $(detailsWrap).load(url, data || "", function () {
+    $(detailsWrap).load(url, data || "", function (responseText, status, response) {
+	
+	if (status == 'error') {
+	    alert('Has not access');
+	    return false;
+	}
+	
 	// submit Form
 	$('input:submit', detailsWrap).click(function () {
 	    var form = $(this).parents('form')[0];

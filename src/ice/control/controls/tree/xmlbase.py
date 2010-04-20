@@ -28,7 +28,7 @@ from zope.container.interfaces import IReadContainer
 from zope.location.interfaces import ILocationInfo
 from zope.security.interfaces import Unauthorized
 from zope.size.interfaces import ISized
-from interfaces import IXML, ICONS, XMLDOC, XMLNODE
+from interfaces import IXML, ICONS, XMLDOC, XMLNODE, ACCESS_DENIED
 
 class XMLBase(object):
     implements(IXML)
@@ -97,10 +97,43 @@ class XMLBase(object):
 
     def to_xml(self):
         # You needn't reimplement this never in your life, man
-        return XMLNODE % (self.name(), self.path() + u"/", self.title(),
-                          self.icon_url(), self.size(), self.length(),
-                          self.is_container() and u'true' or u'false')
-            
+        try:
+            name = self.name()
+        except Unauthorized:
+            name = ACCESS_DENIED % u' Name:'
+
+        try:
+            path = self.path() + u"/"
+        except Unauthorized:
+            path = ACCESS_DENIED % u''
+
+        try:
+            title = self.title()
+        except Unauthorized:
+            title = ACCESS_DENIED % u' Title:'
+
+        try:
+            icon_url = self.icon_url()
+        except Unauthorized:
+            icon_url = ACCESS_DENIED % u' Icon:'
+
+        try:
+            size = self.size()
+        except Unauthorized:
+            size = ACCESS_DENIED % u''
+
+        try:
+            length = self.length()
+        except Unauthorized:
+            length = ACCESS_DENIED % u''
+
+        try:
+            is_container = self.is_container() and u'true' or u'false'
+        except Unauthorized:
+            is_container = ACCESS_DENIED % u''
+
+        return XMLNODE % (name, path, title, icon_url, size,
+                          length, is_container)
 
     def node_xmldoc(self):
         return XMLDOC % self.to_xml()

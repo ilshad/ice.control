@@ -27,6 +27,8 @@ XMLDOC = u'<?xml version="1.0" ?>\n<document>\n%s\n</document>'
 XMLNODE = u'''<node name="%s" path="%s" title="%s" icon_url="%s"
                     size="%s" length="%s" is_container="%s" />'''
 
+ACCESS_DENIED = u'**%s ACCESS DENIED **'
+
 class IXML(zope.interface.Interface):
     """XML specification for content object"""
 

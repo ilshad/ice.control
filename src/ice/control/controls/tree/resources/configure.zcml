@@ -28,6 +28,11 @@
      file="img/simple.png"
      layer="z3c.layer.pagelet.IPageletBrowserLayer"
      />
+  <resource
+     name="unauthorized.png"
+     file="img/unauthorized.png"
+     layer="z3c.layer.pagelet.IPageletBrowserLayer"
+     />
 
   <!-- icons -->
   <icon

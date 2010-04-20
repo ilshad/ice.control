@@ -7,7 +7,16 @@
      for="zope.container.interfaces.IContainer"
      name="getControlDetailsContents"
      class=".contents.Contents"
-     permission="zope.ManageServices"
+     permission="zope.ManageContent"
+     menu="control_details"
+     title="Contents"
+     />
+
+  <browser:page
+     for="zope.site.interfaces.ILocalSiteManager"
+     name="getControlDetailsContents"
+     class=".contents.Contents"
+     permission="zope.ManageSite"
      menu="control_details"
      title="Contents"
      />
