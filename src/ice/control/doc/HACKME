@@ -1,15 +1,7 @@
 .. -*- mode: rst -*-
 
-=======================
 ice.control development
-=======================
-
-.. contents::
-   :local:
-
-
-Modes&Praxises
-==============
+***********************
 
 Fork author's branch on GitHub repository. Install it (see below) but
 use your own repository's private URL.

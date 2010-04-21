@@ -1,11 +1,10 @@
 .. -*- mode: rst -*-
 
-=====================================================================
-ice.control - System Administration and Site Management for BlueBream
-=====================================================================
+.. contents:: Table of Contents
+   :depth: 4
 
-.. contents::
-   :local:
+ice.control - System Administration and Site Management for BlueBream
+*********************************************************************
 
 ice.control is package for:
 
@@ -14,7 +13,7 @@ ice.control is package for:
 - Site managers: if you have defined a views for these tasks.
 
 Package overview
-================
+----------------
 
 This package does provide:
 
@@ -37,7 +36,7 @@ IMPORTANT NOTE: use Mozilla Firefox.
 
 
 Getting started
-===============
+---------------
 
 Add `ice.control` dependency into main package of your BlueBream
 application. If you like to install the package from Git repository,
@@ -62,7 +61,7 @@ Open http://localhost:8080 and log in admin account and learn UI.
 
 
 Ajax based REPL
-===============
+---------------
 
 You might open, close, minimize number of 'Details' pseudo-windows
 in the same time, and each plseudo-window will contain its own REPL
