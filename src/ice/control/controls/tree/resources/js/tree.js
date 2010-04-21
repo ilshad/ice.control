@@ -37,7 +37,7 @@ var DETAILS_MENU =         'details-menu';
 var DOCK =                 'dock';
 var URL =                  'url';
 
-var ACCESS_DENIED =        '** ACCESS DENIED **';
+var ACCESS_DENIED =        'ACCESS DENIED';
 
 var gBaseURL;
 var gContainer;

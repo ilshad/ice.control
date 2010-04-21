@@ -100,37 +100,37 @@ class XMLBase(object):
         try:
             name = self.name()
         except Unauthorized:
-            name = ACCESS_DENIED % u' Name:'
+            name = ACCESS_DENIED
 
         try:
             path = self.path() + u"/"
         except Unauthorized:
-            path = ACCESS_DENIED % u''
+            path = ACCESS_DENIED
 
         try:
             title = self.title()
         except Unauthorized:
-            title = ACCESS_DENIED % u' Title:'
+            title = ACCESS_DENIED
 
         try:
             icon_url = self.icon_url()
         except Unauthorized:
-            icon_url = ACCESS_DENIED % u' Icon:'
+            icon_url = ACCESS_DENIED
 
         try:
             size = self.size()
         except Unauthorized:
-            size = ACCESS_DENIED % u''
+            size = ACCESS_DENIED
 
         try:
             length = self.length()
         except Unauthorized:
-            length = ACCESS_DENIED % u''
+            length = ACCESS_DENIED
 
         try:
             is_container = self.is_container() and u'true' or u'false'
         except Unauthorized:
-            is_container = ACCESS_DENIED % u''
+            is_container = ACCESS_DENIED
 
         return XMLNODE % (name, path, title, icon_url, size,
                           length, is_container)
@@ -146,6 +146,9 @@ class XMLBase(object):
             rc = IReadContainer(self.context)
         except TypeError:
             return XMLDOC % u''
+        except Unauthorized:
+            return XMLDOC % u''
+
         specs = [queryMultiAdapter((value, self.request), IXML)
                 for value in rc.values()]
         specs = filter(lambda x:x, specs)

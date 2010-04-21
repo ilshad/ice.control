@@ -21,6 +21,7 @@
 from zope.component import adapts, queryMultiAdapter
 from zope.container.interfaces import IReadContainer
 from zope.publisher.interfaces.browser import IBrowserRequest
+from zope.security.interfaces import Unauthorized
 from zope.component.interfaces import ISite
 from interfaces import IXML, XMLDOC
 from xmlbase import XMLBase
@@ -51,6 +52,9 @@ class XMLSite(XMLReadContainer):
             rc = IReadContainer(self.context)
         except TypeError:
             return XMLDOC % u''
+        except Unauthorized:
+            return XMLDOC % u''
+
         specs = [queryMultiAdapter((value, self.request), IXML)
                 for value in rc.values()]
         specs = filter(lambda x:x, specs)

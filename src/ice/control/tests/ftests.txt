@@ -40,11 +40,6 @@ Skin resources
 System control panel
 --------------------
 
-  >>> browser.open(control_url + "/tree.html")
-  Traceback (most recent call last):
-  ...
-  HTTPError: HTTP Error 401: Unauthorized
-
   >>> browser.addHeader('Authorization','Basic mgr:mgrpw')
   >>> browser.handleErrors = False
 

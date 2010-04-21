@@ -18,9 +18,11 @@
 #
 ##############################################################################
 
+from zope.security import canAccess
 from zope.interface import implements
 from zope.component import getAdapters, getMultiAdapter
 from zope.contentprovider.interfaces import IContentProvider
+from zope.authentication.interfaces import IUnauthenticatedPrincipal
 from z3c.template.interfaces import IContentTemplate
 from interfaces import IControlPagelet
 
@@ -34,9 +36,12 @@ class Menu:
 
     def update(self):
         pagelets = getAdapters((self.context, self.request), IControlPagelet)
-        self.pagelets = [view for name, view in pagelets]
+        self.pagelets = [v for k,v in pagelets if canAccess(v, '__call__')]
         self.pagelets.sort(key = lambda x: x.weight)
 
     def render(self):
         template = getMultiAdapter((self, self.request), IContentTemplate)
         return template(self)
+
+    def noauth(self):
+        return IUnauthenticatedPrincipal.providedBy(self.request.principal)

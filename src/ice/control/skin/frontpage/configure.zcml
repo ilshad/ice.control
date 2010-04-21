@@ -4,7 +4,6 @@
   
   <pagelet
      name="index.html"
-     for="zope.site.interfaces.IRootFolder"
      class=".frontpage.Pagelet"
      permission="zope.View"
      layer="..interfaces.ILayer"

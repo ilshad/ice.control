@@ -17,7 +17,7 @@
      name="getControlDetailsREPL"
      template="repl.pt"
      class=".repl.REPL"
-     permission="zope.ManageServices"
+     permission="ice.control.REPL"
      menu="control_details"
      title="REPL"
      />
@@ -27,7 +27,7 @@
      name="getControlDetailsREPLInteract"
      class=".repl.REPL"
      attribute="interact"
-     permission="zope.ManageServices"
+     permission="ice.control.REPL"
      />
 
   <page
@@ -35,7 +35,7 @@
      name="getControlDetailsREPLHistory"
      class=".repl.REPL"
      attribute="get_history"
-     permission="zope.ManageServices"
+     permission="ice.control.REPL"
      />
 
 </configure>

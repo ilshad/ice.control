@@ -5,12 +5,12 @@
   </a>
 </h3>
   
-<!--h3 tal:condition="not: view/unauth">
+<h3 tal:condition="view/is_admin">
+  <a tal:attributes="href string: ++control++/tree.html">System control</a>
+</h3>
+
+<h3 tal:condition="not: view/unauth">
   <a tal:define="encoded python:modules['urllib'].quote(request.getURL())"
      tal:attributes="href string: logout.html?nextURL=${encoded}">
     Logout</a>
-</h3-->
-
-<h3 tal:condition="view/is_admin">
-  <a tal:attributes="href string: ++control++/tree.html">System control</a>
 </h3>

@@ -2,14 +2,22 @@
    xmlns="http://namespaces.zope.org/zope"
    i18n_domain="ice.control">
 
+  <permission
+     id="ice.control.REPL"
+     title="Use REPL"
+     />
+
   <utility
      factory=".dispatcher.Dispatcher"
      provides=".interfaces.IDispatcher"
-     permission="zope.ManageServices"
+     permission="ice.control.REPL"
      />
 
   <class class=".dispatcher.Dispatcher">
-    <allow interface=".interfaces.IDispatcher" />
+    <require
+       interface=".interfaces.IDispatcher"
+       permission="ice.control.REPL"
+       />
   </class>
 
   <include package=".browser" />
