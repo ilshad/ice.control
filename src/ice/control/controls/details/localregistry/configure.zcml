@@ -6,7 +6,7 @@
      for="zope.site.interfaces.ILocalSiteManager"
      name="getControlDetailsLocalRegistrations"
      class=".registrations.LocalRegistrations"
-     permission="zope.ManageServices"
+     permission="zope.ManageSite"
      menu="control_details"
      title="Registrations"
      />

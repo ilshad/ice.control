@@ -13,8 +13,8 @@
     </td>
   </tr>
   <tr>
-    <td class="nav">
-      <a tal:attributes="href python:request.getApplicationURL()">
+    <td class="nav" tal:define="content python:context.get_content()">
+      <a tal:attributes="href content/@@absolute_url">
 	root
       </a>
     </td>

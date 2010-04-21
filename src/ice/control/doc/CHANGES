@@ -1,13 +1,25 @@
 Releases
 ========
 
+
 0.3.0 (unreleased)
 ------------------
 
+Namespace `++control++` instead of `++etc++control`.
+Transitive security for IControl (10x location proxy).
+Transitive access to content context from IControl (method get_content()).
+Use controls not only on root folder, but on any content.
+Allow nested (recursive) namespaces, i.e. '++control++/++control++' and etc.
+Used accurate permissions in all views.
 Explicit layer definition in skin's views.
 Added ZODB Pack control.
 Added Ctrl+E keybinding in REPL ("go to line end")
 Auto scrolling in REPL.
+
+In summary, it can now be used as pluggable CMS UI for users with
+different permissions and roles, not only zope.Manager, from any nested
+content object, not only root folder, and UI should correctly display menu
+items and views accordingly to context and permissions.
 
 
 0.2.0 (2010-04-15)

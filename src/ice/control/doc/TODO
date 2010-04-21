@@ -35,5 +35,5 @@ or custom details views
 * DONE 100% test coverage
 * TODO selenium or other tests for JS
 * DONE Error Reporting Local Utility - details views
-* TODO Allow to open tree not only from root, but from nested site also
+* DONE Allow to open tree not only from root, but from nested site also
 

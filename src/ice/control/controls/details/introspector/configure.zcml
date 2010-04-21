@@ -11,7 +11,7 @@
        name="getControlDetailsIntrospector"
        class="zope.app.apidoc.codemodule.browser.introspector.Introspector"
        template="introspector.pt"
-       permission="zope.ManageServices"
+       permission="zope.app.apidoc.UseAPIDoc"
        menu="control_details"
        title="Introspector"
        />
