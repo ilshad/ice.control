@@ -32,7 +32,7 @@
           .contents.Contents
           z3c.contents.column.RenameColumn"
      provides="z3c.table.interfaces.IColumnHeader"
-     permission="zope.View"
+     permission="ice.control.View"
      />
 
   <adapter
@@ -42,7 +42,7 @@
           .contents.Contents
           z3c.table.column.CreatedColumn"
      provides="z3c.table.interfaces.IColumnHeader"
-     permission="zope.View"
+     permission="ice.control.View"
      />
 
   <adapter
@@ -52,7 +52,7 @@
           .contents.Contents
           z3c.table.column.ModifiedColumn"
      provides="z3c.table.interfaces.IColumnHeader"
-     permission="zope.View"
+     permission="ice.control.View"
      />
 
   <!--
@@ -66,7 +66,7 @@
           zope.interface.Interface
           .contents.Contents"
      provides="z3c.table.interfaces.IColumn"
-     permission="zope.View"
+     permission="ice.control.View"
      />
 
 </configure>

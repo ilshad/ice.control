@@ -4,6 +4,11 @@
    xmlns:z3c="http://namespaces.zope.org/z3c"
    i18n_domain="ice.control">
 
+  <permission
+     id="ice.control.View"
+     title="View Tree"
+     />
+
   <!-- namespace [ ++control++ ] -->
   <view
      name="control"
@@ -24,7 +29,6 @@
 	  z3c.layer.pagelet.IPageletBrowserLayer
 	  z3c.pagelet.interfaces.IPagelet"
      factory=".menu.Menu"
-     permission="zope.ManageServices"
      />
 
   <z3c:template

@@ -25,4 +25,4 @@ class Pagelet:
     
     def update(self):
         self.unauth = IUnauthenticatedPrincipal.providedBy(self.request.principal)
-        self.is_admin = checkPermission('zope.ManageServices', self.context)
+        self.is_allow = checkPermission('ice.control.View', self.context)

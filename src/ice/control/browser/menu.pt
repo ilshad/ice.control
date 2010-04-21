@@ -1,5 +1,6 @@
 <table class="system-control-menu"
-       tal:define="name python:request.getURL().split('/')[-1]">
+       tal:define="name python:request.getURL().split('/')[-1];
+		   content python:context.get_content()">
   <tr tal:repeat="pagelet python:view.pagelets">
     <td class="selected"
 	tal:condition="python:pagelet.__name__ == name">
@@ -14,12 +15,12 @@
   </tr>
   <tr tal:condition="not: view/noauth">
     <td class="nav">
-      <a href="logout.html">Log Out</a>
+      <a tal:attributes="href string:${content/@@absolute_url}/logout.html">Log Out</a>
     </td>
   </tr>
   <tr tal:condition="view/noauth">
     <td class="nav">
-      <a href="login.html">Log In</a>
+      <a tal:attributes="href string:${content/@@absolute_url}/login.html">Log In</a>
     </td>
   </tr>
   <tr>

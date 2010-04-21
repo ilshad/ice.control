@@ -5,7 +5,7 @@
   </a>
 </h3>
   
-<h3 tal:condition="view/is_admin">
+<h3 tal:condition="view/is_allow">
   <a tal:attributes="href string: ++control++/tree.html">System control</a>
 </h3>
 
