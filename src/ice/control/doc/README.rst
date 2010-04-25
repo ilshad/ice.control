@@ -8,7 +8,8 @@ ice.control is package for:
 
 - BlueBream application developers: `developer kit` and `starter kit`.
 - System administrators: `site management`.
-- Site managers: if you have defined a views for these tasks.
+- Site managers: just define views for these tasks.
+
 
 Package overview
 ----------------
@@ -36,23 +37,21 @@ IMPORTANT NOTE: use Mozilla Firefox.
 Getting started
 ---------------
 
-Add `ice.control` dependency into main package of your BlueBream
-application. If you like to install the package from Git repository,
-see HACKME, section ``Install from Git repository``.
+(I assume you have empty BlueBream project from Paster template,
+i.e. paster create -t bluebream.)
 
-There are number of options to use ice.control. You have define this
-including certain modules in zcml. If you like to use entire
-functionality of the package, add these directives into your configure.zcml
-file, before of `include file="securitypolicy.zcml"`::
+Add `ice.control` into dependencies of your project.
+
+Add these directives into configure.zcml file, before of
+`include file="securitypolicy.zcml"`::
 
   `include package="ice.control.zcml"`
   `include package="ice.control"`
   `include package="ice.control.repl"`
   `browser:defaultSkin name="control"`
 
-Now run tests and run the server::
+Run the server::
 
-  $ bin/test
   $ bin/paster serve debug.ini
 
 Open http://localhost:8080 and log in admin account and learn UI.
@@ -70,7 +69,7 @@ Predefined variables and methods:
 
 - `context` variable is current context in ZODB tree
 - `getObject` method from zope.security.proxy
-- `transaction` module imported
+- `transaction` module import
 
 Key bindings:
 
@@ -78,3 +77,27 @@ Key bindings:
 - `down` - down to history
 - `Tab` - tab indent
 - `Ctrl+E` - go to line end
+
+
+More options
+------------
+
+- If you like to install the package from Git repository, see HACKME,
+  section ``Install from Git repository``.
+
+- There are number of options to use ice.control. You have define this
+  including certain modules in zcml, instead of entire. I.e. instead of
+  `include package="ice.control"` - include neede nested modules.
+
+
+Permissions
+-----------
+
+This package does define two permissions:
+
+- ice.control.View
+- ice.control.REPL
+
+Different views have different permissions like zope.ManageService,
+zope.ManageApplication and etc. You need to know about this only if you
+going to use controls not only by bootstrap user zope.Manager.

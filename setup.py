@@ -10,10 +10,10 @@ setup(name='ice.control',
       author_email='astoon.net at gmail.com',
       url='http://launchpad.net/ice.control',
       description='System Administration and Site Management for BlueBream',
-      long_description = (read('src/ice/control/doc/README')) +\
-          '\n\n' + read('src/ice/control/doc/HACKME') +\
-          '\n\n' + read('src/ice/control/doc/BUGS') +\
-          '\n\n' + read('src/ice/control/doc/CHANGES'),
+      long_description = (read('src/ice/control/doc/README.rst')) +\
+          '\n\n' + read('src/ice/control/doc/HACKME.rst') +\
+          '\n\n' + read('src/ice/control/doc/BUGS.rst') +\
+          '\n\n' + read('src/ice/control/doc/CHANGES.rst'),
       license='GPL v.3',
       classifiers = [
         'Development Status :: 3 - Alpha',

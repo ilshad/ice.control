@@ -3,7 +3,7 @@ BUGS
 
 Bug reports: https://bugs.launchpad.net/ice.control.
 
-Or fork Git repository, fix bug and: a) send patch to <astoon.net@gmail.com>,
+Or fork Git repository, fix bug and: a) send patch to <astoon.net@gmail.com>
 or b) pull into your public repository at GitHub and send "pull request".
 
 List of known bugs in current release (0.3.0):

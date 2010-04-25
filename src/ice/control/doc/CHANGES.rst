@@ -1,6 +1,12 @@
 Changelog
 *********
 
+0.3.2 (unreleased)
+------------------
+
+- minor changes in skin, added BB favicon
+
+
 0.3.1 (2010-04-21)
 ------------------
 
