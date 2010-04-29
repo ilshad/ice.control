@@ -75,3 +75,8 @@ class Dispatcher:
         if self._authenticate(id, password):
             del self._sessions[id]
             del self._credentials[id]
+
+    def clean(self):
+        self._sessions = {}
+        self._credentials = {}
+

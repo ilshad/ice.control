@@ -42,3 +42,10 @@ Eval simple code::
 
   >>> session.run("x1(3,4)")
   (False, ['7'])
+
+Delete all sessions::
+
+  >>> dispatcher.clean()
+
+  >>> len(dispatcher._sessions) == 0
+  True

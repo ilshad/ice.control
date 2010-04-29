@@ -47,6 +47,10 @@ class IDispatcher(zope.interface.Interface):
         """Delete session.
         """
 
+    def clean():
+        """Remove all sessions.
+        """
+
 class ISession(zope.interface.Interface):
     """Advanced read-eval-print loop for BlueBream.
     Environment: context.
