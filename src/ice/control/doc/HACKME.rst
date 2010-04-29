@@ -69,3 +69,30 @@ Versions, release tags, branches
 --------------------------------
 
 **
+
+Collaboration
+-------------
+
+1. Open page of mainstream repository (http://github.com/astoon/ice.control)
+   (or other, not mainstream), and click button "Fork".
+
+2. Use mr.developer extension (see above) to clone repository within your
+   project. But use your own URL in [sources] section of buildout.cfg
+
+3. Add mainstream repository into into the list of remotes::
+
+  $ cd dev/ice.control
+  $ git remote add main git://github.com/astoon/ice.control.git
+  $ git fetch main
+
+4. To synchronize the code from mainstream, merge::
+
+  $ git fetch main
+  $ git merge main/master
+
+5. Publish your changes::
+
+  $ git push origin master
+
+6. Press button "Pull Request" to make merge proposal into the
+   next release.
