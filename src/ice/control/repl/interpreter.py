@@ -47,5 +47,5 @@ class Interpreter(code.InteractiveInterpreter):
         except:
             self.showtraceback()
         sys.stdout = stdout
-        trap.close()
+#        trap.close()
         del trap

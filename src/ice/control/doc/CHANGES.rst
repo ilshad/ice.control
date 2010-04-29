@@ -5,7 +5,8 @@ Changelog
 ------------------
 
 - minor changes in skin, added BB favicon
-
+- added method `clean` into REPL dispatcher
+- LP #570887: REPL, help(): Error "ValueError: I/O operation on closed file"
 
 0.3.1 (2010-04-21)
 ------------------

@@ -10,6 +10,7 @@ ice.control is package for:
 - System administrators: `site management`.
 - Site managers: just define views for these tasks.
 
+FAQ: https://answers.launchpad.net/ice.control/+faqs
 
 Package overview
 ----------------
