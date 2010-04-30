@@ -81,18 +81,18 @@ Collaboration
 
 3. Add mainstream repository into into the list of remotes::
 
-  $ cd dev/ice.control
-  $ git remote add main git://github.com/astoon/ice.control.git
-  $ git fetch main
+     $ cd dev/ice.control
+     $ git remote add main git://github.com/astoon/ice.control.git
+     $ git fetch main
 
 4. To synchronize the code from mainstream, merge::
 
-  $ git fetch main
-  $ git merge main/master
+     $ git fetch main
+     $ git merge main/master
 
 5. Publish your changes::
 
-  $ git push origin master
+     $ git push origin master
 
 6. Press button "Pull Request" to make merge proposal into the
    next release.
