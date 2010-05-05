@@ -8,7 +8,7 @@
     margin-left: 0;
     padding-left: 0;
     font-weight: normal;
-    font-family: mono;
+    font-family: monospace;
     background: #000 !important;
     color: yellow;
 }
@@ -17,15 +17,16 @@
 }
 #treeContainer div.details form.repl div.repl-output .output pre {
     display: inline;
-    font-family: mono;
+    font-family: monospace;
 }
 #treeContainer div.details form.repl .prompt,
 #treeContainer div.details form.repl .prompt-input {
-    width: 30px;
     margin-right: 10px;
     font-weight: normal;
-    font-family: mono;
+    font-family: monospace;
     color: #999999;
+    letter-spacing: normal;
+    white-space: pre;
 }
 #treeContainer div.details form.repl .prompt {
     margin-right: 10px;
