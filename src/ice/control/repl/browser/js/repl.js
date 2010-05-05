@@ -43,7 +43,7 @@ REPL.prototype.loadForm = function () {
     form.append(prompt_input);
 
     var input = $('<input type="text" name="source" class="repl-input" />');
-    input.attr('size', '68');
+    input.attr('size', '67');
     input.attr('autocomplete', 'off');
     var repl = this;
 

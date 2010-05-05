@@ -8,6 +8,7 @@ Changelog
 - added method `clean` into REPL dispatcher
 - LP #570887: REPL, help(): Error "ValueError: I/O operation on closed file"
 - LP #570006: problems with monospace font for REPL in GoogleChrome
+- LP #571805: undented REPL input field, and prompt appear in the previous line.
 
 0.3.1 (2010-04-21)
 ------------------
