@@ -1,5 +1,5 @@
 .. contents:: Table of Contents
-   :depth: 4
+   :depth: 2
 
 ice.control - System Administration and Site Management for BlueBream
 *********************************************************************
@@ -32,8 +32,8 @@ Each facility is optional. Include needed components using zcml, or
 include root configuration file to use entire functionality of the
 package.
 
-IMPORTANT NOTE: use Mozilla Firefox (Google Chrome also supported but
-possible bugs in UI, please report them).
+IMPORTANT NOTE: use Mozilla Firefox (Google Chrome also supported now,
+but still possible bugs in UI. Please report.)
 
 Getting started
 ---------------
@@ -77,7 +77,7 @@ Key bindings:
 - `up` - up to history
 - `down` - down to history
 - `Tab` - tab indent
-- `Ctrl+E` - go to line end
+- `Ctrl+E` - go to line's end (in Firefox)
 
 
 More options

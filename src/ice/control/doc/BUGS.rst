@@ -1,18 +1,14 @@
 BUGS
 ****
 
-Bug reports: https://bugs.launchpad.net/ice.control.
+Bug reports: http://bugs.launchpad.net/ice.control.
 
-Or fork Git repository, fix bug and: a) send patch to <astoon.net@gmail.com>
-or b) pull into your public repository at GitHub and send "pull request".
 
-List of known bugs in current release (0.3.0):
+a) clone Git repository, fix bug and send patch to <astoon.net@gmail.com>
+   or
+b) clone bzr mirror - bzr branch lp:ice.control if you prefer bzr VCS, 
+   fix bug and send patch to <astoon.net@gmail.com>
+   or
+c) see HACKME.rst, section `Collaboration`.
 
-- JavaScript not handles click-event on details view until
-  details menu clicked. So, when load details pseudo-window, first
-  view (`Base Info`) should not contain any links or forms.
-  Need fix JS.
-
-- Need better Google Chrome web browser support in CSS. Right now UI
-  styles is not ideal in this browser. For example, in REPL - not
-  mono font. Use only Mozilla Firefox.
+List of known bugs in current release see at http://bugs.launchpad.net/ice.control
