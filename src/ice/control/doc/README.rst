@@ -32,8 +32,8 @@ Each facility is optional. Include needed components using zcml, or
 include root configuration file to use entire functionality of the
 package.
 
-IMPORTANT NOTE: use Mozilla Firefox.
-
+IMPORTANT NOTE: use Mozilla Firefox (Google Chrome also supported but
+possible bugs in UI, please report them).
 
 Getting started
 ---------------

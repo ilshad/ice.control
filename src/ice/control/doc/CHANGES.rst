@@ -4,11 +4,13 @@ Changelog
 0.3.2 (unreleased)
 ------------------
 
+- better support for Google Chrome 
 - minor changes in skin, added BB favicon
 - added method `clean` into REPL dispatcher
 - LP #570887: REPL, help(): Error "ValueError: I/O operation on closed file"
-- LP #570006: problems with monospace font for REPL in GoogleChrome
+- LP #570006: problems with monospace font for REPL in Google Chrome
 - LP #571805: undented REPL input field, and prompt appear in the previous line.
+- LP #575544: incorrect auto scrolling in REPL.
 
 0.3.1 (2010-04-21)
 ------------------

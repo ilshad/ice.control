@@ -117,7 +117,7 @@ REPL.prototype.showLine = function (output, prompt) {
     $(line).append(pre).appendTo(this.outputNode);
 
     // auto scroll
-    this.parent.parentNode.scrollTop = this.parent.parentNode.scrollHeight - this.parent.parentNode.offsetHeight;
+    this.parent.parentNode.scrollTop = this.parent.parentNode.scrollHeight - this.parent.parentNode.offsetHeight + 30;
 }
 
 REPL.prototype.process = function (event) {
