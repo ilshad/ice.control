@@ -4,18 +4,24 @@
 
   <configure
      xmlns:zcml="http://namespaces.zope.org/zcml"
-     zcml:condition="installed zope.dublincore">
-    
-    <page
-       for="*"
-       name="getControlDetailsDublinCore"
-       class=".dublincore.EditDublinCore"
-       template="dublincore.pt"
-       permission="zope.app.dublincore.change"
-       menu="control_details"
-       title="Metadata"
-       />
-    
+     zcml:condition="installed zope.app.dublincore">
+
+    <configure
+       xmlns:zcml="http://namespaces.zope.org/zcml"
+       zcml:condition="installed zope.dublincore">      
+
+      <page
+	 for="*"
+	 name="getControlDetailsDublinCore"
+	 class=".dublincore.EditDublinCore"
+	 template="dublincore.pt"
+	 permission="zope.app.dublincore.change"
+	 menu="control_details"
+	 title="Metadata"
+	 />
+
+    </configure>
+
   </configure>
-  
+
 </configure>
