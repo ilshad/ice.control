@@ -24,7 +24,7 @@
   <browser:defaultView
      for="zope.container.interfaces.IContainer"
      layer=".interfaces.ILayer"
-     name="index.html"
+     name="_index"
      />
 
   <include package=".frontpage" />

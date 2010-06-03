@@ -3,10 +3,11 @@
    i18n_domain="ice.control">
   
   <pagelet
-     name="index.html"
+     name="_index"
      class=".frontpage.Pagelet"
-     permission="zope.View"
+     for="zope.container.interfaces.IContainer"
      layer="..interfaces.ILayer"
+     permission="zope.View"
      />
   
   <template
