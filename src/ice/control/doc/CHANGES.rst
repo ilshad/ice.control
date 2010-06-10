@@ -1,6 +1,12 @@
 Changelog
 *********
 
+0.3.3 (Unreleased)
+------------------
+
+- minor fixes in css
+- removed zcml some of inludes
+
 0.3.2 (2010-05-05)
 ------------------
 
