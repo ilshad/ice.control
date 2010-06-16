@@ -60,24 +60,15 @@ Issues, Blueprints
 * https://blueprints.launchpad.net/ice.control
 * https://answers.launchpad.net/ice.control
 * http://github.com/astoon/ice.control/issues
-
 * For free discussions - Goole Wave ID: googlewave.com!w+r7PkMjhxA
-(https://wave.google.com/wave/?#restored:wave:googlewave.com!w%252Br7PkMjhxA)
-
-
-Versions, release tags, branches
---------------------------------
-
-**
+  (https://wave.google.com/wave/?#restored:wave:googlewave.com!w%252Br7PkMjhxA)
 
 Collaboration
 -------------
 
-1. Open page of mainstream repository (http://github.com/astoon/ice.control)
-   (or other, not mainstream), and click button "Fork".
+1. Open page of mainstream repository (http://github.com/astoon/ice.control) (or other, not mainstream), and click button "Fork".
 
-2. Use mr.developer extension (see above) to clone repository within your
-   project. But use your own URL in [sources] section of buildout.cfg
+2. Use mr.developer extension (see above) to clone repository within your project. But use your own URL in [sources] section of buildout.cfg
 
 3. Add mainstream repository into into the list of remotes::
 
@@ -94,5 +85,4 @@ Collaboration
 
      $ git push origin master
 
-6. Press button "Pull Request" to make merge proposal into the
-   next release.
+6. Press button "Pull Request" to make merge proposal into the next release.

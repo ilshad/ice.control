@@ -73,7 +73,7 @@ items and views accordingly to context and permissions.
 
 
 0.2.0 (2010-04-15)
------------------
+------------------
 
 - Added details views for IErrorReportingUtility, display error logs
   and edit settings.
