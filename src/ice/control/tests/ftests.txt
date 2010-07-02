@@ -349,12 +349,11 @@ Registrations
   >>> 'RootErrorReportingUtility' in browser.contents
   True
 
-  >>> 'PrincipalAnnotation' in browser.contents
-  True
+#  >>> 'PrincipalAnnotation' in browser.contents
+#  True
 
   >>> 'PersistentSessionDataContainer' in browser.contents
   True
-
 
 BlueBream REPL console in JavaScript
 ++++++++++++++++++++++++++++++++++++

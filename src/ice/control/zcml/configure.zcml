@@ -28,6 +28,7 @@
   <include package="zope.location" />
   <include package="zope.session" />
   <include package="zope.error" />
+  <include package="zope.password" />
 
   <include package="zope.app.appsetup" />
   <include package="zope.app.security" />
