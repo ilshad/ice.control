@@ -4,13 +4,11 @@ Changelog
 0.3.3 (2010-07-02)
 ------------------
 
-- increased supported version of bluebream: 1.0b2
+- support bluebream 1.0b2
 
-- minor fixes in css
+- minor fixes in css and ice.control.zcml
 
-- minor changes in ice.control.zcml
-
-- fixed documentation - rst syntax
+- fix rst syntax in documentation
 
 0.3.2 (2010-05-05)
 ------------------
