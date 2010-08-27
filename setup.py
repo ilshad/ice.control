@@ -5,14 +5,12 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name='ice.control',
-      version='0.3.4',
+      version='0.4.0',
       author='Ilshad R. Khabibullin',
       author_email='astoon.net at gmail.com',
       url='http://launchpad.net/ice.control',
       description='System Administration and Site Management for BlueBream',
       long_description = (read('src/ice/control/doc/README.rst')) +\
-          '\n\n' + read('src/ice/control/doc/HACKME.rst') +\
-          '\n\n' + read('src/ice/control/doc/BUGS.rst') +\
           '\n\n' + read('src/ice/control/doc/CHANGES.rst'),
       license='GPL v.3',
       classifiers = [

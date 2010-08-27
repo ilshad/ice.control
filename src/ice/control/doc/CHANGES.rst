@@ -1,10 +1,11 @@
 Changelog
 *********
 
-0.3.4 (unreleased)
+0.4.0 (unreleased)
 ------------------
 
-- nothing yet
+- support bluebream 1.0b4
+
 
 0.3.3 (2010-07-02)
 ------------------
