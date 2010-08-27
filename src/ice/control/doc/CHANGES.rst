@@ -1,12 +1,16 @@
 Changelog
 *********
 
-0.4.0 (unreleased)
+0.4.0 (2010-08-27)
 ------------------
 
 - support bluebream 1.0b4
-- used new dublincore permissions, for zope.dublincore >= 3.7.0
-- minor fixes in css
+
+- new dublincore permissions (zope.dublincore >= 3.7.0)
+
+- added zope.principalannotation zcml into ice.control.zcml, introspector to work correctly
+
+- minor fix in css - truncate too long urls in details header
 
 0.3.3 (2010-07-02)
 ------------------

@@ -14,7 +14,7 @@ setup(name='ice.control',
           '\n\n' + read('src/ice/control/doc/CHANGES.rst'),
       license='GPL v.3',
       classifiers = [
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Intended Audience :: Customer Service',

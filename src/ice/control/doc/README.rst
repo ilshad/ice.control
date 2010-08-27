@@ -43,20 +43,19 @@ i.e. paster create -t bluebream.)
 
 Add `ice.control` into dependencies of your project.
 
-Add these directives into configure.zcml file, before of
-`include file="securitypolicy.zcml"`::
+Add these directives into etc/site.zcml file, before of
+`includeOvverides file="overrides.zcml"`::
 
   `include package="ice.control.zcml"`
   `include package="ice.control"`
   `include package="ice.control.repl"`
-  `browser:defaultSkin name="control"`
 
 Run the server::
 
   $ bin/paster serve debug.ini
 
-Open http://localhost:8080 and log in admin account and learn UI.
-
+Open management skin: http://localhost:8080/++skin++control/
+and log in admin account and learn UI.
 
 Ajax based REPL
 ---------------
@@ -88,7 +87,7 @@ More options
 
 - There are number of options to use ice.control. You have define this
   including certain modules in zcml, instead of entire. I.e. instead of
-  `include package="ice.control"` - include neede nested modules.
+  `include package="ice.control"` - include needed nested modules.
 
 
 Permissions

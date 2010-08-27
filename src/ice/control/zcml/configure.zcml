@@ -29,6 +29,7 @@
   <include package="zope.session" />
   <include package="zope.error" />
   <include package="zope.password" />
+  <include package="zope.principalannotation" />
 
   <include package="zope.app.appsetup" />
   <include package="zope.app.security" />
@@ -45,7 +46,6 @@
   <include package="zope.app.preference" />
   <include package="zope.app.schema" />
   <include package="zope.app.component.browser" />
-  <!--include package="zope.app.principalannotation" /-->
 
   <include package="zc.resourcelibrary" />
 
