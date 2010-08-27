@@ -327,7 +327,6 @@ Introspector
   >>> browser.getLink(text="zope.site.interfaces.IRootFolder").url
   'http://localhost/++apidoc++/Interface/zope.site.interfaces.IRootFolder/index.html'
 
-
 Configuration plugin
 ++++++++++++++++++++
 

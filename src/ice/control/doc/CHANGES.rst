@@ -5,7 +5,8 @@ Changelog
 ------------------
 
 - support bluebream 1.0b4
-
+- used new dublincore permissions, for zope.dublincore >= 3.7.0
+- minor fixes in css
 
 0.3.3 (2010-07-02)
 ------------------

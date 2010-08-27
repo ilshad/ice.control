@@ -10,7 +10,7 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-#  Project homepage: <http://launchpad.net/ice.control>
+# Project homepage: <http://launchpad.net/ice.control>
 #
 ##############################################################################
 
